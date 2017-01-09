@@ -1,1 +1,0 @@
-# SumUp API documentation
