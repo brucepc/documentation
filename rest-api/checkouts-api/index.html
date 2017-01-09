@@ -91,6 +91,7 @@
   "<span class="hljs-attribute">currency</span>": <span class="hljs-value"><span class="hljs-string">"EUR|GBP|RUB|BRL|PLN|CHF|SEK|USD"</span></span>,
   "<span class="hljs-attribute">pay_to_email</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">pay_from_email</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">fee_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">return_url</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
@@ -116,6 +117,10 @@
     "<span class="hljs-attribute">pay_from_email</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Email of the payer"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">fee_amount</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Fee amount to be set (needs client permissions)"</span>
     </span>}</span>,
     "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -273,8 +278,7 @@
     "<span class="hljs-attribute">cvv</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
   </span>}</span>,
   "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-  "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-  "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+  "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -323,10 +327,6 @@
     "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"External customer reference. If supplied and payment type is card, card details will be tokenized and associated to this reference."</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">user_id</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
