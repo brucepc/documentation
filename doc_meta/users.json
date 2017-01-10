@@ -1,0 +1,252 @@
+{
+    "host": "users-beta.sam-app.ro",
+    "destination": "/src/rest-api/accounts-api/index.html",
+    "layout": "docs",
+    "permalink": "/rest-api/accounts-api/",
+    "docpath":  "<a href='/rest-api'>REST API</a> / Accounts",
+    "groups": [
+        {
+            "doc": "/v0.1/api/doc/users",
+            "name": "Merchant account",
+            "resources": [
+                {
+                    "name": "Get account",
+                    "url": "/v0.1/me",
+                    "method": "GET"
+                },
+                {
+                    "name": "Personal profile",
+                    "url": "/v0.1/me/personal-profile",
+                    "actions": [
+                        {
+                            "name": "Get personal profile",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Create personal profile",
+                            "method": "PUT"
+                        }
+                    ]
+                },
+                {
+                    "name": "Merchant profile",
+                    "url": "/v0.1/me/merchant-profile",
+                    "actions": [
+                        {
+                            "name": "Get merchant profile",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Create merchant profile",
+                            "method": "PUT"
+                        }
+                    ]
+                },
+                {
+                    "name": "Doing Business As",
+                    "url": "/v0.1/me/merchant-profile/doing-business-as",
+                    "actions": [
+                        {
+                            "name": "Get DBA",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Edit DBA",
+                            "method": "PUT"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "doc": "/v0.1/api/doc/users",
+            "name": "Manage payouts",
+            "resources": [
+                {
+                    "name": "Bank account",
+                    "url": "/v0.1/me/merchant-profile/bank-accounts",
+                    "actions": [
+                        {
+                            "name": "Get Bank Accounts",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Create Bank Accounts",
+                            "method": "POST"
+                        }
+                    ]
+                },
+                {
+                    "name": "Settings",
+                    "url": "/v0.1/me/merchant-profile/settings",
+                    "actions": [
+                        {
+                            "name": "Get settings",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Edit settings",
+                            "method": "PUT"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "doc": "/v0.1/api/doc/users",
+            "name": "Manage Employees",
+            "resources": [
+                {
+                    "url": "/v0.1/me/accounts",
+                    "name": "Employees",
+                    "actions": [
+                        {
+                            "name": "Create Employee",
+                            "method": "POST"
+                        },
+                        {
+                            "name": "Get Employees",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "url": "/v0.1/me/accounts/:operator_code",
+                    "name": "Employee",
+                    "actions": [
+                        {
+                            "name": "Change employee credentials",
+                            "method": "PUT"
+                        },
+                        {
+                            "name": "Disable employee account",
+                            "method": "DELETE"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "doc": "/v0.1/api/doc/users",
+            "name": "Manage Products",
+            "resources": [
+                {
+                    "url": "/v0.1/me/merchant-profile/shelves",
+                    "name": "Shelves",
+                    "actions": [
+                        {
+                            "name": "Get shelves",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Create shelf",
+                            "method": "POST"
+                        }
+                    ]
+                },
+                {
+                    "url": "/v0.1/me/merchant-profile/shelves/:shelf_id",
+                    "name": "Shelf",
+                    "actions": [
+                        {
+                            "name": "Get shelf",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Edit shelf",
+                            "method": "PUT"
+                        },
+                        {
+                            "name": "Delete shelf",
+                            "method": "DELETE"
+                        }
+                    ]
+                },
+                {
+                    "url": "/v0.1/me/merchant-profile/shelves/:shelf_id/products",
+                    "name": "Products",
+                    "actions": [
+                        {
+                            "name": "Get products",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Create product",
+                            "method": "POST"
+                        }
+                    ]
+                },
+                {
+                    "url": "/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id",
+                    "name": "Product",
+                    "actions": [
+                        {
+                            "name": "Get product",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Edit product",
+                            "method": "PUT"
+                        },
+                        {
+                            "name": "Delete product",
+                            "method": "DELETE"
+                        }
+                    ]
+                },
+                {
+                    "url": "/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices",
+                    "name": "Product prices",
+                    "actions": [
+                        {
+                            "name": "Get product prices",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Create product price",
+                            "method": "POST"
+                        }
+                    ]
+                },
+                {
+                    "url": "/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices/:price_id",
+                    "name": "Product price",
+                    "actions": [
+                        {
+                            "name": "Get product price",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Edit product price",
+                            "method": "PUT"
+                        },
+                        {
+                            "name": "Delete product price",
+                            "method": "DELETE"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "doc": "/v0.1/api/doc/users",
+            "name": "Manage settings",
+            "resources": [
+                {
+                    "url": "/v0.1/me/app-settings",
+                    "name": "Application settings",
+                    "actions": [
+                        {
+                            "name": "Get settings",
+                            "method": "GET"
+                        },
+                        {
+                            "name": "Edit settings",
+                            "method": "PUT"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

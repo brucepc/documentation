@@ -1,0 +1,172 @@
+
+<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-i.-getting-started">I. Getting Started</a></li><li><a href="#header-ii.-integrate-the-sumup-sdk-with-your-app">II. Integrate the SumUp SDK with your app</a></li><li><a href="#header-1.-add-the-repository-to-your-gradle-dependencies">1. Add the repository to your gradle dependencies</a></li><li><a href="#header-2.-set-up-the-sdk">2. Set up the SDK</a></li><li><a href="#header-3.-make-a-payment">3. Make a payment</a></li><li><a href="#header-4.-handle-the-result">4. Handle the result</a></li><li><a href="#header-legacy-handle-result-in-new-activity">Legacy: Handle result in new Activity</a></li><li><a href="#header-iii.-additional-features">III. Additional features</a></li><li><a href="#header-1.-include-a-transaction-identifier">1. Include a transaction identifier</a></li><li><a href="#header-2.-log-out-the-currently-logged-in-sumup-account">2. Log out the currently logged in SumUp account</a></li><li><a href="#header-3.-response-fields">3. Response fields</a></li><li><a href="#header-4.-clear-current-pin+-settings">4. Clear current PIN+ settings</a></li><li><a href="#header-5.-enable-proguard">5. Enable ProGuard</a></li><li><a href="#header-6.-transparent-authentication">6. Transparent authentication</a></li><li><a href="#header-7.-runtime-permissions-for-api-level-23">7. Runtime permissions for API Level 23</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><p><a href="http://developer.android.com/index.html"><img src="https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat-square" alt="Platform"></a>
+<a href="http://developer.android.com/about/versions/android-4.0.3html"><img src="https://img.shields.io/badge/API-15%2B-orange.svg?style=flat-square" alt="API"></a></p>
+<p><em>NOTE: Please make sure to run ‘gradle clean’ after updating to version 1.53.+</em></p>
+<h2 id="header-i.-getting-started">I. Getting Started <a class="permalink" href="#header-i.-getting-started" aria-hidden="true">¶</a></h2>
+<ul>
+<li>Create a SumUp account and get an affiliate key <a href="https://me.sumup.com/developers" target="_blank">here</a></li>
+</ul>
+<h2 id="header-ii.-integrate-the-sumup-sdk-with-your-app">II. Integrate the SumUp SDK with your app <a class="permalink" href="#header-ii.-integrate-the-sumup-sdk-with-your-app" aria-hidden="true">¶</a></h2>
+<ul>
+<li>
+<p>You can use the sample app provided in this repository as a reference</p>
+</li>
+<li>
+<p><a href="https://github.com/sumup/Android-MerchantSDK/blob/master/CHANGELOG.md">Changelog</a></p>
+</li>
+</ul>
+<h5 id="header-1.-add-the-repository-to-your-gradle-dependencies">1. Add the repository to your gradle dependencies <a class="permalink" href="#header-1.-add-the-repository-to-your-gradle-dependencies" aria-hidden="true">¶</a></h5>
+<pre><code><span class="hljs-title">allprojects</span> {
+   <span class="hljs-title">repositories</span> {
+      <span class="hljs-title">maven</span> { <span class="hljs-title">url</span> <span class="hljs-string">'https://maven.sumup.com/releases'</span> }
+   }
+}</code></pre>
+<h5 id="header-2.-set-up-the-sdk">2. Set up the SDK <a class="permalink" href="#header-2.-set-up-the-sdk" aria-hidden="true">¶</a></h5>
+<p>Add the dependency to a module</p>
+<pre><code><span class="hljs-keyword">compile</span>(<span class="hljs-string">'com.sumup:merchant-sdk:1.61.0@aar'</span>) {
+        transitive = <span class="hljs-keyword">true</span>
+    }</code></pre>
+<p>Initialize the SumUp components in your app</p>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SampleApplication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Application</span> </span>{
+    
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate();
+        SumUpState.init(<span class="hljs-keyword">this</span>);
+    }</code></pre>
+<h5 id="header-3.-make-a-payment">3. Make a payment <a class="permalink" href="#header-3.-make-a-payment" aria-hidden="true">¶</a></h5>
+<pre><code class="language-java">SumUpPayment payment = SumUpPayment.builder()
+            <span class="hljs-comment">//mandatory parameters</span>
+            <span class="hljs-comment">// Please go to https://me.sumup.com/developers to get your Affiliate Key by entering the application ID of your app. (e.g. com.sumup.sdksampleapp)</span>
+            .affiliateKey(<span class="hljs-string">"YOUR_AFFILIATE_KEY"</span>)
+            .productAmount(<span class="hljs-number">1.23</span>)
+            .currency(SumUpPayment.Currency.EUR)
+            <span class="hljs-comment">// optional: add details</span>
+            .productTitle(<span class="hljs-string">"Taxi Ride"</span>)
+            .receiptEmail(<span class="hljs-string">"customer@mail.com"</span>)
+            .receiptSMS(<span class="hljs-string">"+3531234567890"</span>)
+            <span class="hljs-comment">// optional: Add metadata</span>
+            .addAdditionalInfo(<span class="hljs-string">"AccountId"</span>, <span class="hljs-string">"taxi0334"</span>)
+            .addAdditionalInfo(<span class="hljs-string">"From"</span>, <span class="hljs-string">"Paris"</span>)
+            .addAdditionalInfo(<span class="hljs-string">"To"</span>, <span class="hljs-string">"Berlin"</span>)
+            <span class="hljs-comment">//optional: foreign transaction ID, must be unique!</span>
+            .foreignTransactionId(UUID.randomUUID().toString())  <span class="hljs-comment">// can not exceed 128 chars</span>
+            .build();
+
+    SumUpAPI.openPaymentActivity(MainActivity.<span class="hljs-keyword">this</span>, payment, <span class="hljs-number">1</span>);</code></pre>
+<h5 id="header-4.-handle-the-result">4. Handle the result <a class="permalink" href="#header-4.-handle-the-result" aria-hidden="true">¶</a></h5>
+<pre><code class="language-java"><span class="hljs-annotation">@Override</span>
+   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>{
+      <span class="hljs-keyword">if</span> (requestCode == <span class="hljs-number">1</span> &amp;&amp; data != <span class="hljs-keyword">null</span>) {
+         <span class="hljs-comment">// Handle the response here</span>
+      }
+   }</code></pre>
+<h5 id="header-legacy-handle-result-in-new-activity">Legacy: Handle result in new Activity <a class="permalink" href="#header-legacy-handle-result-in-new-activity" aria-hidden="true">¶</a></h5>
+<p>If you still prefer to handle the result of a transaction in a new Activity, provide a callback Activity in your manifest:</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"ResponseActivity"</span>  <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"Payment Result"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.ResponseActivity"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">action</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.DEFAULT"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">category</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.BROWSABLE"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">category</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span></code></pre>
+<p>Then, open the PaymentActivity with:</p>
+<pre><code class="language-java">SumUpAPI.openPaymentActivity(MainActivity.<span class="hljs-keyword">this</span>, ResponseActivity.class, payment);</code></pre>
+<h1 id="header-iii.-additional-features">III. Additional features <a class="permalink" href="#header-iii.-additional-features" aria-hidden="true">¶</a></h1>
+<h5 id="header-1.-include-a-transaction-identifier">1. Include a transaction identifier <a class="permalink" href="#header-1.-include-a-transaction-identifier" aria-hidden="true">¶</a></h5>
+<p>When setting up the SumUpPayment object, it is possible to pass an optional foreignTransactionID parameter. This identifier will be associated with the transaction and can be used to retrieve this transaction later. See <a href="https://sumup.com/integration#transactionReportingAPIs">API documentation</a> for details. Please make sure that this ID is unique within the scope of the SumUp merchant account and sub-accounts. It must not be longer than 128 characters.</p>
+<h5 id="header-2.-log-out-the-currently-logged-in-sumup-account">2. Log out the currently logged in SumUp account <a class="permalink" href="#header-2.-log-out-the-currently-logged-in-sumup-account" aria-hidden="true">¶</a></h5>
+<pre><code class="language-java">SumUpAPI.logout();</code></pre>
+<h5 id="header-3.-response-fields">3. Response fields <a class="permalink" href="#header-3.-response-fields" aria-hidden="true">¶</a></h5>
+<p>Several response fields are available when the callback activity is called :</p>
+<ul>
+<li>
+<p>SumUpAPI.Response.RESULT_CODE</p>
+<ul>
+<li>Type : int</li>
+<li>Possible Values :
+<ul>
+<li>SumUpAPI.Response.ResultCode.TRANSACTION_SUCCESSFUL = 1</li>
+<li>SumUpAPI.Response.ResultCode.ERROR_TRANSACTION_FAILED = 2</li>
+<li>SumUpAPI.Response.ResultCode.ERROR_GEOLOCATION_REQUIRED = 3</li>
+<li>SumUpAPI.Response.ResultCode.ERROR_INVALID_PARAM = 4</li>
+<li>SumUpAPI.Response.ResultCode.ERROR_INVALID_TOKEN = 5</li>
+<li>SumUpAPI.Response.ResultCode.ERROR_NO_CONNECTIVITY = 6</li>
+<li>SumUpAPI.Response.ResultCode.ERROR_PERMISSION_DENIED = 7</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>SumUpAPI.Response.MESSAGE</p>
+<ul>
+<li>Type : String</li>
+<li>Description : A human readable message describing the result of the payment</li>
+</ul>
+</li>
+<li>
+<p>SumUpAPI.Response.TX_CODE</p>
+<ul>
+<li>Type : String</li>
+<li>Description : The transaction code associated with the payment</li>
+</ul>
+</li>
+<li>
+<p>SumUpAPI.Response.TX_INFO</p>
+<ul>
+<li>Type : Parcelable of type com.sumup.merchant.Models.TransactionInfo</li>
+<li>Description : Transaction info object containing information about this transaction. As of SDK version 1.60.0, it contains the following information:
+<ul>
+<li>Transaction Code</li>
+<li>Merchant Code</li>
+<li>Amount</li>
+<li>VAT</li>
+<li>Currency (e.g. EUR)</li>
+<li>Payment Status (PENDING | SUCCESSFUL | CANCELLED | FAILED)</li>
+<li>Payment Type (CASH | POS | ECOM | UNKNOWN | RECURRING | BITCOIN | BALANCE)</li>
+<li>Entry Mode (e.g. CHIP)</li>
+<li>Number of Installments</li>
+<li>Card Type (e.g. MASTERCARD)</li>
+<li>Last four digits of the card</li>
+<li>Product information</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>SumUpAPI.Response.RECEIPT_SENT</p>
+<ul>
+<li>Type : boolean</li>
+<li>Description : true if a receipt was issued to the customer, false otherwise</li>
+</ul>
+</li>
+</ul>
+<p>The response flags are provided within the Bundle that is passed back to the callback activity.</p>
+<pre><code class="language-java"><span class="hljs-keyword">int</span> resultCode = getIntent().getExtras()getInt(SumUpAPI.Response.RESULT_CODE);</code></pre>
+<h5 id="header-4.-clear-current-pin+-settings">4. Clear current PIN+ settings <a class="permalink" href="#header-4.-clear-current-pin+-settings" aria-hidden="true">¶</a></h5>
+<pre><code class="language-java">SumUpAPI.clearPinPlusSettings();</code></pre>
+<h5 id="header-5.-enable-proguard">5. Enable ProGuard <a class="permalink" href="#header-5.-enable-proguard" aria-hidden="true">¶</a></h5>
+<pre><code>buildTypes {
+        release {
+            <span class="hljs-comment">//All ProGuard rules required by the SumUp SDK are packaged with the library</span>
+            minifyEnabled <span class="hljs-literal">true</span>
+            proguardFiles getDefaultProguardFile(<span class="hljs-string">'proguard-android.txt'</span>)
+        }
+    }</code></pre>
+<h5 id="header-6.-transparent-authentication">6. Transparent authentication <a class="permalink" href="#header-6.-transparent-authentication" aria-hidden="true">¶</a></h5>
+<p>If users should be authenticated without typing in their user credentials (or know the credentials), but instead authenticate to the app transaparently without user input, you can aquire a token from our backend and pass it to the SDK when starting a payment.</p>
+<p>To pass the access token, call <code>SumUpPayment.builder().accessToken(&quot;MY_ACCESS_TOKEN&quot;)</code>. For information about how to obtain a token, please see the <a href="https://sumup.co.uk/docs/oauthte">API Documentation</a>.</p>
+<p>If the token is invalid, <code>SumUpAPI.Response.ResultCode.ERROR_INVALID_TOKEN</code> will be returned.</p>
+<h5 id="header-7.-runtime-permissions-for-api-level-23">7. Runtime permissions for API Level 23 <a class="permalink" href="#header-7.-runtime-permissions-for-api-level-23" aria-hidden="true">¶</a></h5>
+<p>From 1.61.0 and up, the SumUp SDK will request all required permissions when needed. No further action is required.</p>
+<p>If you are using 1.60.0 and below, request the following permissions:</p>
+<ul>
+<li>
+<p><code>ACCESS_COARSE_LOCATION</code></p>
+</li>
+<li>
+<p><code>ACCESS_FINE_LOCATION</code></p>
+</li>
+</ul>
+<p>For audio readers, please also ask for <code>RECORD_AUDIO</code></p>
+</div></div></div>

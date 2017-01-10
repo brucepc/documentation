@@ -1,0 +1,36 @@
+{
+    "host": "transactions-beta.sam-app.ro",
+    "destination": "/src/rest-api/transactions-api/index.html",
+    "layout": "docs",
+    "permalink": "/rest-api/transactions-api/",
+    "docpath":  "<a href='/rest-api'>/ REST API</a> / Transactions",
+    "groups": [
+        {
+            "doc": "/v0.1/api/doc/transactions",
+            "name": "Merchant transactions",
+            "resources": [
+                {
+                    "name": "Transaction history",
+                    "url": "/v0.1/me/transactions/history",
+                    "method": "GET"
+                },
+                {
+                    "name": "Transaction details",
+                    "url": "/v0.1/me/transactions",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "doc": "/v0.1/api/doc/refund",
+            "name": "Merchant refunds",
+            "resources": [
+                {
+                    "name": "Refund transaction",
+                    "url": "/v0.1/me/refund/:server_transaction_id",
+                    "method": "POST"
+                }
+            ]
+        }
+    ]
+}

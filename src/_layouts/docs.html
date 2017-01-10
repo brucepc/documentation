@@ -1,0 +1,95 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/assets/air.css">
+</head>
+
+<body>
+  <div class="sprite">
+    {% include docs.svg %}
+  </div>
+
+  <topbar>
+    <a href="/">
+      
+      <div class="logo__wrap">
+        <div class="logo">
+          <svg class="icon">
+            <use xlink:href="#icon-logo"></use>
+          </svg>
+        </div>
+        <span>Docs</span>
+      </div>
+    </a>
+    <a href="https://me.sumup.com/developers" title="Manage Apps" class="btn btn--docs btn--cta btn-s">Manage Apps</a>
+  </topbar>
+  <layout>
+
+    <sidenav class="layout__sidenav layout__sidenav--expanded">
+      <ul class="sidenav__list sidenav__list--expanded">
+        <li class="sidenav__item sidenav__item--fade-in">
+          <a class="sidenav__item-link" href=" /">
+            <span class="sidenav__icon-container">
+                    <svg class="icon sidenav__icon" viewBox="0 0 20 20" width="20" height="20">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-home"></use>
+                    </svg>
+                  </span>
+            <span class="sidenav__item-text sidenav__item-text--expanded">Home</span>
+          </a>
+        </li>
+        <li class="sidenav__item sidenav__item--fade-in">
+          <a class="sidenav__item-link" href=" /terminal-payment/">
+            <span class="sidenav__icon-container">
+                    <svg class="icon sidenav__icon" viewBox="0 0 20 20" width="20" height="20">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-payments-2"></use>
+                    </svg>
+                  </span>
+            <span class="sidenav__item-text sidenav__item-text--expanded">TERMINAL PAYMENT</span>
+          </a>
+        </li>
+        <li class="sidenav__item sidenav__item--fade-in">
+          <a class="sidenav__item-link" href=" /checkouts/">
+            <span class="sidenav__icon-container">
+                    <svg class="icon sidenav__icon" viewBox="0 0 20 20" width="20" height="20">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-checkouts"></use>
+                    </svg>
+                  </span>
+            <span class="sidenav__item-text sidenav__item-text--expanded">CHECKOUTS</span>
+          </a>
+        </li>
+        <li class="sidenav__item sidenav__item--fade-in">
+          <a class="sidenav__item-link" href=" /oauth">
+            <span class="sidenav__icon-container">
+                    <svg class="icon sidenav__icon" viewBox="0 0 20 20" width="20" height="20">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-oauth"></use>
+                    </svg>
+                  </span>
+            <span class="sidenav__item-text sidenav__item-text--expanded">OAUTH</span>
+          </a>
+        </li>
+        <li class="sidenav__item sidenav__item--fade-in">
+          <a class="sidenav__item-link" href=" /rest-api">
+            <span class="sidenav__icon-container">
+                    <svg class="icon sidenav__icon" viewBox="0 0 20 20" width="20" height="20">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-rest-api"></use>
+                    </svg>
+                  </span>
+            <span class="sidenav__item-text sidenav__item-text--expanded">REST API</span>
+          </a>
+        </li>
+      </ul>
+
+    </sidenav>
+
+    <div class="layout__content main-content layout__content-expanded">
+      {{ page.content }}
+    </div>
+
+
+  </layout>
+
+  <script src="/assets/docs.js"></script>
+
+</body>
+
+</html>

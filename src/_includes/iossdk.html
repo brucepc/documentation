@@ -1,0 +1,110 @@
+
+<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-version-1.3">Version 1.3</a></li><li><a href="#header-deployment-target">Deployment Target</a></li><li><a href="#header-getting-started">Getting started</a></li><li><a href="#header-preparing-your-xcode-project">Preparing your Xcode project</a></li><li><a href="#header-supported-device-orientation">Supported Device Orientation</a></li><li><a href="#header-privacy-info.plist-keys">Privacy Info.plist keys</a></li><li><a href="#header-integrating-the-sumup-sdk-with-your-app">Integrating the SumUp SDK with your app</a></li><li><a href="#header-login-to-sumup">Login to SumUp</a></li><li><a href="#header-accept-card-payments">Accept card payments</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><h2 id="header-version-1.3">Version 1.3 <a class="permalink" href="#header-version-1.3" aria-hidden="true">¶</a></h2>
+<h4 id="header-deployment-target">Deployment Target <a class="permalink" href="#header-deployment-target" aria-hidden="true">¶</a></h4>
+<p>The SumUp SDK is suitable from iOS 6.0 to iOS 10 for iPad and iPhone,
+so please set your deployment target to 6.0 or later.</p>
+<h2 id="header-getting-started">Getting started <a class="permalink" href="#header-getting-started" aria-hidden="true">¶</a></h2>
+<h3 id="header-preparing-your-xcode-project">Preparing your Xcode project <a class="permalink" href="#header-preparing-your-xcode-project" aria-hidden="true">¶</a></h3>
+<p><em>You can use the sample App that is provided with the SumUp SDK as a reference project.</em></p>
+<p>The SumUp SDK is provided to you as an embedded framework <code>SumupSDK.embeddedframework</code> that combines a static library, its headers and a bundle containing resources such as images and localizations.</p>
+<p>Add the <code>SumupSDK.embeddedframework</code> to your Xcode project (e.g. in the group Frameworks). If you haven’t done so already when adding it, ensure that</p>
+<ul>
+<li>
+<p><code>SumupSDK.embeddedframework/SumupSDK.framework</code></p>
+</li>
+<li>
+<p><code>SumupSDK.embeddedframework/Reources/SMPSharedResources.bundle</code></p>
+</li>
+<li>
+<p><code>SumupSDK.embeddedframework/Resources/YTLibResources.bundle</code></p>
+</li>
+</ul>
+<p>are members of your app’s target. Make sure your app is linked to <code>SumupSDK.framework</code>.</p>
+<p>Lastly, the SumUp SDK has a few dependencies to system frameworks. Please make sure that your app links against the following frameworks:</p>
+<ul>
+<li>
+<p>AVFoundation</p>
+</li>
+<li>
+<p>Accelerate</p>
+</li>
+<li>
+<p>MapKit</p>
+</li>
+</ul>
+<p>Please make sure to add <code>-ObjC</code> to “Other Linker Flags” if it is not included.</p>
+<h3 id="header-supported-device-orientation">Supported Device Orientation <a class="permalink" href="#header-supported-device-orientation" aria-hidden="true">¶</a></h3>
+<p>Your app must support at least one landscape orientation. So please make sure
+to support at least one of the orientations Landscape Left/Right.
+See <code>UISupportedInterfaceOrientations</code> in the sample app’s
+<a href="SumupSDKSampleApp/SumupSDKSampleApp-Info.plist#L54-L60">Info.plist</a>
+or the “General” tab in Xcode’s Target Editor.</p>
+<h3 id="header-privacy-info.plist-keys">Privacy Info.plist keys <a class="permalink" href="#header-privacy-info.plist-keys" aria-hidden="true">¶</a></h3>
+<p>The SumUp SDK needs to access the user’s location, Bluetooth peripherals,
+and the device’s microphone.
+If your app has not asked for the user’s permission the SumUp SDK will ask at
+the first login or checkout attempt. Please add the following keys
+to your info plist file:</p>
+<ul>
+<li>
+<p>NSLocationWhenInUseUsageDescription</p>
+</li>
+<li>
+<p>NSBluetoothPeripheralUsageDescription</p>
+</li>
+<li>
+<p>NSMicrophoneUsageDescription</p>
+</li>
+<li>
+<p>NSLocationUsageDescription (only if deployment target is iOS 6 or 7)</p>
+</li>
+</ul>
+<p>See the sample app’s
+<a href="SumupSDKSampleApp/SumupSDKSampleApp-Info.plist#L38-L45">Info.plist</a>.
+You can provide localization by providing a localized
+<a href="SumupSDKSampleApp/en.lproj/InfoPlist.strings">InfoPlist.strings</a> file.</p>
+<p>For reference see the iOS Developer Library on
+<a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW27">location usage on iOS 6 and 7</a>,
+<a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26">iOS 8 and later</a>,
+<a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW20">Bluetooth peripheral usage</a>
+and <a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW25">microphone access in iOS 7 and later</a>.</p>
+<h2 id="header-integrating-the-sumup-sdk-with-your-app">Integrating the SumUp SDK with your app <a class="permalink" href="#header-integrating-the-sumup-sdk-with-your-app" aria-hidden="true">¶</a></h2>
+<p>Before calling any other method of the SumUp SDK you need setup the SumUp SDK with your API key:</p>
+<pre><code class="language-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">&lt;SumupSDK/SumupSDK.h&gt;</span></span>
+
+<span class="hljs-comment">// ...</span>
+
+[SumupSDK setupWithAPIKey:<span class="hljs-string">@"MyAPIKey"</span>];</code></pre>
+<p>As this might ask for the user’s location it should not necessarily be part
+of the app launch.</p>
+<p>Once the SumUp SDK is setup, you can start interacting with it.</p>
+<h3 id="header-login-to-sumup">Login to SumUp <a class="permalink" href="#header-login-to-sumup" aria-hidden="true">¶</a></h3>
+<p>The logical next step after the setup is to allow the user to login to their SumUp account. You can present a login screen from your <code>UIViewController</code> using the following method:</p>
+<pre><code class="language-objc">[SumupSDK presentLoginfromViewController:vc
+                                animated:<span class="hljs-literal">YES</span>
+                         completionBlock:<span class="hljs-literal">nil</span>];</code></pre>
+<h3 id="header-accept-card-payments">Accept card payments <a class="permalink" href="#header-accept-card-payments" aria-hidden="true">¶</a></h3>
+<p>Once the user is logged in, you can use the SumUp SDK to accept card payments.</p>
+<p>Before accepting card payment you need to prepare a checkout request that encapsulates the information regarding the transaction.</p>
+<p>For this you will need to create an instance of <code>SMPCheckoutRequest</code>:</p>
+<pre><code class="language-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">&lt;SumupSDK/SumupSDK.h&gt;</span></span>
+
+<span class="hljs-comment">// ...</span>
+
+S<span class="hljs-built_in">MPCheckoutRequest</span> *request = [S<span class="hljs-built_in">MPCheckoutRequest</span> requestWithTotal:[<span class="hljs-built_in">NSDecimalNumber</span> decimalNumberWithString:<span class="hljs-string">@"10.00"</span>]
+                                                             title:<span class="hljs-keyword">self</span><span class="hljs-variable">.textFieldTitle</span><span class="hljs-variable">.text</span>
+                                                      currencyCode:[[SumupSDK currentMerchant] currencyCode]
+                                                    paymentOptions:S<span class="hljs-built_in">MPPaymentOptionAny</span>];
+
+<span class="hljs-comment">// set an optional identifier</span>
+[request setForeignTransactionID:<span class="hljs-string">@"my-unique-id"</span>];</code></pre>
+<p>Please be aware that you need to pass an <code>NSDecimalNumber</code> as the total value. While <code>NSDecimalNumber</code> is a subclass of <code>NSNumber</code> it is not advised to use the convenience method of <code>NSNumber</code> to create a <code>NSDecimalNumber</code>.</p>
+<p>You can pass an optional transaction identifier in <code>foreignTransactionID</code>. This identifier will be associated with the transaction and can be used to retrieve this transaction later. See <a href="https://sumup.com/integration#transactionReportingAPIs">API documentation</a> for details. Please make sure that this ID is unique within the scope of your SumUp SDK key. It must not be longer than 128 characters.</p>
+<p>Using this checkout request you can then start accepting payments:</p>
+<pre><code class="language-objc">[SumupSDK checkoutWithRequest:request
+           fromViewController:vc
+                   completion:^(S<span class="hljs-built_in">MPCheckoutResult</span> *result, <span class="hljs-built_in">NSError</span> *error) {
+                   <span class="hljs-comment">// handle completed and failed payments here</span>
+                   <span class="hljs-comment">// retrieve information via result.additionalInfo</span>
+}];</code></pre>
+</div></div></div>

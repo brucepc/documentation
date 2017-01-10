@@ -1,0 +1,9 @@
+name: SumUp Api Docs
+exclude: [node_modules, gulpfile.js]
+
+# Used so Jekyll outputs the site correctly so Gulp can do what it wants
+source: src
+destination: dev
+
+# Turns 'brand.html' into /brand \o/
+permalink: pretty

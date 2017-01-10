@@ -1,0 +1,31 @@
+
+<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#terminal-payment-sdk">Terminal Payment SDK</a></div><div class="collapse-content"><ul><li><a href="#header-communication-with-terminal">Communication with terminal</a></li><li><a href="#header-dynamic-checkout">Dynamic checkout</a></li><li><a href="#header-transaction-status">Transaction status</a></li><li><a href="#header-security">Security</a></li><li><a href="#header-sdk-documentation">SDK documentation</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#payment-api">Payment API</a></div><div class="collapse-content"><ul><li><a href="#header-api-documentation">API documentation</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><span id="terminal-payment-sdk" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Terminal Payment SDK <a href="#terminal-payment-sdk" class="permalink">&para;</a></h2><p>To integrate SumUp’s proprietary Card Terminal(s) and our Payment Platform into your app, we provide you with a native iOS or Android SDK. Our SDKs provide the following functionalities:</p>
+<h2 id="header-communication-with-terminal">Communication with terminal <a class="permalink" href="#header-communication-with-terminal" aria-hidden="true">¶</a></h2>
+<p>The SDK handles all communication with SumUp’s Card Terminal(s) transparently. The communication is controlled through either Bluetooth or audio libraries. The PIN+ Terminal connects to your Android or iOS app via Bluetooth Low Energy (BLE 4.0) or via cable connection through the headphone/audio jack. The Chip/Magstripe &amp; Signature Card Readers connect through the headphone/audio jack only.</p>
+<h2 id="header-dynamic-checkout">Dynamic checkout <a class="permalink" href="#header-dynamic-checkout" aria-hidden="true">¶</a></h2>
+<p>This will correspond to the checkout process in the SumUp App. The applicable screens will be pushed from SumUp’s backend to your app. The checkout process will be triggered by your app and we will return the transaction result with all relevant data at the end of the transaction. The transaction itself is transparent to you.</p>
+<h2 id="header-transaction-status">Transaction status <a class="permalink" href="#header-transaction-status" aria-hidden="true">¶</a></h2>
+<p>After the completion of a transaction, a unique transaction ID, payment receipt details, as well as the current transaction status “transaction successful”, “transaction failed” or “transaction timeout” will be passed back to you and can be stored there for reporting purposes.</p>
+<h2 id="header-security">Security <a class="permalink" href="#header-security" aria-hidden="true">¶</a></h2>
+<p>No sensitive data will ever be passed through or stored on the merchant’s phone. All data is encrypted by the card terminal which is certified with all relevant certificates of the credit card industry (PCI, EMV I &amp; II, Visa, MasterCard &amp; Amex).</p>
+<h1 id="header-sdk-documentation">SDK documentation <a class="permalink" href="#header-sdk-documentation" aria-hidden="true">¶</a></h1>
+<ul>
+<li>
+<p><a href="https://github.com/sumup/sumup-ios-sdk">iOS SDK</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sumup/sumup-android-sdk">Android SDK</a></p>
+</li>
+</ul>
+</section><span id="payment-api" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Payment API <a href="#payment-api" class="permalink">&para;</a></h2><p>The Payment API is designed for a very easy and quick implementation. It allows your app to start the checkout flow inside the native SumUp App, which will also have to be installed on your merchant’s phone or tablet. Your app can manage everything including the creation of the total amount to be charged by your merchant. When your merchant clicks the checkout button in your app, your app will define a payment request object, using the parameters supported by our API which include the total billing amount. Those parameters will then be passed by your app to the SumUp App via the Payment API. The Payment API is a part of the SumUp App, so that neither your app nor your backend will have to be connected to SumUp’s Backend.</p>
+<p>Your app will need an Affiliate Key to connect to the Payment API. Once the SumUp App receives the Payment API request it will be pushed into the foreground on your merchant’s phone or tablet and your app will be in the background. Your merchant will follow the checkout process inside the SumUp App, that way the SumUp App can manage the communication with the Card Terminal and your app does not need to manage this communication. On completion of the transaction, the SumUp App will return the result to those callback URLs in your app as supplied in the original request. Your merchant may have to select the appropriate Payment Option before being able to complete the transaction with the end-customer’s Payment Instrument.</p>
+<h2 id="header-api-documentation">API documentation <a class="permalink" href="#header-api-documentation" aria-hidden="true">¶</a></h2>
+<ul>
+<li>
+<p><a href="https://github.com/sumup/sumup-ios-url-scheme">iOS API</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sumup/sumup-android-api">Android API</a></p>
+</li>
+</ul>
+</section></div></div></div>

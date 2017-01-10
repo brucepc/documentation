@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "browser-sync": "^2.12.3",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.3.1",
+    "gulp-shell": "^0.5.2",
+    "gulp-size": "^2.1.0",
+    "lodash": "^4.11.1",
+    "node-normalize-scss": "^1.4.0",
+    "aglio": "2.2.1",
+    "co": "^4.6.0"
+  }
+}

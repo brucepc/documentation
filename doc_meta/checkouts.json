@@ -1,0 +1,25 @@
+{
+    "host": "transactions-beta.sam-app.ro",
+    "destination": "/src/rest-api/checkouts-api/index.html",
+    "layout": "docs",
+    "permalink": "/rest-api/checkouts-api/",
+    "docpath":  "<a href='/rest-api'>REST API</a> / Checkouts",
+    "groups": [
+        {
+            "doc": "/v0.1/api/doc/checkouts",
+            "name": "Checkouts",
+            "resources": [
+                {
+                    "name": "Create checkout",
+                    "url": "/v0.1/checkouts",
+                    "method": "POST"
+                },
+                {
+                    "name": "Complete checkout",
+                    "url": "/v0.1/checkouts/:id",
+                    "method": "PUT"
+                }
+            ]
+        }
+    ]
+}

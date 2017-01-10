@@ -1,0 +1,124 @@
+
+<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#sumup-custom-url-scheme">SumUp custom URL scheme</a></div><div class="collapse-content"><ul><li><a href="#header-base-url">Base URL</a></li><li><a href="#header-mandatory-query-parameters">Mandatory query parameters</a></li><li><a href="#header-optional-query-parameters">Optional query parameters</a></li><li><a href="#header-callback-query-parameters">Callback query parameters</a></li><li><a href="#header-smppaymentrequest">SMPPaymentRequest</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><span id="sumup-custom-url-scheme" class="anchor"></span><section class="resource-group"><h2 class="group-heading">SumUp custom URL scheme <a href="#sumup-custom-url-scheme" class="permalink">&para;</a></h2><p>Using the custom SumUp URL scheme you can accept card payments from your iOS app or website through the SumUp iOS app.</p>
+<p>To get started you will need to create a SumUp account and get an affiliate key in our <a href="https://me.sumup.com/developers">Developer section</a>.</p>
+<p>If you are going to open the SumUp app from your own iOS app, <a href="#smppaymentrequest">SMPPaymentRequest</a> is a convenient way to do so. See the sample app project for details and examples. You might also want to take a look at the <a href="https://github.com/sumup/sumup-ios-sdk">SumUp iOS SDK</a> to accept payments within your app.<br>
+If you are planning to open the SumUp app using a URL, please find the parameters below.</p>
+<h2 id="header-base-url">Base URL <a class="permalink" href="#header-base-url" aria-hidden="true">¶</a></h2>
+<p><code>sumupmerchant://pay/1.0</code></p>
+<h2 id="header-mandatory-query-parameters">Mandatory query parameters <a class="permalink" href="#header-mandatory-query-parameters" aria-hidden="true">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th style="text-align:left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>amount</code></td>
+<td style="text-align:left">The amount to charge. Please use <code>.</code> as a decimal separator.</td>
+</tr>
+<tr>
+<td><code>currency</code></td>
+<td style="text-align:left">The ISO 4217 code of currency to be charged. The currency needs to match the currency of the user that is logged into the SumUp app. For example EUR, GBP, BRL, CHF, PLN.</td>
+</tr>
+<tr>
+<td><code>affiliate-key</code></td>
+<td style="text-align:left">Your affiliate key. It needs to be associated with the calling app’s bundle identifier.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="header-optional-query-parameters">Optional query parameters <a class="permalink" href="#header-optional-query-parameters" aria-hidden="true">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th style="text-align:left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td style="text-align:left">An optional title to be set on this transaction.</td>
+</tr>
+<tr>
+<td><code>callbackfail</code></td>
+<td style="text-align:left">URL to be opened when the transaction fails. See <a href="#Callback-query-parameters">Callback query parameters</a>.</td>
+</tr>
+<tr>
+<td><code>callbacksuccess</code></td>
+<td style="text-align:left">URL to be opened when the transaction succeeds. See <a href="#Callback-query-parameters">Callback query parameters</a>.</td>
+</tr>
+<tr>
+<td><code>receipt-email</code></td>
+<td style="text-align:left">Prefills the email textfield when asking the customer whether he wants a receipts.</td>
+</tr>
+<tr>
+<td><code>receipt-mobilephone</code></td>
+<td style="text-align:left">Prefills the phone number textfield when asking the customer whether he wants a receipts.</td>
+</tr>
+<tr>
+<td><code>foreign-tx-id</code></td>
+<td style="text-align:left">An optional ID to be associated with this transaction. Please see our <a href="https://sumup.com/integration#transactionReportingAPIs">API documentation</a> on how to retrieve a transaction using this ID. This ID has to be unique in the scope of a SumUp merchant account and its sub-accounts. It must not be longer than 128 characters and can only contain printable ASCII characters. <em>Supported by SumUp app version 1.53 and later. Version 1.53.2 and later will append it to the callback URLs as a <a href="#Callback-query-parameters">query parameter</a> if provided.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="header-callback-query-parameters">Callback query parameters <a class="permalink" href="#header-callback-query-parameters" aria-hidden="true">¶</a></h2>
+<p>After the payment has been executed the SumUp app will open the <code>callbacksuccess</code> URL if the payment succeeded and the <code>callbackfail</code> URL if it did not. We will append the following query parameters if applicable:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th style="text-align:center">Possible values</th>
+<th style="text-align:left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smp-status</code></td>
+<td style="text-align:center">success</td>
+<td style="text-align:left">The transaction has succeeded.</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:center">failed</td>
+<td style="text-align:left">The transaction has failed.</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:center">invalidstate</td>
+<td style="text-align:left">The transaction can not be accepted as the SumUp app is in an invalid state. Please ask the user to open the SumUp app and make sure he’s ready to accept payments.</td>
+</tr>
+<tr>
+<td><code>smp-tx-code</code></td>
+<td style="text-align:center">TRANSACTION-CODE</td>
+<td style="text-align:left">The transaction code for this payment. Please see our <a href="https://sumup.com/integration#transactionReportingAPIs">API documentation</a> to find out how to retreive details on this payment. <em>Supported by SumUp app version 1.53 and later.</em></td>
+</tr>
+<tr>
+<td><code>foreign-tx-id</code></td>
+<td style="text-align:center">YOUR-TX-ID</td>
+<td style="text-align:left">Only if provided. See <a href="#optional-query-parameters">Optional query parameters</a>. <em>Supported by SumUp app version 1.53.2 and later.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="header-smppaymentrequest">SMPPaymentRequest <a class="permalink" href="#header-smppaymentrequest" aria-hidden="true">¶</a></h2>
+<p>If you are building your own iOS app you can use this class to conveniently open the SumUp app to accept a payment. It knows about all the URL parameters and makes accepting a payment as easy as:</p>
+<pre><code class="language-objc">S<span class="hljs-built_in">MPPaymentRequest</span> *request;
+<span class="hljs-built_in">NSDecimalNumber</span> *amount = [<span class="hljs-built_in">NSDecimalNumber</span> decimalNumberWithString:<span class="hljs-string">@"10.00"</span>];
+
+request = [S<span class="hljs-built_in">MPPaymentRequest</span> paymentRequestWithAmount:amount
+                                             currency:<span class="hljs-string">@"EUR"</span>
+                                                title:<span class="hljs-string">@"My title"</span>
+                                         affiliateKey:<span class="hljs-string">@"YOUR-AFFILIATE-KEY"</span>];
+
+[request setCallbackURLSuccess:[<span class="hljs-built_in">NSURL</span> URLWithString:<span class="hljs-string">@"samplepaymentapp://"</span>]];
+[request setCallbackURLFailure:[<span class="hljs-built_in">NSURL</span> URLWithString:<span class="hljs-string">@"samplepaymentapp://"</span>]];
+
+<span class="hljs-comment">/* This will open the following URL
+ * sumupmerchant://pay/1.0?amount=10.00&amp;currency=EUR&amp;affiliate-key=YOUR-AFFILIATE-KEY
+ * &amp;title=My%20title
+ * &amp;callbackfail=samplepaymentapp%3A%2F%2F
+ * &amp;callbacksuccess=samplepaymentapp%3A%2F%2F
+ */</span>
+[request openSumUpMerchantApp];</code></pre>
+</section></div></div></div>
