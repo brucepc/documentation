@@ -4,3 +4,4 @@ dev/*
 prod/*
 node_modules
 .publish
+yarn.lock
