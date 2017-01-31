@@ -82,7 +82,7 @@
     </sidenav>
 
     <div class="layout__content main-content layout__content-expanded">
-      <a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#checkouts">Checkouts</a></div><div class="collapse-content"><ul><li><a href="#checkouts-create-checkout-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create checkout</a></li><li><a href="#checkouts-complete-checkout-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Complete checkout</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://api.sumup.com">https://api.sumup.com</a></p></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><p>&nbsp;</p><span id="checkouts" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Checkouts <a href="#checkouts" class="permalink">&para;</a></h2><span id="checkouts-create-checkout" class="anchor"></span><div class="resource"><h3 class="resource-heading">Create checkout <a href="#checkouts-create-checkout" class="permalink">&nbsp;&para;</a></h3><span id="checkouts-create-checkout-post" class="anchor"></span><div class="action post"><h4 class="action-heading"><div class="name">Create checkout</div><a href="#checkouts-create-checkout-post" class="method post">POST</a><code class="uri">/v0.1/checkouts</code></h4><p>Create a checkout</p>
+      <a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#checkouts">Checkouts</a></div><div class="collapse-content"><ul><li><a href="#checkouts-create-checkout-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create checkout</a></li><li><a href="#checkouts-complete-checkout-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Complete checkout</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#customers">Customers</a></div><div class="collapse-content"><ul><li><a href="#customers-create-customer-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create customer</a></li><li><a href="#customers-payment-instruments">Payment Instruments</a><ul><li><a href="#customers-payment-instruments-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get payment instruments</a></li><li><a href="#customers-payment-instruments-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create payment instrument</a></li></ul></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://api.sumup.com">https://api.sumup.com</a></p></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><p>&nbsp;</p><span id="checkouts" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Checkouts <a href="#checkouts" class="permalink">&para;</a></h2><span id="checkouts-create-checkout" class="anchor"></span><div class="resource"><h3 class="resource-heading">Create checkout <a href="#checkouts-create-checkout" class="permalink">&nbsp;&para;</a></h3><span id="checkouts-create-checkout-post" class="anchor"></span><div class="action post"><h4 class="action-heading"><div class="name">Create checkout</div><a href="#checkouts-create-checkout-post" class="method post">POST</a><code class="uri">/v0.1/checkouts</code></h4><p>Create a checkout</p>
 <div class="note">
 <p>Required scope(s): payments</p>
 </div>
@@ -268,7 +268,7 @@
 <div class="note">
 <p>Required scope(s): payments</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/checkouts/:id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`id`</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Checkout id</p>
+<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/checkouts/:id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Checkout id</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value"><span class="hljs-string">"balance|card|moto"</span></span>,
   "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
@@ -462,9 +462,333 @@
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{<span class="hljs-string">"error_code"</span>:<span class="hljs-string">"INSUFFICIENT_BALANCE"</span>,<span class="hljs-string">"message"</span>:<span class="hljs-string">"Sender balance not enough to cover the payment"</span>}
+&lt;p&gt;&amp;nbsp;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</span></code></pre><div style="height: 1px;"></div></div></div></div></div></section><span id="customers" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Customers <a href="#customers" class="permalink">&para;</a></h2><span id="customers-create-customer" class="anchor"></span><div class="resource"><h3 class="resource-heading">Create customer <a href="#customers-create-customer" class="permalink">&nbsp;&para;</a></h3><span id="customers-create-customer-post" class="anchor"></span><div class="action post"><h4 class="action-heading"><div class="name">Create customer</div><a href="#customers-create-customer-post" class="method post">POST</a><code class="uri">/v0.1/customers</code></h4><p>Creates a new customer</p>
+<div class="note">
+<p>Required scope(s): payment_instruments</p>
+</div>
+<h4>Resource URL</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/customers</span></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">personal_details</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">line1</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">line2</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">postal_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    </span>}
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"External customer identifier"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">personal_details</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Customer's name"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">phone</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">line1</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">line2</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">country</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Country ISO 3166-1 code"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">postal_code</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Postal code"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">city</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">state</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Customer's address"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Customer's personal details"</span>
+    </span>}
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>201</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">personal_details</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">address_line1</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">address_line2</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">country_en_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">region_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">region_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">post_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">landline</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">line1</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">line2</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">postal_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    </span>}
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">personal_details</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">phone</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">address_line1</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Address line 1"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">address_line2</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Address line 2"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">city</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">country</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">country_en_name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Country name"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">region_id</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Country region id"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">region_name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Region name"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">post_code</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Postal code"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">landline</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Landline number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">line1</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">line2</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">postal_code</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">state</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><span id="customers-payment-instruments" class="anchor"></span><div class="resource"><h3 class="resource-heading">Payment Instruments <a href="#customers-payment-instruments" class="permalink">&nbsp;&para;</a></h3><span id="customers-payment-instruments-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Get payment instruments</div><a href="#customers-payment-instruments-get" class="method get">GET</a><code class="uri">/v0.1/customers/:customer_id/payment-instruments</code></h4><p>Retrieve payment instruments for given customer</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/customers/:customer_id/payment-instruments</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>customer_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">token</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card token"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">active</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Indicates if the token is active and can be used"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Token type. For instance card"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card last 4 digits"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card Scheme"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card data"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>404</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">error_code</span>": <span class="hljs-value"><span class="hljs-string">"NOT_FOUND"</span></span>,
+  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Customer not found"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><span id="customers-payment-instruments-post" class="anchor"></span><div class="action post"><h4 class="action-heading"><div class="name">Create payment instrument</div><a href="#customers-payment-instruments-post" class="method post">POST</a><code class="uri">/v0.1/customers/:customer_id/payment-instruments</code></h4><p>Create a payment instrument that can be reused for checkouts</p>
+<div class="note">
+<p>Required scope(s): payment_instruments</p>
+</div>
+<h4>Resource URL</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/customers/:customer_id/payment-instruments</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>customer_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;</dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"card"</span></span>,
+  "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">number</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">expiry_year</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">expiry_month</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">cvv</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null - Possible values card"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Cardholder name"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">number</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Credit/debit card number"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">expiry_year</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Expiration year in format YY or YYYY"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">expiry_month</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Expiration month"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">cvv</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Security code"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"name"</span>,
+        <span class="hljs-string">"number"</span>,
+        <span class="hljs-string">"expiry_year"</span>,
+        <span class="hljs-string">"expiry_month"</span>,
+        <span class="hljs-string">"cvv"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"card"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>201</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">token</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card token"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">active</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Indicates if the token is active and can be used"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Token type. For instance card"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card last 4 digits"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card Scheme"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card data"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>404</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">error_code</span>": <span class="hljs-value"><span class="hljs-string">"NOT_FOUND"</span></span>,
+  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Customer not found"</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">error_code</span>": <span class="hljs-value"><span class="hljs-string">"INSUFFICIENT_BALANCE"</span></span>,
-  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Sender balance not enough to cover the payment"</span>
+  "<span class="hljs-attribute">error_code</span>": <span class="hljs-value"><span class="hljs-string">"PAYMENT_INSTRUMENT_ERROR"</span></span>,
+  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Payment instrument processing error"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">error_code</span>": <span class="hljs-value"><span class="hljs-string">"PAYMENT_INSTRUMENT_VALIDATION"</span></span>,
+  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Validation of payment instrument failed"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">error_code</span>": <span class="hljs-value"><span class="hljs-string">"MAX_INSTRUMENT_COUNT"</span></span>,
+  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Max number of payment instruments on file reached"</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div>
     </div>
 

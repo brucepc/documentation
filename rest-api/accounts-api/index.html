@@ -86,7 +86,7 @@
 <div class="note">
 <p>Required scope(s): user.profile, user.profile_readonly</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`include`[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>A list of additional information you want to receive for the user.
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>include[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>A list of additional information you want to receive for the user.
 By default only personal and merchant profile information will be returned.
 Possible values:
 operators, settings, doing_business_as, bank_accounts, app_settings,
@@ -3751,7 +3751,7 @@ permissions</p>
 <div class="note">
 <p>Required scope(s): user.payout-settings, user.profile, user.profile_readonly</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/bank-accounts</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`primary`</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<p>If true will return only the primary bank account</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/bank-accounts</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>primary</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<p>If true will return only the primary bank account</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">bank_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">branch_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -4138,6 +4138,27 @@ permissions</p>
   "<span class="hljs-attribute">permissions</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">create_moto_payments</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">app_settings</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">font_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">include_vat</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">max_amount_no_signature</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">manual_entry_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">mobile_payment_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">mobile_payment</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">reader_payment</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">cash_payment</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">advanced_mode</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">expected_max_transaction_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">bitcoin_payment</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">tipping</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -4167,6 +4188,88 @@ permissions</p>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permissions"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">app_settings</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">font_name</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">include_vat</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">max_amount_no_signature</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">manual_entry_tutorial</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">mobile_payment_tutorial</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">mobile_payment</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">reader_payment</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">cash_payment</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">advanced_mode</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">expected_max_transaction_amount</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">bitcoin_payment</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tipping</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Mobile app settings"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -4177,8 +4280,8 @@ permissions</p>
 <div class="note">
 <p>Required scope(s): user.subaccounts</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/accounts</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`include`[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>A list of additional information you want to receive for operators.
-Possible values: permissions</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/accounts</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>include[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>A list of additional information you want to receive for operators.
+Possible values: permissions, app_settings</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -4186,6 +4289,27 @@ Possible values: permissions</p>
   "<span class="hljs-attribute">permissions</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">create_moto_payments</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">app_settings</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">font_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">include_vat</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">max_amount_no_signature</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">manual_entry_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">mobile_payment_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">mobile_payment</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">reader_payment</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">cash_payment</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">advanced_mode</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">expected_max_transaction_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">bitcoin_payment</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">tipping</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -4215,6 +4339,88 @@ Possible values: permissions</p>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permissions"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">app_settings</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">font_name</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">include_vat</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">max_amount_no_signature</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">manual_entry_tutorial</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">mobile_payment_tutorial</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">mobile_payment</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">reader_payment</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">cash_payment</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">advanced_mode</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">expected_max_transaction_amount</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">bitcoin_payment</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tipping</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Mobile app settings"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -4222,7 +4428,7 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): user.subaccounts</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/accounts/:operator_code</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`operator_code`</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Operator code</p>
+<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/accounts/:operator_code</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>operator_code</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Operator code</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
@@ -4243,12 +4449,12 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): user.subaccounts</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/accounts/:operator_code</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`operator_code`</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Operator code</p>
+<h4>Resource URL</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/accounts/:operator_code</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>operator_code</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Operator code</p>
 <p>&nbsp;</p></dd></dl></div></div></div></section><span id="manage-products" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Manage Products <a href="#manage-products" class="permalink">&para;</a></h2><span id="manage-products-shelves" class="anchor"></span><div class="resource"><h3 class="resource-heading">Shelves <a href="#manage-products-shelves" class="permalink">&nbsp;&para;</a></h3><span id="manage-products-shelves-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Get shelves</div><a href="#manage-products-shelves-get" class="method get">GET</a><code class="uri">/v0.1/me/merchant-profile/shelves</code></h4><p>Get product shelves</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`include`[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>A list of additional information you want to receive for the shelves. Possible values: “products” - will include return the list of products for each shelf</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>include[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>A list of additional information you want to receive for the shelves. Possible values: “products” - will include return the list of products for each shelf</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -4500,7 +4706,7 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;</dd><dt>`include`[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>A list of additional information you want to receive for the shelf. Possible values: “products” - will include return a list of products for the shelf</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;</dd><dt>include[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>A list of additional information you want to receive for the shelf. Possible values: “products” - will include return a list of products for the shelf</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -4617,7 +4823,7 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;</dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;</dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">order</span>": <span class="hljs-value"><span class="hljs-number">1</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
@@ -4637,11 +4843,11 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;</dd></dl></div></div></div><span id="manage-products-products" class="anchor"></span><div class="resource"><h3 class="resource-heading">Products <a href="#manage-products-products" class="permalink">&nbsp;&para;</a></h3><span id="manage-products-products-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Get products</div><a href="#manage-products-products-get" class="method get">GET</a><code class="uri">/v0.1/me/merchant-profile/shelves/:shelf_id/products</code></h4><p>Get shelf products</p>
+<h4>Resource URL</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;</dd></dl></div></div></div><span id="manage-products-products" class="anchor"></span><div class="resource"><h3 class="resource-heading">Products <a href="#manage-products-products" class="permalink">&nbsp;&para;</a></h3><span id="manage-products-products-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Get products</div><a href="#manage-products-products-get" class="method get">GET</a><code class="uri">/v0.1/me/merchant-profile/shelves/:shelf_id/products</code></h4><p>Get shelf products</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of shelf</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of shelf</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">shelf_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -4730,7 +4936,7 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
+<h4>Resource URL</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">subtitle</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -4863,8 +5069,8 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of shelf</p>
-</dd><dt>`product_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of shelf</p>
+</dd><dt>product_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">shelf_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -4953,8 +5159,8 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
-</dd><dt>`product_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
+<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
+</dd><dt>product_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">subtitle</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -5000,14 +5206,14 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
-</dd><dt>`product_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
+<h4>Resource URL</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
+</dd><dt>product_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
 </dd></dl></div></div></div><span id="manage-products-product-prices" class="anchor"></span><div class="resource"><h3 class="resource-heading">Product prices <a href="#manage-products-product-prices" class="permalink">&nbsp;&para;</a></h3><span id="manage-products-product-prices-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Get product prices</div><a href="#manage-products-product-prices-get" class="method get">GET</a><code class="uri">/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices</code></h4><p>Get product prices</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of shelf</p>
-</dd><dt>`product_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of product</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of shelf</p>
+</dd><dt>product_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of product</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">product_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -5038,8 +5244,8 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
-</dd><dt>`product_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
+<h4>Resource URL</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
+</dd><dt>product_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">net</span>": <span class="hljs-value"><span class="hljs-number">1</span>
@@ -5086,9 +5292,9 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices/:price_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of shelf</p>
-</dd><dt>`product_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of product</p>
-</dd><dt>`price_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of price</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices/:price_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of shelf</p>
+</dd><dt>product_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of product</p>
+</dd><dt>price_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of price</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">product_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -5119,9 +5325,9 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices/:price_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
-</dd><dt>`product_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
-</dd><dt>`price_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the price</p>
+<h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices/:price_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
+</dd><dt>product_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
+</dd><dt>price_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the price</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">net</span>": <span class="hljs-value"><span class="hljs-number">1</span>
@@ -5142,9 +5348,9 @@ Possible values: permissions</p>
 <div class="note">
 <p>Required scope(s): products</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices/:price_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>`shelf_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
-</dd><dt>`product_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
-</dd><dt>`price_id`</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the price</p>
+<h4>Resource URL</h4><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/shelves/:shelf_id/products/:product_id/prices/:price_id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>shelf_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the shelf</p>
+</dd><dt>product_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the product</p>
+</dd><dt>price_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Id of the price</p>
 <p>&nbsp;</p></dd></dl></div></div></div></section><span id="manage-settings" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Manage settings <a href="#manage-settings" class="permalink">&para;</a></h2><span id="manage-settings-application-settings" class="anchor"></span><div class="resource"><h3 class="resource-heading">Application settings <a href="#manage-settings-application-settings" class="permalink">&nbsp;&para;</a></h3><span id="manage-settings-application-settings-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Get settings</div><a href="#manage-settings-application-settings-get" class="method get">GET</a><code class="uri">/v0.1/me/app-settings</code></h4><p>Get mobile app settings</p>
 <div class="note">
 <p>Required scope(s): user.app-settings</p>
