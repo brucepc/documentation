@@ -27,7 +27,7 @@
             "resources": [
                 {
                     "name": "Refund transaction",
-                    "url": "/v0.1/me/refund/:server_transaction_id",
+                    "url": "/v0.1/me/refund/:id",
                     "method": "POST"
                 }
             ]

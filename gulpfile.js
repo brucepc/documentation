@@ -1,3 +1,4 @@
+'use strict'
 var gulp = require('gulp');
 var shell = require('gulp-shell');
 var del = require("del");
@@ -93,11 +94,11 @@ function errorHandler (error) {
 gulp.task("default", ["serve:dev", "watch"]);
 
 
-gulp.task('docs:apis', (callback) => {
+gulp.task('docs:apis', function(callback){
     apidoc.restApis();
 });
 
-gulp.task('docs:docs', (callback) => {
+gulp.task('docs:docs', function(callback){
   apidoc.docs();
 });
 

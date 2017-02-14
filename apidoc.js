@@ -1,5 +1,4 @@
-'use strict';
-
+'use strict'
 const aglio = require('aglio');
 const co = require('co');
 const fs = require('fs');
@@ -222,8 +221,9 @@ function* parseData(host, apiData, groupData, modelsCol) {
         } else if(res.actions){
             md.push(`\n\n## ${res.name} [${res.url}]`);
             for (let action of res.actions) {
-                md.push(`\n\n### ${action.name} [${action.method}]`);
-                writeEndpoint(md, apiIndex[`${action.method}${res.url}`], modelsCol);
+              let actionUrl=action.url?` ${action.url}`:'';
+              md.push(`\n\n### ${action.name} [${action.method}${actionUrl}]`);
+              writeEndpoint(md, apiIndex[`${action.method}${action.url||res.url}`], modelsCol);
             }
         }
     }
