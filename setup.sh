@@ -1,6 +1,12 @@
 #!/bin/bash
 
 npm install
+sudo gem install i18n -v 0.7.0
+sudo gem install json -v 1.8.3
+sudo gem install minitest -v 5.10.1
+sudo gem install nokogiri -v 1.6.8.1
+sudo gem install rb-inotify -v 0.9.7
+sudo gem install activesupport -v 4.2.7.1
 sudo gem install thread_safe -v 0.3.5
 sudo gem install tzinfo -v 1.2.2
 sudo gem install coffee-script-source -v 1.10.0
