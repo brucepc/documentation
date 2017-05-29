@@ -28,7 +28,7 @@ class MdFile{
         if (this._content.length > 1) {
             fs.writeFile(fname, this.content(), (err) => {
               if (err) {
-                  console.log(err);
+                  console.log(err.stack);
                   reject(err);
               }
               resolve(true);
@@ -133,6 +133,7 @@ function writeModels(md, apiData) {
                 if (props.values && props.values.join) {
                     description = `${description} - Possible values ${props.values.join()}`;
                 }
+                description = description.replace('(','&#40;').replace(')','&#41;');
                 if(props.collection) {
                     md.push(`\n+ ${field}: ${val}(array[${primitive(props.type)}], ${required}) - ${description}`)
                 } else {
@@ -340,7 +341,7 @@ function scanFiles(path, match) {
     const targetPath = `${rootPath}/src/_includes`;
     fs.readdir(path, (err, files) => {
         if(err) {
-            console.log(err);
+            console.log(err.stack);
             return;
         }
         for (let file of files) {
@@ -374,4 +375,3 @@ module.exports = () => {
 }
 
 //NOCACHE=1 aglio -i index.md --theme-template triplex.jade -o output.html
-
