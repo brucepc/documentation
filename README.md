@@ -1,17 +1,41 @@
-to install node + npm : `brew install node`
-to install gulp: `npm install --global gulp-cli`
+# SumUp documentation site
 
-run:
-```
-# to install all gems
-sh setup.sh
+Generates documentation about SumUp APIs. The content is published as Github page site - [http://doc.sumup.com](http://doc.sumup.com)
 
-# create doc files
-gulp docs:docs 
+## Getting started
 
-# create api doc files
-gulp docs:apis
+### Dependencies
 
-# start the server
-gulp serve:dev
-```
+The build dependencies are Nodejs, Ruby, jekyll and gulp
+
+* install gems
+  ```
+  bundle install
+  ```
+* install node packages
+  ```
+  npm install
+  ```
+  
+### Build Tasks
+
+* To generate all the articles run
+  ```
+  gulp docs:docs
+  ```
+* To generates APIs documentation
+  ```
+  gulp docs:apis
+  ```
+
+### Preview the generated content locally
+
+  ```
+  gulp serve:dev
+  ```
+
+### Publish the generated content
+
+  ```
+  gulp deploy
+  ```
