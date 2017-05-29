@@ -31,6 +31,17 @@
                     "method": "POST"
                 }
             ]
+        },
+        {
+            "doc": "/v1.0/api/doc/receipts",
+            "name": "Receipts",
+            "resources": [
+                {
+                    "name": "Receipt data",
+                    "url": "/v1.0/receipts/:id",
+                    "method": "GET"
+                }
+            ]
         }
     ]
 }
