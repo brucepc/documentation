@@ -1,6 +1,6 @@
 # SumUp documentation site
 
-Generates documentation about SumUp APIs. The content is published as Github page site - [http://doc.sumup.com](http://doc.sumup.com)
+Generates documentation about SumUp APIs. The content is published as Github page site - [http://docs.sumup.com](http://docs.sumup.com)
 
 ## Getting started
 
@@ -39,3 +39,4 @@ The build dependencies are Nodejs, Ruby, jekyll and gulp
   ```
   gulp deploy
   ```
+
