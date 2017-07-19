@@ -1,5 +1,3 @@
-## Group Authorization Model
-
 # OAuth
 
 <svg class="icon" viewBox="0 0 100 100" width="100" height="100" style="fill:black">
@@ -9,6 +7,8 @@
 SumUp uses [OAuth](http://oauth.net/) to provide standard way for authorized access to its API.
 
 The authorization API is based on the abstract protocol flow as defined by [OAuth 2.0 specification](http://tools.ietf.org/html/rfc6749). 
+
+## Group Authorization Model
 
 ### Supported flows
 The API enables applications to use the following concrete flows
