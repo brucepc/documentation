@@ -95,8 +95,6 @@ Once you create a client credentials you can download the details that includes 
 
 Note that `client_secret` and `cors_uris` are applicable only for client type WEB
 
-## OAuth setup
-
 ## Example Authorization Flows
 
 ### Authorization Code Grant
