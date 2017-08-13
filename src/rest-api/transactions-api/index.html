@@ -2,9 +2,10 @@
 layout: docs
 permalink: /rest-api/transactions-api/
 docpath: <a href='/rest-api'>/ REST API</a> / Transactions
+page_title: SumUp for Developers - REST API Merchant Transactions
 ---
 
-<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#merchant-transactions">Merchant transactions</a></div><div class="collapse-content"><ul><li><a href="#merchant-transactions-transaction-history-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Transaction history</a></li><li><a href="#merchant-transactions-transaction-details-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Transaction details</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#merchant-refunds">Merchant refunds</a></div><div class="collapse-content"><ul><li><a href="#merchant-refunds-refund-transaction-post"><span class="badge post"><i class="fa fa-plus"></i></span>Refund transaction</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://api.sumup.com">https://api.sumup.com</a></p></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><p>&nbsp;</p><span id="merchant-transactions" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Merchant transactions <a href="#merchant-transactions" class="permalink">&para;</a></h2><span id="merchant-transactions-transaction-history" class="anchor"></span><div class="resource"><h3 class="resource-heading">Transaction history <a href="#merchant-transactions-transaction-history" class="permalink">&nbsp;&para;</a></h3><span id="merchant-transactions-transaction-history-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Transaction history</div><a href="#merchant-transactions-transaction-history-get" class="method get">GET</a><code class="uri">/v0.1/me/transactions/history</code></h4><p>Returns a paginated list of transaction-related events of the currently authenticated SumUp account.
+<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#merchant-transactions">Merchant transactions</a></div><div class="collapse-content"><ul><li><a href="#merchant-transactions-transaction-history-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Transaction history</a></li><li><a href="#merchant-transactions-transaction-details-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Transaction details</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#merchant-refunds">Merchant refunds</a></div><div class="collapse-content"><ul><li><a href="#merchant-refunds-refund-transaction-post"><span class="badge post"><i class="fa fa-plus"></i></span>Refund transaction</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#receipts">Receipts</a></div><div class="collapse-content"><ul><li><a href="#receipts-receipt-data-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Receipt data</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://api.sumup.com">https://api.sumup.com</a></p></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><p>&nbsp;</p><span id="merchant-transactions" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Merchant transactions <a href="#merchant-transactions" class="permalink">&para;</a></h2><span id="merchant-transactions-transaction-history" class="anchor"></span><div class="resource"><h3 class="resource-heading">Transaction history <a href="#merchant-transactions-transaction-history" class="permalink">&nbsp;&para;</a></h3><span id="merchant-transactions-transaction-history-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Transaction history</div><a href="#merchant-transactions-transaction-history-get" class="method get">GET</a><code class="uri">/v0.1/me/transactions/history</code></h4><p>Returns a paginated list of transaction-related events of the currently authenticated SumUp account.
 A transation-related event is either a payment, refund or charge back.
 Optional filtering parameters provide fine-grained control over the returned data.
 The result set has an optional “next” attribute, which can be used to fetch subsequent pages.</p>
@@ -22,30 +23,31 @@ The result set has an optional “next” attribute, which can be used to fetch 
 </dd><dt>changes_since</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Return only transactions that have been updated after the given timestamp. Format: ISO8601 (xmlschema)</p>
 </dd><dt>newest_time</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Return only transactions that occurred before the given timestamp. Format: ISO8601 (xmlschema)</p>
 </dd><dt>newest_ref</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Return only transactions that occurred after the given event ID</p>
+</dd><dt>newest_incl</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<p>Whether to include “newest_ref” in result (default: false)</p>
 </dd><dt>oldest_time</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Return only transactions that occurred after the given timestamp. Format: ISO8601 (xmlschema)</p>
 </dd><dt>oldest_ref</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Return only transactions that occurred before the given event ID</p>
+</dd><dt>oldest_incl</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<p>Whether to include “oldest_ref” in result (default: false)</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">items</span>": <span class="hljs-value">[
     {
       "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-      "<span class="hljs-attribute">transaction_id: ... (string, optional) - Associated SumUp transaction ID. The value of this and the \"id\" fields may be equal. Multiple events, associated to the same transaction will have the same transaction_id, e.g. when a PAYMENT event is later followed by a REFUND</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
+      "<span class="hljs-attribute">transaction_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">user</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">currency</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-      "<span class="hljs-attribute">fee_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">transaction_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">product_summary</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">installments_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-      "<span class="hljs-attribute">card_type: ... (string, optional) - Card type. Possible values: AMEX, CUP, DINERS, DISCOVER, ELV, JCB, MAESTRO, MASTERCARD, VISA, VISA_ELECTRON, VISA_VPAY, UNKNOWN</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
+      "<span class="hljs-attribute">card_type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">payouts_total</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">payouts_received</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-      "<span class="hljs-attribute">payout_date: ... (string, optional) - Payout date. Omitted when the payouts_total &gt; 1. Available for PAYMENT events only.</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
+      "<span class="hljs-attribute">payout_date</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">payout_plan</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-      "<span class="hljs-attribute">payout_type: ... (string, optional) - Payout type -- indicates how the amount was (will be) paid out to the merchant account. Possible values: BANK_ACCOUNT, PREPAID_CARD, BALANCE. Available for PAYMENT events only</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span>
+      "<span class="hljs-attribute">payout_type: ... (string, optional) - BANK_ACCOUNT / PREPAID_CARD / BALANCE</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span>
     </span>}
   ]</span>,
   "<span class="hljs-attribute">links</span>": <span class="hljs-value">[
@@ -65,74 +67,73 @@ The result set has an optional “next” attribute, which can be used to fetch 
         "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Unique SumUp event ID"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"ID"</span>
           </span>}</span>,
-          "<span class="hljs-attribute">transaction_id: ... (string, optional) - Associated SumUp transaction ID. The value of this and the \"id\" fields may be equal. Multiple events, associated to the same transaction will have the same transaction_id, e.g. when a PAYMENT event is later followed by a REFUND</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+          "<span class="hljs-attribute">transaction_id</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction ID"</span>
           </span>}</span>,
           "<span class="hljs-attribute">user</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Email of the SumUp user that accepted payment"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"User email"</span>
           </span>}</span>,
           "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Type. Possible values: PAYMENT, REFUND, CHARGE_BACK"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Type"</span>
           </span>}</span>,
           "<span class="hljs-attribute">status</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Current status. Possible values: SUCCESSFUL, CANCELLED, FAILED"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Status"</span>
           </span>}</span>,
           "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Timestamp at which the event occurred"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Timestamp"</span>
           </span>}</span>,
           "<span class="hljs-attribute">currency</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Currency alpha-3 code"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Currency"</span>
           </span>}</span>,
           "<span class="hljs-attribute">amount</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total event amount"</span>
-          </span>}</span>,
-          "<span class="hljs-attribute">fee_amount</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total fee amount"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Amount"</span>
           </span>}</span>,
           "<span class="hljs-attribute">transaction_code</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Short representation of the SumUp transaction ID. Useful for presenting it to customers, e.g. on receipts or reports"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction Code"</span>
           </span>}</span>,
           "<span class="hljs-attribute">product_summary</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A user-defined short description of the transaction"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product Summary"</span>
           </span>}</span>,
           "<span class="hljs-attribute">installments_count</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of installments the transactions was made. Value is always 1, except for merchants in Brazil"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Installments count"</span>
           </span>}</span>,
           "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payment type. Possible values: CASH, POS, ECOM, BITCOIN, BALANCE"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payment Type"</span>
           </span>}</span>,
-          "<span class="hljs-attribute">card_type: ... (string, optional) - Card type. Possible values: AMEX, CUP, DINERS, DISCOVER, ELV, JCB, MAESTRO, MASTERCARD, VISA, VISA_ELECTRON, VISA_VPAY, UNKNOWN</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+          "<span class="hljs-attribute">card_type</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card Type"</span>
           </span>}</span>,
           "<span class="hljs-attribute">payouts_total</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Indicates the total number of payouts. Value is always 1, except for merchants in Brazil. Available for PAYMENT events only"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payouts Total"</span>
           </span>}</span>,
           "<span class="hljs-attribute">payouts_received</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of payouts that were paid to the merchant. Available for PAYMENT events only"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payouts Received"</span>
           </span>}</span>,
-          "<span class="hljs-attribute">payout_date: ... (string, optional) - Payout date. Omitted when the payouts_total &gt; 1. Available for PAYMENT events only.</span>": <span class="hljs-value">{
-            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+          "<span class="hljs-attribute">payout_date</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payout date &amp;#40;if paid out at once&amp;#41;"</span>
           </span>}</span>,
           "<span class="hljs-attribute">payout_plan</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payout plan at the time the transaction was made. Available for PAYMENT events only"</span>
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payout plan at the time the transaction was made"</span>
           </span>}</span>,
-          "<span class="hljs-attribute">payout_type: ... (string, optional) - Payout type -- indicates how the amount was (will be) paid out to the merchant account. Possible values: BANK_ACCOUNT, PREPAID_CARD, BALANCE. Available for PAYMENT events only</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">payout_type: ... (string, optional) - BANK_ACCOUNT / PREPAID_CARD / BALANCE</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
           </span>}
         </span>}
@@ -168,9 +169,11 @@ The result set has an optional “next” attribute, which can be used to fetch 
 </div>
 <h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/transactions</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Unique SumUp transaction ID</p>
 </dd><dt>internal_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Unique SumUp internal transaction ID</p>
-</dd><dt>code</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Short representation of the SumUp transaction ID</p>
+</dd><dt>transaction_code</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Short representation of the SumUp transaction ID</p>
 </dd><dt>foreign_transaction_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>External (foreign) transaction ID. Present only if such ID was provided during transaction creation</p>
 </dd><dt>client_transaction_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Client transaction id. Similar to the foreign_transaction_id, but is always present</p>
+</dd><dt>event_statuses[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>Filter transaction events based on the given statuses</p>
+</dd><dt>event_types[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>Filter transaction events based on the given types</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">transaction_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -196,7 +199,9 @@ The result set has an optional “next” attribute, which can be used to fetch 
   </span>}</span>,
   "<span class="hljs-attribute">elv_account</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">sort_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-    "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">sequence_no</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">iban</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
   </span>}</span>,
   "<span class="hljs-attribute">product_summary</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">local_time</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -265,7 +270,7 @@ The result set has an optional “next” attribute, which can be used to fetch 
     </span>}</span>,
     "<span class="hljs-attribute">foreign_transaction_id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Foreign transaction id (passed by clients)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Foreign transaction id &amp;#40;passed by clients&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">merchant_code</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -285,7 +290,7 @@ The result set has an optional “next” attribute, which can be used to fetch 
     </span>}</span>,
     "<span class="hljs-attribute">tip_amount</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Tip amount (included in transaction amount)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Tip amount &amp;#40;included in transaction amount&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">currency</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -351,6 +356,14 @@ The result set has an optional “next” attribute, which can be used to fetch 
         "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv card account number last 4 digits"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">sequence_no</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv card sequence number"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">iban</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv iban"</span>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv bank account"</span>
@@ -496,7 +509,7 @@ The result set has an optional “next” attribute, which can be used to fetch 
         </span>}</span>,
         "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Type of the transaction event. Possible values: PAYOUT, CHARGE_BACK, REFUND"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Type of the transaction event. Possible values: PAYOUT, CHARGE_BACK, REFUND, PAYOUT_DEDUCTION"</span>
         </span>}</span>,
         "<span class="hljs-attribute">status</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -523,11 +536,11 @@ The result set has an optional “next” attribute, which can be used to fetch 
     </span>}</span>,
     "<span class="hljs-attribute">payouts_received</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of payouts that were actually paid out (excludes partial chargeback deductions)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of payouts that were actually paid out &amp;#40;excludes partial chargeback deductions&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">payouts_total</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total number of payouts in which the transaction is (to) be paid out"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total number of payouts in which the transaction is &amp;#40;to&amp;#41; be paid out"</span>
     </span>}</span>,
     "<span class="hljs-attribute">location</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -571,7 +584,551 @@ The result set has an optional “next” attribute, which can be used to fetch 
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">amount</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"The exact amount to refund (optional)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"The exact amount to refund &amp;#40;optional&amp;#41;"</span>
     </span>}
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>204</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>Processing completed</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>NOT_ENOUGH_BALANCE - Not enough available balance to perform the operation at the moment</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>CONFLICT - The transaction is not refundable <span class="hljs-keyword">in</span> its current state.  Might, or might not change <span class="hljs-keyword">if</span> tried later</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>204</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>Processing completed</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>NOT_ENOUGH_BALANCE - Not enough available balance to perform the operation at the moment</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>409</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>CONFLICT - The transaction is not refundable in its current state.  Might, or might not change if tried later
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>&amp;nbsp;<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></code></pre><div style="height: 1px;"></div></div></div></div></div></section><span id="receipts" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Receipts <a href="#receipts" class="permalink">&para;</a></h2><span id="receipts-receipt-data" class="anchor"></span><div class="resource"><h3 class="resource-heading">Receipt data <a href="#receipts-receipt-data" class="permalink">&nbsp;&para;</a></h3><span id="receipts-receipt-data-get" class="anchor"></span><div class="action get"><h4 class="action-heading"><div class="name">Receipt data</div><a href="#receipts-receipt-data-get" class="method get">GET</a><code class="uri">/v1.0/receipts/:id</code></h4><p>Get receipt specific data for a transaction - receipts-ng interface</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v1.0/receipts/:id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>SumUp unique transaction ID or transaction code, e.g. TS7HDYLSKD</p>
+</dd><dt>mid</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Merchant code</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">transaction</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">transaction_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">tip_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">currency</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">simple_payment_type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">entry_mode</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">verification_method</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">elv_account</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">sort_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">sequence_no</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">iban</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">local_time</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">installments_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">process_as</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">products</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">price</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">vat_rate</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">single_vat_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">price_with_vat</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">total_price</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">total_with_vat</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">events</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">transaction_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">fee_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">receipt_no</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">location</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">lat</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">lon</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">horizontal_accuracy</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">auth_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">merchant_profile</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">business_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">company_registration_number</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">vat_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">website</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">address_line1</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">address_line2</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">country_en_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">country_native_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">region_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">region_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">post_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">landline</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">line1</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">line2</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">postal_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">settings</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">legal_type</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">sole_trader</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">national_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">locale</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">signature</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">receipt_number</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">card_application</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">aid</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">acquirer_data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">tid</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">mid</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">authorization_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">mandate_reference</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">return_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">local_time</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">emv_data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">tvr</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">tsi</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">cvr</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">iad</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">arc</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">aid</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">act</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">acv</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">transaction</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">transaction_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">merchant_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">amount</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction amount"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction VAT amount"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tip_amount</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Tip amount &amp;#40;included in transaction amount&amp;#41;"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">currency</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction currency"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Time created"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">status</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction processing status"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction type"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">simple_payment_type</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Simple name for each payment method"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">entry_mode</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction entry mode"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">verification_method</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Cardholder verification method"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card last 4 digits"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card Scheme"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card information"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">elv_account</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">sort_code</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv card sort code"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv card account number last 4 digits"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">sequence_no</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv card sequence number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">iban</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv iban"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Elv bank account"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">local_time</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Creation time in the timezone of the device on which the transaction was made"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">installments_count</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of installments"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">process_as</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Debit/Credit"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">products</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product name"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">price</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product price"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">vat_rate</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">single_vat_amount</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">price_with_vat</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product price incl. VAT"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">quantity</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product quantity"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">total_price</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Quantity x product price"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">total_with_vat</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total price incl. VAT"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Purchase products"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">events</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Event ID"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">transaction_id</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Parent transaction ID"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Type of the transaction event. Possible values: PAYOUT, CHARGE_BACK, REFUND, PAYOUT_DEDUCTION"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">status</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Status of the event"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">amount</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Amount"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Time created"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">fee_amount</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Fee amount"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">receipt_no</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Receipt number for receipt"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"A list with transaction events"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">location</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">lat</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">lon</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">horizontal_accuracy</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Location information"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"True if transaction is made in advanced mode"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">auth_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Authorization code"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction information"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">merchant_profile</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">merchant_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant id"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">business_name</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Doing business as name"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">company_registration_number</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Doing business as company registration number"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">vat_id</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Doing business as vat id"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">website</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Doing business as website"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Doing business as email"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">address_line1</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Address line 1"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">address_line2</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Address line 2"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">city</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">country</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">country_en_name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Country name"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">country_native_name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Country native name"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">region_id</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Country region id"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">region_name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Region name"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">post_code</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Postal code"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">landline</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Landline number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">line1</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">line2</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">postal_code</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">state</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Doing business as address"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">settings</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"True if merchant has taxes enabled"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant profile settings"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">legal_type</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Legal type description"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">sole_trader</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Is a soletrader legal type"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Legal type"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">national_id</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National id of the company's representative"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">locale</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Preferred locale"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction processing data"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">signature</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Customer signature"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">receipt_number</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Receipt number"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">card_application</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Application name"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">aid</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Application name"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card application info"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">acquirer_data</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">tid</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Terminal id"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">mid</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant id"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">authorization_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Acquirer authorization result"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">mandate_reference</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Mandate reference in case of ELV transaction"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">return_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Acquirer return code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">local_time</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Local time when the communication occured"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Acquirer specific data"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">emv_data</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">tvr</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Terminal verification result"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">tsi</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction status information"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">cvr</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Cardholder verification result"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">iad</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Issuer Application Data"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">arc</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Application Response Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">aid</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Application Identifier"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">act</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Application Cryptogram Type"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">acv</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Application Cryptogram Value"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"EMV specific data"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div>
