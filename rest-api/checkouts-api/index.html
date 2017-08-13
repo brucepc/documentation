@@ -2,6 +2,7 @@
 
 <head>
   <link rel="stylesheet" href="/assets/air.css">
+  <title>SumUp for Developers - REST API Checkouts</title>
 </head>
 
 <body>
@@ -11,7 +12,6 @@
 
   <topbar>
     <a href="/">
-      
       <div class="logo__wrap">
         <div class="logo">
           <svg class="icon">
@@ -121,7 +121,7 @@
     </span>}</span>,
     "<span class="hljs-attribute">fee_amount</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Fee amount to be set (needs client permissions)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Fee amount to be set &amp;#40;needs client permissions&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -155,10 +155,13 @@
       "<span class="hljs-attribute">transaction_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">tip_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">currency</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">entry_mode</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">installments_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">auth_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">internal_id</span>": <span class="hljs-value"><span class="hljs-number">1</span>
@@ -232,6 +235,14 @@
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
             "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction amount"</span>
           </span>}</span>,
+          "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction VAT amount"</span>
+          </span>}</span>,
+          "<span class="hljs-attribute">tip_amount</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Tip amount &amp;#40;included in transaction amount&amp;#41;"</span>
+          </span>}</span>,
           "<span class="hljs-attribute">currency</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
             "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction currency"</span>
@@ -247,6 +258,10 @@
           "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
             "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction type"</span>
+          </span>}</span>,
+          "<span class="hljs-attribute">entry_mode</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction entry mode"</span>
           </span>}</span>,
           "<span class="hljs-attribute">installments_count</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
@@ -333,7 +348,7 @@
     </span>}</span>,
     "<span class="hljs-attribute">installments</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of installments (Brazil only, max 12)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of installments &amp;#40;Brazil only, max 12&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -363,10 +378,13 @@
       "<span class="hljs-attribute">transaction_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">tip_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">currency</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">entry_mode</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">installments_count</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">auth_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">internal_id</span>": <span class="hljs-value"><span class="hljs-number">1</span>
@@ -449,6 +467,14 @@
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
             "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction amount"</span>
           </span>}</span>,
+          "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction VAT amount"</span>
+          </span>}</span>,
+          "<span class="hljs-attribute">tip_amount</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Tip amount &amp;#40;included in transaction amount&amp;#41;"</span>
+          </span>}</span>,
           "<span class="hljs-attribute">currency</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
             "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction currency"</span>
@@ -464,6 +490,10 @@
           "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
             "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction type"</span>
+          </span>}</span>,
+          "<span class="hljs-attribute">entry_mode</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Transaction entry mode"</span>
           </span>}</span>,
           "<span class="hljs-attribute">installments_count</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
@@ -571,6 +601,7 @@
       "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">country_en_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">country_native_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">region_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">region_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">post_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -621,6 +652,10 @@
             "<span class="hljs-attribute">country_en_name</span>": <span class="hljs-value">{
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
               "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Country name"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">country_native_name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Country native name"</span>
             </span>}</span>,
             "<span class="hljs-attribute">region_id</span>": <span class="hljs-value">{
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,

@@ -2,6 +2,7 @@
 
 <head>
   <link rel="stylesheet" href="/assets/air.css">
+  <title>SumUp for Developers - REST API Merchant Account</title>
 </head>
 
 <body>
@@ -11,7 +12,6 @@
 
   <topbar>
     <a href="/">
-      
       <div class="logo__wrap">
         <div class="logo">
           <svg class="icon">
@@ -223,10 +223,13 @@ permissions</p>
       "<span class="hljs-attribute">printers_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">payout_instrument</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">moto_payment</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+      "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">adyen_user</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">adyen_password</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-      "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+      "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+      "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
     </span>}</span>,
     "<span class="hljs-attribute">vat_rates</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -288,6 +291,7 @@ permissions</p>
   ]</span>,
   "<span class="hljs-attribute">app_settings</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">font_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -305,7 +309,9 @@ permissions</p>
     "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">tipping</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-    "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]
+    "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]</span>,
+    "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">referral</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
   </span>}</span>,
   "<span class="hljs-attribute">signup_flows</span>": <span class="hljs-value">[
     {
@@ -344,7 +350,9 @@ permissions</p>
   ]</span>,
   "<span class="hljs-attribute">permissions</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">create_moto_payments</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+    "<span class="hljs-attribute">full_transaction_history_view</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">create_referral</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -384,7 +392,7 @@ permissions</p>
         </span>}</span>,
         "<span class="hljs-attribute">national_id</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National identification id. Country specific. Ex CPF (Brazil), DNI (Spain), PESEL (Poland)"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National identification id. Country specific. Ex CPF &amp;#40;Brazil&amp;#41;, DNI (Spain), PESEL (Poland)"</span>
         </span>}</span>,
         "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -538,7 +546,7 @@ permissions</p>
         </span>}</span>,
         "<span class="hljs-attribute">permanent_certificate_access_code</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permanent certificate access code (Portugal)"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permanent certificate access code &amp;#40;Portugal&amp;#41;"</span>
         </span>}</span>,
         "<span class="hljs-attribute">nature_and_purpose</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -804,7 +812,7 @@ permissions</p>
           "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
-              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts (saved per transaction)"</span>
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts &amp;#40;saved per transaction&amp;#41;"</span>
             </span>}</span>,
             "<span class="hljs-attribute">payout_type</span>": <span class="hljs-value">{
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -834,6 +842,10 @@ permissions</p>
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
               "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant can make MOTO payments"</span>
             </span>}</span>,
+            "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Stone merchant code"</span>
+            </span>}</span>,
             "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value">{
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
               "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen merchant code"</span>
@@ -849,9 +861,17 @@ permissions</p>
             "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value">{
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
               "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen company"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive daily payout emails"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive monthly payout emails"</span>
             </span>}
           </span>}</span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant settings (like \"payout_type\", \"payout_period\")"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant settings &amp;#40;like \"payout_type\", \"payout_period\"&amp;#41;"</span>
         </span>}</span>,
         "<span class="hljs-attribute">vat_rates</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -1053,6 +1073,10 @@ permissions</p>
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
         </span>}</span>,
+        "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
@@ -1123,6 +1147,14 @@ permissions</p>
         </span>}</span>,
         "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">referral</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
         </span>}
       </span>}</span>,
@@ -1247,9 +1279,17 @@ permissions</p>
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Create MOTO payments"</span>
         </span>}</span>,
+        "<span class="hljs-attribute">full_transaction_history_view</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Can view full merchant transaction history"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Refund transactions"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">create_referral</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Create referral"</span>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"User permissions"</span>
@@ -1313,7 +1353,7 @@ permissions</p>
     </span>}</span>,
     "<span class="hljs-attribute">national_id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National identification id. Country specific. Ex CPF (Brazil), DNI (Spain), PESEL (Poland)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National identification id. Country specific. Ex CPF &amp;#40;Brazil&amp;#41;, DNI (Spain), PESEL (Poland)"</span>
     </span>}</span>,
     "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -1460,7 +1500,7 @@ permissions</p>
     </span>}</span>,
     "<span class="hljs-attribute">national_id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National identification id. Country specific. Ex CPF (Brazil), DNI (Spain), PESEL (Poland)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National identification id. Country specific. Ex CPF &amp;#40;Brazil&amp;#41;, DNI (Spain), PESEL (Poland)"</span>
     </span>}</span>,
     "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -1578,7 +1618,7 @@ permissions</p>
     </span>}</span>,
     "<span class="hljs-attribute">national_id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National identification id. Country specific. Ex CPF (Brazil), DNI (Spain), PESEL (Poland)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"National identification id. Country specific. Ex CPF &amp;#40;Brazil&amp;#41;, DNI (Spain), PESEL (Poland)"</span>
     </span>}</span>,
     "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -1780,10 +1820,13 @@ permissions</p>
     "<span class="hljs-attribute">printers_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">payout_instrument</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">moto_payment</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">adyen_user</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">adyen_password</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-    "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
   </span>}</span>,
   "<span class="hljs-attribute">vat_rates</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -1888,7 +1931,7 @@ permissions</p>
     </span>}</span>,
     "<span class="hljs-attribute">permanent_certificate_access_code</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permanent certificate access code (Portugal)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permanent certificate access code &amp;#40;Portugal&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">nature_and_purpose</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -2154,7 +2197,7 @@ permissions</p>
       "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts (saved per transaction)"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts &amp;#40;saved per transaction&amp;#41;"</span>
         </span>}</span>,
         "<span class="hljs-attribute">payout_type</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -2184,6 +2227,10 @@ permissions</p>
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant can make MOTO payments"</span>
         </span>}</span>,
+        "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Stone merchant code"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen merchant code"</span>
@@ -2199,9 +2246,17 @@ permissions</p>
         "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen company"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive daily payout emails"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive monthly payout emails"</span>
         </span>}
       </span>}</span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant settings (like \"payout_type\", \"payout_period\")"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant settings &amp;#40;like \"payout_type\", \"payout_period\"&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">vat_rates</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -2722,10 +2777,13 @@ permissions</p>
     "<span class="hljs-attribute">printers_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">payout_instrument</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">moto_payment</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">adyen_user</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">adyen_password</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-    "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+    "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
   </span>}</span>,
   "<span class="hljs-attribute">vat_rates</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -2830,7 +2888,7 @@ permissions</p>
     </span>}</span>,
     "<span class="hljs-attribute">permanent_certificate_access_code</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permanent certificate access code (Portugal)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permanent certificate access code &amp;#40;Portugal&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">nature_and_purpose</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -3096,7 +3154,7 @@ permissions</p>
       "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts (saved per transaction)"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts &amp;#40;saved per transaction&amp;#41;"</span>
         </span>}</span>,
         "<span class="hljs-attribute">payout_type</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -3126,6 +3184,10 @@ permissions</p>
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant can make MOTO payments"</span>
         </span>}</span>,
+        "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Stone merchant code"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen merchant code"</span>
@@ -3141,9 +3203,17 @@ permissions</p>
         "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen company"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive daily payout emails"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive monthly payout emails"</span>
         </span>}
       </span>}</span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant settings (like \"payout_type\", \"payout_period\")"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Merchant settings &amp;#40;like \"payout_type\", \"payout_period\"&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">vat_rates</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -3952,16 +4022,19 @@ permissions</p>
   "<span class="hljs-attribute">printers_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">payout_instrument</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">moto_payment</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">adyen_user</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">adyen_password</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-  "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts (saved per transaction)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts &amp;#40;saved per transaction&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">payout_type</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -3991,6 +4064,10 @@ permissions</p>
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant can make MOTO payments"</span>
     </span>}</span>,
+    "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Stone merchant code"</span>
+    </span>}</span>,
     "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen merchant code"</span>
@@ -4006,6 +4083,14 @@ permissions</p>
     "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen company"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive daily payout emails"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive monthly payout emails"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -4014,14 +4099,20 @@ permissions</p>
 <p>Required scope(s): user.payout-settings</p>
 </div>
 <h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/merchant-profile/settings</span></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">payout_period</span>": <span class="hljs-value"><span class="hljs-string">"daily|weekly|monthly"</span></span>,
   "<span class="hljs-attribute">payout_type: SINGLE_PAYMENT</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
   "<span class="hljs-attribute">payout_on_demand</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
   "<span class="hljs-attribute">payout_on_demand_available: true|false(boolean, optional) - If true, the merchant will be able to manage  payout_on_demand settings</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
-  "<span class="hljs-attribute">expected_max_transaction_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+  "<span class="hljs-attribute">expected_max_transaction_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">printers_enabled</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">payout_period</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payout period - Possible values daily,weekly,monthly"</span>
+    </span>}</span>,
     "<span class="hljs-attribute">payout_type: SINGLE_PAYMENT</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payout type - Possible values SINGLE_PAYMENT"</span>
@@ -4037,6 +4128,10 @@ permissions</p>
     "<span class="hljs-attribute">expected_max_transaction_amount</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Expected maximum amount of a single purchase"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">printers_enabled</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Printers enabled - Possible values true,false"</span>
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
@@ -4048,16 +4143,19 @@ permissions</p>
   "<span class="hljs-attribute">printers_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">payout_instrument</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">moto_payment</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">adyen_user</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">adyen_password</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-  "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">tax_enabled</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts (saved per transaction)"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether to show tax in receipts &amp;#40;saved per transaction&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">payout_type</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -4087,6 +4185,10 @@ permissions</p>
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant can make MOTO payments"</span>
     </span>}</span>,
+    "<span class="hljs-attribute">stone_merchant_code</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Stone merchant code"</span>
+    </span>}</span>,
     "<span class="hljs-attribute">adyen_merchant_code</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen merchant code"</span>
@@ -4102,6 +4204,14 @@ permissions</p>
     "<span class="hljs-attribute">adyen_company</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Adyen company"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">daily_payout_email</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive daily payout emails"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">monthly_payout_email</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Whether merchant will receive monthly payout emails"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -4137,10 +4247,13 @@ permissions</p>
   "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">permissions</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">create_moto_payments</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+    "<span class="hljs-attribute">full_transaction_history_view</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">create_referral</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
   </span>}</span>,
   "<span class="hljs-attribute">app_settings</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">font_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -4158,7 +4271,9 @@ permissions</p>
     "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">tipping</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-    "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]
+    "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]</span>,
+    "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">referral</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -4182,9 +4297,17 @@ permissions</p>
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Create MOTO payments"</span>
         </span>}</span>,
+        "<span class="hljs-attribute">full_transaction_history_view</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Can view full merchant transaction history"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Refund transactions"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">create_referral</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Create referral"</span>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permissions"</span>
@@ -4194,6 +4317,10 @@ permissions</p>
       "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
         </span>}</span>,
         "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value">{
@@ -4266,6 +4393,14 @@ permissions</p>
         </span>}</span>,
         "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">referral</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
         </span>}
       </span>}</span>,
@@ -4288,10 +4423,13 @@ Possible values: permissions, app_settings</p>
   "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">permissions</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">create_moto_payments</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+    "<span class="hljs-attribute">full_transaction_history_view</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">create_referral</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
   </span>}</span>,
   "<span class="hljs-attribute">app_settings</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">font_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -4309,7 +4447,9 @@ Possible values: permissions, app_settings</p>
     "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">tipping</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-    "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]
+    "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]</span>,
+    "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">referral</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -4333,9 +4473,17 @@ Possible values: permissions, app_settings</p>
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Create MOTO payments"</span>
         </span>}</span>,
+        "<span class="hljs-attribute">full_transaction_history_view</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Can view full merchant transaction history"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">refund_transactions</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Refund transactions"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">create_referral</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Create referral"</span>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Permissions"</span>
@@ -4345,6 +4493,10 @@ Possible values: permissions, app_settings</p>
       "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
         </span>}</span>,
         "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value">{
@@ -4417,6 +4569,14 @@ Possible values: permissions, app_settings</p>
         </span>}</span>,
         "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">referral</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
         </span>}
       </span>}</span>,
@@ -5357,6 +5517,7 @@ Possible values: permissions, app_settings</p>
 </div>
 <h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/app-settings</span></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">font_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -5374,12 +5535,18 @@ Possible values: permissions, app_settings</p>
   "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">tipping</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-  "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]
+  "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]</span>,
+  "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">referral</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
     </span>}</span>,
     "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value">{
@@ -5452,6 +5619,14 @@ Possible values: permissions, app_settings</p>
     </span>}</span>,
     "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">referral</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
     </span>}
   </span>}</span>,
@@ -5462,15 +5637,19 @@ Possible values: permissions, app_settings</p>
 </div>
 <h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/app-settings</span></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">mobile_payment_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">manual_entry_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">advanced_mode</span>": <span class="hljs-value"><span class="hljs-string">"ON|OFF"</span></span>,
   "<span class="hljs-attribute">include_vat</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-  "<span class="hljs-attribute">checkout_preference: magstripe|chipsig|pinplus|air|air_lite|miura</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
+  "<span class="hljs-attribute">checkout_preference: magstripe|chipsig|pinplus|air|air_lite|miura|pax</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
   "<span class="hljs-attribute">mobile_payment</span>": <span class="hljs-value"><span class="hljs-string">"ON|OFF"</span></span>,
   "<span class="hljs-attribute">reader_payment</span>": <span class="hljs-value"><span class="hljs-string">"ON|OFF"</span></span>,
   "<span class="hljs-attribute">tipping</span>": <span class="hljs-value"><span class="hljs-string">"ON|OFF"</span></span>,
   "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[
     <span class="hljs-number">1</span>
-  ]
+  ]</span>,
+  "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value"><span class="hljs-string">"ON|OFF"</span></span>,
+  "<span class="hljs-attribute">referral</span>": <span class="hljs-value"><span class="hljs-string">"ON|OFF"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -5478,6 +5657,14 @@ Possible values: permissions, app_settings</p>
     "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Terminal mode tutorial"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">mobile_payment_tutorial</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Mobile payment mode tutorial"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">manual_entry_tutorial</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Manual entry tutorial"</span>
     </span>}</span>,
     "<span class="hljs-attribute">advanced_mode</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -5487,17 +5674,17 @@ Possible values: permissions, app_settings</p>
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Include Vat"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">checkout_preference: magstripe|chipsig|pinplus|air|air_lite|miura</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">checkout_preference: magstripe|chipsig|pinplus|air|air_lite|miura|pax</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Checkout Preference - Possible values magstripe,chipsig,pinplus,air,air_lite,miura"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Checkout Preference - Possible values magstripe,chipsig,pinplus,air,air_lite,miura,pax"</span>
     </span>}</span>,
     "<span class="hljs-attribute">mobile_payment</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Mobile payment (if applicable) - Possible values ON,OFF"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Mobile payment &amp;#40;if applicable&amp;#41; - Possible values ON,OFF"</span>
     </span>}</span>,
     "<span class="hljs-attribute">reader_payment</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Reader payment (if applicable) - Possible values ON,OFF"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Reader payment &amp;#40;if applicable&amp;#41; - Possible values ON,OFF"</span>
     </span>}</span>,
     "<span class="hljs-attribute">tipping</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -5506,10 +5693,19 @@ Possible values: permissions, app_settings</p>
     "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Predefined tipping rates"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Barcode scanning on or off - Possible values ON,OFF"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">referral</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Referral feature on or off - Possible values ON,OFF"</span>
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">tips_enabled</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">font_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -5527,12 +5723,18 @@ Possible values: permissions, app_settings</p>
   "<span class="hljs-attribute">manual_entry</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">terminal_mode_tutorial</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">tipping</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-  "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]
+  "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">[]</span>,
+  "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">referral</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">checkout_preference</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">activate_air_hint</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
     </span>}</span>,
     "<span class="hljs-attribute">sound_enabled</span>": <span class="hljs-value">{
@@ -5605,6 +5807,14 @@ Possible values: permissions, app_settings</p>
     </span>}</span>,
     "<span class="hljs-attribute">tip_rates</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">barcode_scanner</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">referral</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"undefined"</span>
     </span>}
   </span>}</span>,
