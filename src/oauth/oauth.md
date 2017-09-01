@@ -1,15 +1,14 @@
 # OAuth
 
-SumUp uses [OAuth](http://oauth.net/) to provide standard way for authorized access to its API.
-
-
 <svg class="icon" viewBox="0 0 100 100" width="100" height="100" style="fill:black">
   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-oauth"></use>
 </svg>
 
-## Group Authorization Model
+SumUp uses [OAuth](http://oauth.net/) to provide standard way for authorized access to its API.
 
 The authorization API is based on the abstract protocol flow as defined by [OAuth 2.0 specification](http://tools.ietf.org/html/rfc6749). 
+
+## Group Authorization Model
 
 ### Supported flows
 The API enables applications to use the following concrete flows
@@ -30,20 +29,30 @@ __Client credentials__ can be passed as a header (according to the specification
 
 ### SumUp supported scopes
 
-The possible scopes that might be requested and granted by SumUp authorization server upon receiving user consent are
+The possible scopes that might be requested and granted by SumUp authorization server upon receiving user consent are grouped as follows:
 
+Deafult scopes:
++ payments - Make payments
++ user.app-settings - Access and manage mobile application settings
++ transactions.history - Access user's transaction history
 + user.profile_readonly - Access user profile information
+
+Default scopes are requested when no `scope` value is defined.
+
+Optional scopes:
 + user.profile - Access and edit user profile information
 + user.subaccounts - Access and manage users's employees
 + user.payout-settings - Access and edit user's payout settings
-+ user.app-settings - Access and manage mobile application settings
-+ payments - Make payments
 + balance - Access and manage user balance
 + products - Access and manage your user's products, shelves, prices, vat rates
-+ transactions.history - Access user's transaction history
 
+Optional scopes must be requested specifically.
 
-By default all registered applications can request  user.profile, payments, user.app-settings and transactions.history scope. 
+Restricted Scopes:
+
+CHECK THIS LIST WITH MIRO
+
+Restricted scopes must be enabled by SumUp before being requested. Please contact <integration@sumup.com>
 
 ## Group OAuth setup
 
@@ -86,4 +95,128 @@ Once you create a client credentials you can download the details that includes 
 
 Note that `client_secret` and `cors_uris` are applicable only for client type WEB
 
+## Example Authorization Flows
 
+### Authorization Code Grant
+
+In the authorization grant flow the merchant authorises your application once, for a specific set of scopes.
+
+The authorization code grant is recommended when the following criteria are met: 
+
+* You intend to perform actions on behalf of the merchant (e.g. logging into the SDK, refunding via the API)
+* User credentials are not known by you (the client)
+* Your application (User agent) is capable of handling a redirect request (e.g. a browser)
+
+After completing the [OAuth setup](#Group_OAuth_setup) direct the merchant to the authorisation URI:
+```
+{
+   	https://api.sumup.com/authorize?
+    scope=REQUESTED_SCOPES&
+    response_type=code&
+    client_id=YOUR_CLIENT_ID&
+    client_secret=YOUR_CLIENT_SECRET&
+    redirect_uri=YOUR_REDIRECT_URI&
+    state=YOUR_KNOWN_STATE
+}
+```
+
+* `client_id`- Generated during [setup](#Group_OAuth_setup)
+* `client_secret` - Web apps only, generated during [setup](#Group_OAuth_setup)
+* `redirect_uri`- Defined during [setup](#Group_OAuth_setup)
+* `scope` Optional - List of comma separated values, see [supported scopes](SumUp_supported_scopes)
+* `response_type` -  `code` for authorization code
+* `state` - Optional - Known only to you, used to prevent [CSRF](https://tools.ietf.org/html/rfc6749#section-10.12)
+
+After the merchant has authenticated with SumUp and authorised the application for the requested scopes, they will be directed your redirect URI:
+```
+{
+	https://YOUR_REDIRECT_URI?
+	code=AUTHORIZATION_CODE&
+	STATE=YOUR_KNOWN_STATE
+}
+```
+
+*  `code` - Authorization code,  expires in X minutes
+
+The authorization code is then used to request an access and refresh token using the `\token` endpoint:
+```
+{
+curl https://api.sumup.com/token \
+-d "grant_type=authorization_code" \
+   "client_id=YOUR_CLIENT_ID" \
+   "client_secret=YOUR_CLIENT_SECRET" \
+   "redirect_uri=YOUR_REDIRECT_URI" \
+   "code=AUTHORIZATION_CODE" \
+}
+```
+* `grant_type`- `authorization_code`
+
+If the request is successful, an access token will be returned in the response:
+
+```
+{
+"access_token":"22584b8b8960fc8266db0637d5c166b90b1283081deee2dec8bf7d2dce3b0289",
+"token_type":"Bearer",
+"expires_in":3600,
+"refresh_token":"6a88a1c877c36735581019f5326286a5f7bc3358a283d81c1e05f642ea5361f5"
+}
+```
+*  `access_token` - Used to access SumUp services
+*  `token_type` - `Bearer` by default
+*  `expires_in` - time in seconds
+*  `refresh_token` - used to [refresh](#Refresh_Tokens) an access token
+
+### Client Credentials Grant
+
+The client credentials grant is used for direct communication between your platform and SumUp where no merchant authorization is required (e.g. creating a customer for your platform)
+
+After completing the [OAuth setup](#Group_OAuth_setup) request an access token:
+```
+{
+curl https://api.sumup.com/token \
+-d "grant_type=client_credentials" \
+   "client_id=YOUR_CLIENT_ID" \
+   "client_secret=YOUR_CLIENT_SECRET" \
+   "scope=REQUESTED_SCOPES" \
+}
+```
+* `grant_type`- `client_credentials`
+* `client_id`- Generated during [setup](#Group_OAuth_setup)
+* `client_secret` - Web apps only, generated during [setup](#Group_OAuth_setup)
+* `scope` Optional - List of comma separated values, see [supported scopes](SumUp_supported_scopes)
+
+If the request is successful, an access token will be returned in the response:
+```
+{
+"access_token":"ACCESS_TOKEN",
+"token_type":"Bearer",
+"expires_in":3600
+"scope":"REQUEST_SCOPES"
+}
+```
+*  `access_token` - Used to access SumUp services
+*  `token_type` - `Bearer` by default
+*  `expires_in` - time in seconds
+* No refresh token is returned, as the client can request a new access token as required
+
+
+### Refresh Tokens
+
+To refresh an access token make a the following request:
+```
+{
+curl https://api.sumup.com/token \
+-d "grant_type=refresh_token" \
+   "client_id=YOUR_CLIENT_ID" \
+   "client_secret=YOUR_CLIENT_SECRET" \
+   "scope=REQUESTED_SCOPES" \
+   "refresh_token=YOUR_REFRESH_TOKEN" \
+}
+```
+* `grant_type`- `refresh_token`
+* `refresh_token`- Generated in [authorization code grant](#authorization_code_grant)
+
+
+### Resource Owner & Implicit Credentials Grants
+
+While supported, Resource Owner & Implicit Credentials Grants are not typically recommended for SumUp implementations. Please contact <integration@sumup.com> for more information.
