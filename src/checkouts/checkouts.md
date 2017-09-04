@@ -56,7 +56,7 @@ Alternatively you can complete a checkout by using a checkout form provided by S
     <card></card>
     <p>&nbsp;</p>
 </div>
-<script src="https://me.sumup.com/gateway/card.js"></script>
+<script src="https://gateway.sumup.com/gateway/card.js"></script>
 <script>
     PaymentCard.mount({checkoutId: "...", demoMode: true});
     PaymentCard.on('checkout:paymentResult', function(data) {
@@ -70,7 +70,7 @@ To integrate the checkout form you need a few lines of code in your html page
 <!-- the place it will appear-->
 <card></card>
 <!-- the form js library-->
-<script src="https://me.sumup.com/gateway/card.js"></script>
+<script src="https://gateway.sumup.com/gateway/card.js"></script>
 <script>
     //render the form ui providing a configuration object
     PaymentCard.mount({checkoutId: "..."});
