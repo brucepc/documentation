@@ -131,7 +131,7 @@ CORS requests are possible if you have correctly set cors origins in your OAuth 
     <card></card>
     <p>&nbsp;</p>
 </div>
-<script src="https://me.sumup.com/gateway/card.js"></script>
+<script src="https://gateway.sumup.com/gateway/card.js"></script>
 <script>
     PaymentCard.mount({checkoutId: "...", demoMode: true});
     PaymentCard.on('checkout:paymentResult', function(data) {
@@ -142,7 +142,7 @@ CORS requests are possible if you have correctly set cors origins in your OAuth 
 <pre><code class="language-html"><span class="hljs-comment">&lt;!-- the place it will appear--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">card</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">card</span>&gt;</span>
 <span class="hljs-comment">&lt;!-- the form js library--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://me.sumup.com/gateway/card.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://gateway.sumup.com/gateway/card.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
     <span class="hljs-comment">//render the form ui providing a configuration object</span>
     PaymentCard.mount({checkoutId: <span class="hljs-string">"..."</span>});
