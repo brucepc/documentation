@@ -4,7 +4,7 @@
   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-oauth"></use>
 </svg>
 
-SumUp uses [OAuth](http://oauth.net/) to provide standard way for authorized access to its API.
+SumUp uses [OAuth](http://oauth.net/) to provide standard way for authorized access to its APIs.
 
 The authorization API is based on the abstract protocol flow as defined by [OAuth 2.0 specification](http://tools.ietf.org/html/rfc6749). 
 
@@ -24,6 +24,7 @@ In addition to the standard protocol content type (application/x-www-form-urlenc
 __Client credentials__ can be passed as a header (according to the specification) or in the request body.
 
 ### Endpoints
+HOST: api.sumup.com
 + Authorization endpoint - ```/authorize```
 + Token endpoint - ```/token```
 
@@ -31,54 +32,53 @@ __Client credentials__ can be passed as a header (according to the specification
 
 The possible scopes that might be requested and granted by SumUp authorization server upon receiving user consent are grouped as follows:
 
-Deafult scopes:
+Default scopes:
 + payments - Make payments
 + user.app-settings - Access and manage mobile application settings
-+ transactions.history - Access user's transaction history
-+ user.profile_readonly - Access user profile information
++ transactions.history - Access users' transaction history
++ user.profile_readonly - Access users' profile information
 
-Default scopes are requested when no `scope` value is defined.
+Note Default scopes are requested when no `scope` value is defined.
 
 Optional scopes:
-+ user.profile - Access and edit user profile information
-+ user.subaccounts - Access and manage users's employees
-+ user.payout-settings - Access and edit user's payout settings
-+ balance - Access and manage user balance
-+ products - Access and manage your user's products, shelves, prices, vat rates
++ user.profile - Access and edit users' profile information
++ user.subaccounts - Access and manage users' employees
++ user.payout-settings - Access and edit user' payout settings
++ balance - Access and manage users' balance
++ products - Access and manage users' products, shelves, prices, vat rates
 
 Optional scopes must be requested specifically.
 
 Restricted Scopes:
-
-CHECK THIS LIST WITH MIRO
++ payment_instruments – Generate payment card tokens and process recurring payments 
 
 Restricted scopes must be enabled by SumUp before being requested. Please contact <integration@sumup.com>
 
 ## Group OAuth setup
 
-You can make or change your OAuth setup in the [developers section](https://me.sumup.com/developers) of the SumUp Dashboard.
+You can make or change your OAuth setup in the [Developers section](https://me.sumup.com/developers) of the SumUp Dashboard.
 
 ### Consent screen
 
-The consent screen will be shown to users whenever you request access to their private data using your client ID. It will be shown for all your registered applications. In order to make your application recognaziable you need to provide information for
+The consent screen will be shown to users whenever you request access to their private data using your client ID. It will be shown for all your registered applications. In order to make your application recognizable you need to provide information for
 
-* __Product name__ (Required) - this is the name of your service or application that helps users recognize it
-* __Home page url__ - Link to your home page
-* __Logo URL__ - Your logo that if provided will be shown to the user
-* __Terms of service url__ - Your T&C page
-* __Privacy policy url__ - Your privacy policy page
+* __Product name__ (Required) -The name of your service or application that helps users recognize it
+* __Home page URL__ (Optional) - Link to your home page
+* __Logo URL__ (Optional) - Your logo that will be shown to the user
+* __Terms of service URL__ (Optional) - Your T&Cs page
+* __Privacy policy URL__ (Optional) - Your privacy policy page
 
 
 ### Client credentials
 
 Once you set your consent screen details you can create one or more client credentials. The information that you need to enter includes
 
-+ __Client type__ - you can choose between WEB, ANDROID, IOS, OTHER
-+ __Client name__ - your application name as you recognize it. Ex "my awesome application"
-+ __Authorized redirect uri__ - This is the path in your application that users are redirected to after they have authenticated with SumUp. It must contain protocol or custom url scheme
++ __Client type__ - You can choose between WEB, ANDROID, IOS, OTHER
++ __Client name__ - Your application name as you recognize it. Example: "my awesome application"
++ __Authorized redirect uri__ - This is the path in your application that users are redirected to after they have authenticated with SumUp. It must contain protocol or custom URL scheme
 + __Authorized javascript origin__ - For use with requests from a browser - for example complete a checkout. This is the origin URI of the client application. It can't contain a wildcard (http://*.example.com) or a path (http://example.com/subdir). If you're using a nonstandard port, you must include it in the origin URI. 
 
-Once you create a client credentials you can download the details that includes client id and secret to use for authorization.  Example:
+Once you create a client credentials you can download the details in a JSON file that includes client id and secret to use for authorization.  Example:
 
 ```
 {
@@ -123,9 +123,9 @@ After completing the [OAuth setup](#Group_OAuth_setup) direct the merchant to th
 * `client_id`- Generated during [setup](#Group_OAuth_setup)
 * `client_secret` - Web apps only, generated during [setup](#Group_OAuth_setup)
 * `redirect_uri`- Defined during [setup](#Group_OAuth_setup)
-* `scope` Optional - List of comma separated values, see [supported scopes](SumUp_supported_scopes)
+* `scope` (Optional) - URL encoded, space delimited list, see [supported scopes](SumUp_supported_scopes)
 * `response_type` -  `code` for authorization code
-* `state` - Optional - Known only to you, used to prevent [CSRF](https://tools.ietf.org/html/rfc6749#section-10.12)
+* `state` - (Optional) - Known only to you, used to prevent [CSRF](https://tools.ietf.org/html/rfc6749#section-10.12)
 
 After the merchant has authenticated with SumUp and authorised the application for the requested scopes, they will be directed your redirect URI:
 ```
@@ -136,7 +136,7 @@ After the merchant has authenticated with SumUp and authorised the application f
 }
 ```
 
-*  `code` - Authorization code,  expires in X minutes
+*  `code` - authorization_code
 
 The authorization code is then used to request an access and refresh token using the `\token` endpoint:
 ```
@@ -163,12 +163,12 @@ If the request is successful, an access token will be returned in the response:
 ```
 *  `access_token` - Used to access SumUp services
 *  `token_type` - `Bearer` by default
-*  `expires_in` - time in seconds
-*  `refresh_token` - used to [refresh](#Refresh_Tokens) an access token
+*  `expires_in` - Time in seconds
+*  `refresh_token` - Used to [refresh](#Refresh_Tokens) an access token
 
 ### Client Credentials Grant
 
-The client credentials grant is used for direct communication between your platform and SumUp where no merchant authorization is required (e.g. creating a customer for your platform)
+The client credentials grant is used for direct communication between your platform and SumUp where no merchant authorization is required (e.g. tokenizing a customers card)
 
 After completing the [OAuth setup](#Group_OAuth_setup) request an access token:
 ```
@@ -202,7 +202,7 @@ If the request is successful, an access token will be returned in the response:
 
 ### Refresh Tokens
 
-To refresh an access token make a the following request:
+To refresh an access token make the following request:
 ```
 {
 curl https://api.sumup.com/token \
@@ -213,7 +213,7 @@ curl https://api.sumup.com/token \
    "refresh_token=YOUR_REFRESH_TOKEN" \
 }
 ```
-* `grant_type`- `refresh_token`
+* `grant_type` - `refresh_token`
 * `refresh_token`- Generated in [authorization code grant](#authorization_code_grant)
 
 
