@@ -6,13 +6,18 @@
     "docpath":  "<a href='/rest-api'>/ REST API</a> / Receipts",
     "groups": [
         {
-            "doc": "/v0.1/receipts/:id",
+            "doc": "/v0.1/api/doc/receipts?format=json",
             "name": "Receipts",
             "resources": [
                 {
                     "name": "Receipt data",
-                    "url": "/v0.1/receipts/:id",
-                    "method": "GET"
+                    "url": "/v0.1/receipts/:tid",
+                    "actions": [
+                        {
+                            "name": "Get Receipt",
+                            "method": "GET"
+                        }
+                    ]
                 }
             ]
         }
