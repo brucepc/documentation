@@ -83,11 +83,12 @@
 
     <div class="layout__content main-content layout__content-expanded">
       
-<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#authorization-model">Authorization Model</a></div><div class="collapse-content"><ul><li><a href="#header-supported-flows">Supported flows</a></li><li><a href="#header-supported-content-types">Supported content types</a></li><li><a href="#header-headers">Headers</a></li><li><a href="#header-endpoints">Endpoints</a></li><li><a href="#header-sumup-supported-scopes">SumUp supported scopes</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#oauth-setup">OAuth setup</a></div><div class="collapse-content"><ul><li><a href="#header-consent-screen">Consent screen</a></li><li><a href="#header-client-credentials">Client credentials</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><p>SumUp uses <a href="http://oauth.net/">OAuth</a> to provide standard way for authorized access to its API.</p>
-<svg class="icon" viewBox="0 0 100 100" width="100" height="100" style="fill:black">
+<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#authorization-model">Authorization Model</a></div><div class="collapse-content"><ul><li><a href="#header-supported-flows">Supported flows</a></li><li><a href="#header-supported-content-types">Supported content types</a></li><li><a href="#header-headers">Headers</a></li><li><a href="#header-endpoints">Endpoints</a></li><li><a href="#header-sumup-supported-scopes">SumUp supported scopes</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#oauth-setup">OAuth setup</a></div><div class="collapse-content"><ul><li><a href="#header-consent-screen">Consent screen</a></li><li><a href="#header-client-credentials">Client credentials</a></li><li><a href="#header-example-authorization-flows">Example Authorization Flows</a></li><li><a href="#header-authorization-code-grant">Authorization Code Grant</a></li><li><a href="#header-client-credentials-grant">Client Credentials Grant</a></li><li><a href="#header-refresh-tokens">Refresh Tokens</a></li><li><a href="#header-resource-owner-&amp;-implicit-credentials-grants">Resource Owner & Implicit Credentials Grants</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><svg class="icon" viewBox="0 0 100 100" width="100" height="100" style="fill:black">
   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-oauth"></use>
-</svg><span id="authorization-model" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Authorization Model <a href="#authorization-model" class="permalink">&para;</a></h2><p>The authorization API is based on the abstract protocol flow as defined by <a href="http://tools.ietf.org/html/rfc6749">OAuth 2.0 specification</a>.</p>
-<h3 id="header-supported-flows">Supported flows <a class="permalink" href="#header-supported-flows" aria-hidden="true">¶</a></h3>
+</svg>
+<p>SumUp uses <a href="http://oauth.net/">OAuth</a> to provide standard way for authorized access to its APIs.</p>
+<p>The authorization API is based on the abstract protocol flow as defined by <a href="http://tools.ietf.org/html/rfc6749">OAuth 2.0 specification</a>.</p>
+<span id="authorization-model" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Authorization Model <a href="#authorization-model" class="permalink">&para;</a></h2><h3 id="header-supported-flows">Supported flows <a class="permalink" href="#header-supported-flows" aria-hidden="true">¶</a></h3>
 <p>The API enables applications to use the following concrete flows</p>
 <ul>
 <li>
@@ -108,6 +109,7 @@
 <h3 id="header-headers">Headers <a class="permalink" href="#header-headers" aria-hidden="true">¶</a></h3>
 <p><strong>Client credentials</strong> can be passed as a header (according to the specification) or in the request body.</p>
 <h3 id="header-endpoints">Endpoints <a class="permalink" href="#header-endpoints" aria-hidden="true">¶</a></h3>
+<p>HOST: <a href="http://api.sumup.com">api.sumup.com</a></p>
 <ul>
 <li>
 <p>Authorization endpoint - <code>/authorize</code></p>
@@ -117,77 +119,87 @@
 </li>
 </ul>
 <h3 id="header-sumup-supported-scopes">SumUp supported scopes <a class="permalink" href="#header-sumup-supported-scopes" aria-hidden="true">¶</a></h3>
-<p>The possible scopes that might be requested and granted by SumUp authorization server upon receiving user consent are</p>
+<p>The possible scopes that might be requested and granted by SumUp authorization server upon receiving user consent are grouped as follows:</p>
+<p>Default scopes:</p>
 <ul>
 <li>
-<p>user.profile_readonly - Access user profile information</p>
-</li>
-<li>
-<p>user.profile - Access and edit user profile information</p>
-</li>
-<li>
-<p>user.subaccounts - Access and manage users’s employees</p>
-</li>
-<li>
-<p>user.payout-settings - Access and edit user’s payout settings</p>
+<p>payments - Make payments</p>
 </li>
 <li>
 <p>user.app-settings - Access and manage mobile application settings</p>
 </li>
 <li>
-<p>payments - Make payments</p>
+<p>transactions.history - Access users’ transaction history</p>
 </li>
 <li>
-<p>balance - Access and manage user balance</p>
-</li>
-<li>
-<p>products - Access and manage your user’s products, shelves, prices, vat rates</p>
-</li>
-<li>
-<p>transactions.history - Access user’s transaction history</p>
+<p>user.profile_readonly - Access users’ profile information</p>
 </li>
 </ul>
-<p>By default all registered applications can request  user.profile, payments, user.app-settings and transactions.history scope.</p>
-</section><span id="oauth-setup" class="anchor"></span><section class="resource-group"><h2 class="group-heading">OAuth setup <a href="#oauth-setup" class="permalink">&para;</a></h2><p>You can make or change your OAuth setup in the <a href="https://me.sumup.com/developers">developers section</a> of the SumUp Dashboard.</p>
-<h3 id="header-consent-screen">Consent screen <a class="permalink" href="#header-consent-screen" aria-hidden="true">¶</a></h3>
-<p>The consent screen will be shown to users whenever you request access to their private data using your client ID. It will be shown for all your registered applications. In order to make your application recognaziable you need to provide information for</p>
+<p>Note Default scopes are requested when no <code>scope</code> value is defined.</p>
+<p>Optional scopes:</p>
 <ul>
 <li>
-<p><strong>Product name</strong> (Required) - this is the name of your service or application that helps users recognize it</p>
+<p>user.profile - Access and edit users’ profile information</p>
 </li>
 <li>
-<p><strong>Home page url</strong> - Link to your home page</p>
+<p>user.subaccounts - Access and manage users’ employees</p>
 </li>
 <li>
-<p><strong>Logo URL</strong> - Your logo that if provided will be shown to the user</p>
+<p>user.payout-settings - Access and edit user’ payout settings</p>
 </li>
 <li>
-<p><strong>Terms of service url</strong> - Your T&amp;C page</p>
+<p>balance - Access and manage users’ balance</p>
 </li>
 <li>
-<p><strong>Privacy policy url</strong> - Your privacy policy page</p>
+<p>products - Access and manage users’ products, shelves, prices, vat rates</p>
+</li>
+</ul>
+<p>Optional scopes must be requested specifically.</p>
+<p>Restricted Scopes:</p>
+<ul>
+<li>payment_instruments – Generate payment card tokens and process recurring payments</li>
+</ul>
+<p>Restricted scopes must be enabled by SumUp before being requested. Please contact <a href="mailto:integration@sumup.com">integration@sumup.com</a></p>
+</section><span id="oauth-setup" class="anchor"></span><section class="resource-group"><h2 class="group-heading">OAuth setup <a href="#oauth-setup" class="permalink">&para;</a></h2><p>You can make or change your OAuth setup in the <a href="https://me.sumup.com/developers">Developers section</a> of the SumUp Dashboard.</p>
+<h3 id="header-consent-screen">Consent screen <a class="permalink" href="#header-consent-screen" aria-hidden="true">¶</a></h3>
+<p>The consent screen will be shown to users whenever you request access to their private data using your client ID. It will be shown for all your registered applications. In order to make your application recognizable you need to provide information for</p>
+<ul>
+<li>
+<p><strong>Product name</strong> (Required) -The name of your service or application that helps users recognize it</p>
+</li>
+<li>
+<p><strong>Home page URL</strong> (Optional) - Link to your home page</p>
+</li>
+<li>
+<p><strong>Logo URL</strong> (Optional) - Your logo that will be shown to the user</p>
+</li>
+<li>
+<p><strong>Terms of service URL</strong> (Optional) - Your T&amp;Cs page</p>
+</li>
+<li>
+<p><strong>Privacy policy URL</strong> (Optional) - Your privacy policy page</p>
 </li>
 </ul>
 <h3 id="header-client-credentials">Client credentials <a class="permalink" href="#header-client-credentials" aria-hidden="true">¶</a></h3>
 <p>Once you set your consent screen details you can create one or more client credentials. The information that you need to enter includes</p>
 <ul>
 <li>
-<p><strong>Client type</strong> - you can choose between WEB, ANDROID, IOS, OTHER</p>
+<p><strong>Client type</strong> - You can choose between WEB, ANDROID, IOS, OTHER</p>
 </li>
 <li>
-<p><strong>Client name</strong> - your application name as you recognize it. Ex “my awesome application”</p>
+<p><strong>Client name</strong> - Your application name as you recognize it. Example: “my awesome application”</p>
 </li>
 <li>
-<p><strong>Authorized redirect uri</strong> - This is the path in your application that users are redirected to after they have authenticated with SumUp. It must contain protocol or custom url scheme</p>
+<p><strong>Authorized redirect uri</strong> - This is the path in your application that users are redirected to after they have authenticated with SumUp. It must contain protocol or custom URL scheme</p>
 </li>
 <li>
-<p><strong>Authorized javascript origin</strong> - For use with requests from a browser - for example complete a checkout. This is the origin URI of the client application. It can’t contain a wildcard (http://*.example.com) or a path (<a href="http://example.com/subdir">http://example.com/subdir</a>). If you’re using a nonstandard port, you must include it in the origin URI.</p>
+<p><strong>Authorized javascript origin</strong> - For use with requests from a browser - for example complete a checkout. This is the origin URI of the client application. It can’t contain a wildcard (“http://*.example.com”) or a path (<a href="http://example.com/subdir">http://example.com/subdir</a>). If you’re using a nonstandard port, you must include it in the origin URI.</p>
 </li>
 </ul>
-<p>Once you create a client credentials you can download the details that includes client id and secret to use for authorization.  Example:</p>
+<p>Once you create a client credentials you can download the details in a JSON file that includes client id and secret to use for authorization.  Example:</p>
 <pre><code>{
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"my awesome app"</span></span>,
-    "<span class="hljs-attribute">client_id</span>": <span class="hljs-value"><span class="hljs-string">"rncpQJkHsQxxJ3_yD5UXKTquUXwH"</span></span>, 
+    "<span class="hljs-attribute">client_id</span>": <span class="hljs-value"><span class="hljs-string">"rncpQJkHsQxxJ3_yD5UXKTquUXwH"</span></span>,
     "<span class="hljs-attribute">client_secret</span>": <span class="hljs-value"><span class="hljs-string">"3d97e3a57f7826516e1431d10cdf4bf0b674461635e5b580f6b5eb8ec3c94654"</span></span>,
     "<span class="hljs-attribute">application_type</span>": <span class="hljs-value"><span class="hljs-string">"web"</span></span>,
     "<span class="hljs-attribute">auth_uri</span>":<span class="hljs-value"><span class="hljs-string">"https://api.sumup.com/authorize"</span></span>,
@@ -196,6 +208,144 @@
     "<span class="hljs-attribute">cors_uris</span>":<span class="hljs-value">[<span class="hljs-string">"https://mysite.com"</span>]
 </span>}</code></pre>
 <p>Note that <code>client_secret</code> and <code>cors_uris</code> are applicable only for client type WEB</p>
+<h2 id="header-example-authorization-flows">Example Authorization Flows <a class="permalink" href="#header-example-authorization-flows" aria-hidden="true">¶</a></h2>
+<h3 id="header-authorization-code-grant">Authorization Code Grant <a class="permalink" href="#header-authorization-code-grant" aria-hidden="true">¶</a></h3>
+<p>In the authorization grant flow the merchant authorises your application once, for a specific set of scopes.</p>
+<p>The authorization code grant is recommended when the following criteria are met:</p>
+<ul>
+<li>
+<p>You intend to perform actions on behalf of the merchant (e.g. logging into the SDK, refunding via the API)</p>
+</li>
+<li>
+<p>User credentials are not known by you (the client)</p>
+</li>
+<li>
+<p>Your application (User agent) is capable of handling a redirect request (e.g. a browser)</p>
+</li>
+</ul>
+<p>After completing the <a href="#Group_OAuth_setup">OAuth setup</a> direct the merchant to the authorisation URI:</p>
+<pre><code>{
+       https://api.sumup.com/authorize?
+    scope=REQUESTED_SCOPES&amp;
+    response_type=code&amp;
+    client_id=YOUR_CLIENT_ID&amp;
+    client_secret=YOUR_CLIENT_SECRET&amp;
+    redirect_uri=YOUR_REDIRECT_URI&amp;
+    <span class="hljs-keyword">state</span>=YOUR_KNOWN_STATE
+}</code></pre>
+<ul>
+<li>
+<p><code>client_id</code>- Generated during <a href="#Group_OAuth_setup">setup</a></p>
+</li>
+<li>
+<p><code>client_secret</code> - Web apps only, generated during <a href="#Group_OAuth_setup">setup</a></p>
+</li>
+<li>
+<p><code>redirect_uri</code>- Defined during <a href="#Group_OAuth_setup">setup</a></p>
+</li>
+<li>
+<p><code>scope</code> (Optional) - URL encoded, space delimited list, see <a href="SumUp_supported_scopes">supported scopes</a></p>
+</li>
+<li>
+<p><code>response_type</code> -  <code>code</code> for authorization code</p>
+</li>
+<li>
+<p><code>state</code> - (Optional) - Known only to you, used to prevent <a href="https://tools.ietf.org/html/rfc6749#section-10.12">CSRF</a></p>
+</li>
+</ul>
+<p>After the merchant has authenticated with SumUp and authorised the application for the requested scopes, they will be directed your redirect URI:</p>
+<pre><code><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">https</span>:<span class="hljs-value">//YOUR_REDIRECT_URI?
+    code=AUTHORIZATION_CODE&amp;
+    STATE=YOUR_KNOWN_STATE
+</span></span></span>}</code></pre>
+<ul>
+<li><code>code</code> - authorization_code</li>
+</ul>
+<p>The authorization code is then used to request an access and refresh token using the <code>\token</code> endpoint:</p>
+<pre><code>curl -X POST <span class="hljs-string">\</span>
+-d <span class="hljs-string">\</span> <span class="hljs-string">"grant_type=authorization_code&amp;client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET&amp;redirect_uri=YOUR_REDIRECT_URI&amp;code=AUTHORIZATION_CODE"</span> <span class="hljs-string">\</span>
+<span class="hljs-string">'https://api.sumup.com/token'</span></code></pre>
+<ul>
+<li><code>grant_type</code>- <code>authorization_code</code></li>
+</ul>
+<p>If the request is successful, an access token will be returned in the response:</p>
+<pre><code>{
+"<span class="hljs-attribute">access_token</span>":<span class="hljs-value"><span class="hljs-string">"22584b8b8960fc8266db0637d5c166b90b1283081deee2dec8bf7d2dce3b0289"</span></span>,
+"<span class="hljs-attribute">token_type</span>":<span class="hljs-value"><span class="hljs-string">"Bearer"</span></span>,
+"<span class="hljs-attribute">expires_in</span>":<span class="hljs-value"><span class="hljs-number">3600</span></span>,
+"<span class="hljs-attribute">refresh_token</span>":<span class="hljs-value"><span class="hljs-string">"6a88a1c877c36735581019f5326286a5f7bc3358a283d81c1e05f642ea5361f5"</span>
+</span>}</code></pre>
+<ul>
+<li>
+<p><code>access_token</code> - Used to access SumUp services</p>
+</li>
+<li>
+<p><code>token_type</code> - <code>Bearer</code> by default</p>
+</li>
+<li>
+<p><code>expires_in</code> - Time in seconds</p>
+</li>
+<li>
+<p><code>refresh_token</code> - Used to <a href="#Refresh_Tokens">refresh</a> an access token</p>
+</li>
+</ul>
+<h3 id="header-client-credentials-grant">Client Credentials Grant <a class="permalink" href="#header-client-credentials-grant" aria-hidden="true">¶</a></h3>
+<p>The client credentials grant is used for direct communication between your platform and SumUp where no merchant authorization is required (e.g. tokenizing a customers card)</p>
+<p>After completing the <a href="#Group_OAuth_setup">OAuth setup</a> request an access token:</p>
+<pre><code>curl -X POST <span class="hljs-string">\</span>
+-d <span class="hljs-string">\</span> <span class="hljs-string">"grant_type=client_credentials&amp;client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET&amp;scope=REQUESTED_SCOPES"</span> <span class="hljs-string">\</span>
+<span class="hljs-string">'https://api.sumup.com/token'</span></code></pre>
+<ul>
+<li>
+<p><code>grant_type</code>- <code>client_credentials</code></p>
+</li>
+<li>
+<p><code>client_id</code>- Generated during <a href="#Group_OAuth_setup">setup</a></p>
+</li>
+<li>
+<p><code>client_secret</code> - Web apps only, generated during <a href="#Group_OAuth_setup">setup</a></p>
+</li>
+<li>
+<p><code>scope</code> Optional - List of comma separated values, see <a href="SumUp_supported_scopes">supported scopes</a></p>
+</li>
+</ul>
+<p>If the request is successful, an access token will be returned in the response:</p>
+<pre><code>{
+"<span class="hljs-attribute">access_token</span>":<span class="hljs-value"><span class="hljs-string">"ACCESS_TOKEN"</span></span>,
+"<span class="hljs-attribute">token_type</span>":<span class="hljs-value"><span class="hljs-string">"Bearer"</span></span>,
+"<span class="hljs-attribute">expires_in</span>":<span class="hljs-value"><span class="hljs-number">3600</span>
+<span class="hljs-string">"scope"</span>:<span class="hljs-string">"REQUEST_SCOPES"</span>
+</span>}</code></pre>
+<ul>
+<li>
+<p><code>access_token</code> - Used to access SumUp services</p>
+</li>
+<li>
+<p><code>token_type</code> - <code>Bearer</code> by default</p>
+</li>
+<li>
+<p><code>expires_in</code> - time in seconds</p>
+</li>
+<li>
+<p>No refresh token is returned, as the client can request a new access token as required</p>
+</li>
+</ul>
+<h3 id="header-refresh-tokens">Refresh Tokens <a class="permalink" href="#header-refresh-tokens" aria-hidden="true">¶</a></h3>
+<p>To refresh an access token make the following request:</p>
+<pre><code>curl -X POST <span class="hljs-string">\</span>
+-d <span class="hljs-string">\</span> <span class="hljs-string">"grant_type=refresh_token&amp;client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET&amp;scope=REQUESTED_SCOPES&amp;refresh_token=YOUR_REFRESH_TOKEN"</span> <span class="hljs-string">\</span>
+<span class="hljs-string">'https://api.sumup.com/token'</span></code></pre>
+<ul>
+<li>
+<p><code>grant_type</code> - <code>refresh_token</code></p>
+</li>
+<li>
+<p><code>refresh_token</code>- Generated in <a href="#authorization_code_grant">authorization code grant</a></p>
+</li>
+</ul>
+<h3 id="header-resource-owner-&amp;-implicit-credentials-grants">Resource Owner &amp; Implicit Credentials Grants <a class="permalink" href="#header-resource-owner-&amp;-implicit-credentials-grants" aria-hidden="true">¶</a></h3>
+<p>While supported, Resource Owner &amp; Implicit Credentials Grants are not typically recommended for SumUp implementations. Please contact <a href="mailto:integration@sumup.com">integration@sumup.com</a> for more information.</p>
 </section></div></div></div>
 
     </div>
