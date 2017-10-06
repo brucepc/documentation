@@ -6,7 +6,7 @@
 
 SumUp uses [OAuth](http://oauth.net/) to provide standard way for authorized access to its APIs.
 
-The authorization API is based on the abstract protocol flow as defined by [OAuth 2.0 specification](http://tools.ietf.org/html/rfc6749). 
+The authorization API is based on the abstract protocol flow as defined by [OAuth 2.0 specification](http://tools.ietf.org/html/rfc6749).
 
 ## Group Authorization Model
 
@@ -50,7 +50,7 @@ Optional scopes:
 Optional scopes must be requested specifically.
 
 Restricted Scopes:
-+ payment_instruments – Generate payment card tokens and process recurring payments 
++ payment_instruments – Generate payment card tokens and process recurring payments
 
 Restricted scopes must be enabled by SumUp before being requested. Please contact <integration@sumup.com>
 
@@ -76,14 +76,14 @@ Once you set your consent screen details you can create one or more client crede
 + __Client type__ - You can choose between WEB, ANDROID, IOS, OTHER
 + __Client name__ - Your application name as you recognize it. Example: "my awesome application"
 + __Authorized redirect uri__ - This is the path in your application that users are redirected to after they have authenticated with SumUp. It must contain protocol or custom URL scheme
-+ __Authorized javascript origin__ - For use with requests from a browser - for example complete a checkout. This is the origin URI of the client application. It can't contain a wildcard (http://*.example.com) or a path (http://example.com/subdir). If you're using a nonstandard port, you must include it in the origin URI. 
++ __Authorized javascript origin__ - For use with requests from a browser - for example complete a checkout. This is the origin URI of the client application. It can't contain a wildcard ("http://\*.example.com") or a path (http://example.com/subdir). If you're using a nonstandard port, you must include it in the origin URI.
 
 Once you create a client credentials you can download the details in a JSON file that includes client id and secret to use for authorization.  Example:
 
 ```
 {
     "name": "my awesome app",
-    "client_id": "rncpQJkHsQxxJ3_yD5UXKTquUXwH", 
+    "client_id": "rncpQJkHsQxxJ3_yD5UXKTquUXwH",
     "client_secret": "3d97e3a57f7826516e1431d10cdf4bf0b674461635e5b580f6b5eb8ec3c94654",
     "application_type": "web",
     "auth_uri":"https://api.sumup.com/authorize",
@@ -101,7 +101,7 @@ Note that `client_secret` and `cors_uris` are applicable only for client type WE
 
 In the authorization grant flow the merchant authorises your application once, for a specific set of scopes.
 
-The authorization code grant is recommended when the following criteria are met: 
+The authorization code grant is recommended when the following criteria are met:
 
 * You intend to perform actions on behalf of the merchant (e.g. logging into the SDK, refunding via the API)
 * User credentials are not known by you (the client)
@@ -140,14 +140,9 @@ After the merchant has authenticated with SumUp and authorised the application f
 
 The authorization code is then used to request an access and refresh token using the `\token` endpoint:
 ```
-{
-curl https://api.sumup.com/token \
--d "grant_type=authorization_code" \
-   "client_id=YOUR_CLIENT_ID" \
-   "client_secret=YOUR_CLIENT_SECRET" \
-   "redirect_uri=YOUR_REDIRECT_URI" \
-   "code=AUTHORIZATION_CODE" \
-}
+curl -X POST \
+-d \ "grant_type=authorization_code&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&redirect_uri=YOUR_REDIRECT_URI&code=AUTHORIZATION_CODE" \
+'https://api.sumup.com/token'
 ```
 * `grant_type`- `authorization_code`
 
@@ -172,13 +167,9 @@ The client credentials grant is used for direct communication between your platf
 
 After completing the [OAuth setup](#Group_OAuth_setup) request an access token:
 ```
-{
-curl https://api.sumup.com/token \
--d "grant_type=client_credentials" \
-   "client_id=YOUR_CLIENT_ID" \
-   "client_secret=YOUR_CLIENT_SECRET" \
-   "scope=REQUESTED_SCOPES" \
-}
+curl -X POST \
+-d \ "grant_type=client_credentials&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&scope=REQUESTED_SCOPES" \
+'https://api.sumup.com/token'
 ```
 * `grant_type`- `client_credentials`
 * `client_id`- Generated during [setup](#Group_OAuth_setup)
@@ -204,14 +195,9 @@ If the request is successful, an access token will be returned in the response:
 
 To refresh an access token make the following request:
 ```
-{
-curl https://api.sumup.com/token \
--d "grant_type=refresh_token" \
-   "client_id=YOUR_CLIENT_ID" \
-   "client_secret=YOUR_CLIENT_SECRET" \
-   "scope=REQUESTED_SCOPES" \
-   "refresh_token=YOUR_REFRESH_TOKEN" \
-}
+curl -X POST \
+-d \ "grant_type=refresh_token&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&scope=REQUESTED_SCOPES&refresh_token=YOUR_REFRESH_TOKEN" \
+'https://api.sumup.com/token'
 ```
 * `grant_type` - `refresh_token`
 * `refresh_token`- Generated in [authorization code grant](#authorization_code_grant)
