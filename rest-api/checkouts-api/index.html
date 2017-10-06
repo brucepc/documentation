@@ -286,11 +286,20 @@
   "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Checkout with this checkout reference and pay to email already exists"</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><span id="checkouts-complete-checkout" class="anchor"></span><div class="resource"><h3 class="resource-heading">Complete checkout <a href="#checkouts-complete-checkout" class="permalink">&nbsp;&para;</a></h3><span id="checkouts-complete-checkout-put" class="anchor"></span><div class="action put"><h4 class="action-heading"><div class="name">Complete checkout</div><a href="#checkouts-complete-checkout-put" class="method put">PUT</a><code class="uri">/v0.1/checkouts/:id</code></h4><p>Process a checkout</p>
 <div class="note">
-<p>Required scope(s): payments</p>
+<p>Required scope(s): payments, boleto</p>
 </div>
 <h4>Resource URL</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/checkouts/:id</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Checkout id</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>with body</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value"><span class="hljs-string">"balance|card|moto"</span></span>,
+  "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value"><span class="hljs-string">"balance|card|moto|boleto"</span></span>,
+  "<span class="hljs-attribute">boleto_details</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">cpf_cnpj</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">payer_name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">payer_address</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">payer_city</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">payer_state_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">payer_post_code</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">installments</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">number</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
@@ -299,7 +308,6 @@
     "<span class="hljs-attribute">cvv</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
   </span>}</span>,
   "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-  "<span class="hljs-attribute">installments</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
@@ -307,7 +315,49 @@
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">payment_type</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null - Possible values balance,card,moto"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null - Possible values balance,card,moto,boleto"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">boleto_details</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">cpf_cnpj</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payer's CPF/CNPJ, maximum of 14 digits"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">payer_name</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payer's name, maximum of 30 characters"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">payer_address</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payer's address, maximum of 40 characters"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">payer_city</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payer's city, maximum of 20 characters"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">payer_state_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payer's state code, maximum of 2 characters"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">payer_post_code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Payer's state code, maximum of 8 characters"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"cpf_cnpj"</span>,
+        <span class="hljs-string">"payer_name"</span>,
+        <span class="hljs-string">"payer_address"</span>,
+        <span class="hljs-string">"payer_city"</span>,
+        <span class="hljs-string">"payer_state_code"</span>,
+        <span class="hljs-string">"payer_post_code"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"null"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">installments</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of installments &amp;#40;Brazil only, max 12&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -345,10 +395,6 @@
     "<span class="hljs-attribute">token</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Card token. Can be used instead of card details when payment_type is card."</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">installments</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Number of installments &amp;#40;Brazil only, max 12&amp;#41;"</span>
     </span>}</span>,
     "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
