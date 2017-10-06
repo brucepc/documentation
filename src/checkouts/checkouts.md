@@ -177,7 +177,7 @@ curl -i -X PUT \
 
 Merchants can also be enabled to pay with the balance of their SumUp account, please contact [integration@sumup.com](mailto:integration@sumup.com) for more information.
 
-## Card on File
+## Group Card on File
 
 ### Creating a customer
 A customer is associated with your application, and can be used to make a payment to any merchant who has authorised the application to take payments on it's behalf.
