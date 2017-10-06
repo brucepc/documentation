@@ -97,7 +97,6 @@ function collectModels(apiData, accumulator) {
     for (entry of entries(apiData.models)) {
         claz = entry[0];
         def = entry[1];
-
         if (!accumulator[claz]) {
             accumulator[claz] = def;
         }
@@ -110,12 +109,16 @@ function writeModels(md, apiData) {
     let entry, propEntry, claz, def, field, props;
 
     md.push('\n\n# Data Structures');
+    if(apiData.models["API::Models::Address"]){
+      console.log("yay");
+    }
     for (entry of entries(apiData.models)) {
       claz = entry[0];
       def = entry[1];
-      if (!models[className(claz)]) {
+      // if (!models[className(claz)]) {
         models[className(claz)] = 1;
         md.push(`\n\n## ${className(claz)}`);
+        console.log(claz);
         for(propEntry of entries(def.properties)) {
             let val = '';
             field = propEntry[0];
@@ -141,7 +144,12 @@ function writeModels(md, apiData) {
                 }
             }
         }
-      }
+      // } else {
+//         console.log(`->${claz}`);
+//       }
+    }
+    if(apiData.models["API::Models::Address"]){
+      // console.log(md.content().toString('utf8'));
     }
 }
 
@@ -283,6 +291,7 @@ const saveApiDoc = function *(content, options, meta) {
             (new MdFile()).push("---").push(`\nlayout: ${meta.layout}`)
                 .push(`\npermalink: ${meta.permalink}`)
                 .push(`\ndocpath: ${meta.docpath}`)
+                .push(`\npage_title: ${meta.page_title}`)
                 .push("\n---\n\n")
                 .push(html)
                 .saveTofile(`${rootPath}${meta.destination}`);
@@ -293,31 +302,31 @@ const saveApiDoc = function *(content, options, meta) {
 
 
 
-const generateApiDoc = function() {
+const generateApiDoc = function(metaFile) {
     return function *() {
         const options = {
           themeTemplate: `${rootPath}/default.jade`
         };
-        for (let metaFile of ['users', 'transactions', 'checkouts']) {
             models = {};
             let indexMd = new MdFile();
             indexMd.push('FORMAT: 1A\nHOST: https://api.sumup.com');
-            const meta = require(`${rootPath}/doc_meta/${metaFile}.json`);
+            const meta = require(metaFile);
+            console.log(metaFile);
             let modelsCol = {
                 models: {}
             };
             for (let group of meta.groups) {
                 let endpointData = yield load(meta.host, meta.port || 443, group.doc);
-                  collectModels(endpointData, modelsCol.models);
+                collectModels(endpointData, modelsCol.models);
                 let fname = yield parseData(meta.host, endpointData, group, modelsCol);
                 indexMd.push('\n<p>&nbsp;</p>');
                 indexMd.push(`\n<!-- include(${fname}) -->`);
             }
-
+            // console.log(modelsCol.models['API::Models::Address'])
             writeModels(indexMd, modelsCol);
+            // console.log(indexMd.content().toString('utf8'));
+            //console.log(modelsCol.models['API::Models::Address']);
             console.log(yield saveApiDoc(indexMd.content().toString(), options, meta));
-        }
-
     }
 }
 
@@ -337,7 +346,27 @@ function parseMdToHtml(file, target) {
     });
 }
 
-function scanFiles(path, match) {
+function scanApiFiles(path, match) {
+  fs.readdir(path, (err, files) => {
+      if(err) {
+          console.log(err.stack);
+          return;
+      }
+      for (let file of files) {
+          fs.stat(`${path}/${file}`, (err, stats) => {
+              if(!stats) return;
+              if (stats.isDirectory()) {
+                scanApiFiles(`${path}/${file}`, match);
+              }else if(match.test(file)) {
+                co(generateApiDoc(`${path}/${file}`))
+                .catch((e)=>{console.log(e.stack)});
+              }
+          })
+      }
+  });
+}
+
+function scanMdFiles(path, match) {
     const targetPath = `${rootPath}/src/_includes`;
     fs.readdir(path, (err, files) => {
         if(err) {
@@ -348,7 +377,7 @@ function scanFiles(path, match) {
             fs.stat(`${path}/${file}`, (err, stats) => {
                 if(!stats) return;
                 if (stats.isDirectory()) {
-                    scanFiles(`${path}/${file}`, match);
+                    scanMdFiles(`${path}/${file}`, match);
                 }else if(match.test(file)) {
                     console.log(`${path}/${file}`);
                     parseMdToHtml(`${path}/${file}`, `${targetPath}/${file.replace('.md','.html')}`);
@@ -356,15 +385,15 @@ function scanFiles(path, match) {
             })
         }
     });
-
 }
 
 const restApis = function() {
-    co(generateApiDoc()).catch((e)=>{console.log(e.stack)});
+  scanApiFiles(`${rootPath}/doc_meta`,/^(.*)[\.json]{1}$/);
+    //co(generateApiDoc()).catch((e)=>{console.log(e.stack)});
 }
 
 const docs = function() {
-    scanFiles(`${rootPath}/src`,/^(.*)[\.md]{1}$/);
+    scanMdFiles(`${rootPath}/src`,/^(.*)[\.md]{1}$/);
 }
 
 module.exports = () => {
@@ -373,5 +402,7 @@ module.exports = () => {
         docs: docs
     };
 }
+
+
 
 //NOCACHE=1 aglio -i index.md --theme-template triplex.jade -o output.html

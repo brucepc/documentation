@@ -4,6 +4,7 @@
   "layout": "docs",
   "permalink": "/rest-api/checkouts-api/",
   "docpath": "<a href='/rest-api'>REST API</a> / Checkouts",
+  "page_title": "SumUp for Developers - REST API Checkouts",
   "groups": [
     {
       "doc": "/v0.1/api/doc/checkouts",

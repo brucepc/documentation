@@ -4,6 +4,7 @@
     "layout": "docs",
     "permalink": "/rest-api/accounts-api/",
     "docpath":  "<a href='/rest-api'>REST API</a> / Accounts",
+    "page_title": "SumUp for Developers - REST API Merchant Account",
     "groups": [
         {
             "doc": "/v0.1/api/doc/users",
