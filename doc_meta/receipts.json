@@ -1,0 +1,25 @@
+{
+    "host": "receipts-ng-beta.sam-app.ro",
+    "destination": "/src/rest-api/receipts-api/index.html",
+    "layout": "docs",
+    "permalink": "/rest-api/receipts-api/",
+    "docpath":  "<a href='/rest-api'>/ REST API</a> / Receipts",
+    "groups": [
+        {
+            "doc": "/v0.1/api/doc/receipts?format=json",
+            "name": "Receipts",
+            "resources": [
+                {
+                    "name": "Receipt data",
+                    "url": "/v0.1/receipts/:tid",
+                    "actions": [
+                        {
+                            "name": "Get Receipt",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
