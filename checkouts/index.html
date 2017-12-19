@@ -83,49 +83,65 @@
 
     <div class="layout__content main-content layout__content-expanded">
       
-<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#checkout-flow">Checkout flow</a></div><div class="collapse-content"><ul></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#creating-a-checkout">Creating a checkout</a></div><div class="collapse-content"><ul></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#completing-a-checkout">Completing a checkout</a></div><div class="collapse-content"><ul><li><a href="#header-custom-integration-checkout">Custom integration Checkout</a></li><li><a href="#header-sumup-checkout">SumUp Checkout</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><span id="checkout-flow" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Checkout flow <a href="#checkout-flow" class="permalink">&para;</a></h2><p>The checkout flow described below enables applications to create a checkout and process card payments in a browser or a native application such as a mobile application.</p>
+<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#checkout-flow">Checkout flow</a></div><div class="collapse-content"><ul><li><a href="#header-creating-a-checkout">Creating a checkout</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#completing-a-checkout">Completing a checkout</a></div><div class="collapse-content"><ul><li><a href="#header-sumup-checkout">SumUp Checkout</a></li><li><a href="#header-custom-integration-checkout">Custom integration Checkout</a></li><li><a href="#header-customer-entered-credit-card">Customer entered credit card</a></li><li><a href="#header-tokenized-cards">Tokenized Cards</a></li><li><a href="#header-merchant-balance">Merchant Balance</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#card-on-file">Card on File</a></div><div class="collapse-content"><ul><li><a href="#header-creating-a-customer">Creating a customer</a></li><li><a href="#header-tokenizing-a-card">Tokenizing a card</a></li><li><a href="#header-subscriptions">Subscriptions</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><span id="checkout-flow" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Checkout flow <a href="#checkout-flow" class="permalink">&para;</a></h2><p>The checkout flow described below enables applications to create a checkout and process card payments in a browser or a native application such as a mobile application.</p>
 <p>Checkouts are created in a server to server communication. This allows to</p>
 <ul>
 <li>
-<p>keep your access token and client credentials secret.</p>
+<p>Keep your access token and client credentials secret.</p>
 </li>
 <li>
-<p>prevent changes of your web based checkout properties. For example, amount or recipient.</p>
+<p>Prevent changes of your web based checkout properties. For example, amount or recipient.</p>
 </li>
 </ul>
 <p>Checkouts are processed by the client (in a browser in the case of web application). This guarantees that</p>
 <ul>
 <li>
-<p>no sensitive (card data) ever hits your server.</p>
+<p>No sensitive (card data) ever hits your server.</p>
 </li>
 <li>
-<p>you don’t need to worry about PCI compliance.</p>
+<p>You don’t need to worry about PCI compliance.</p>
 </li>
 <li>
-<p>you are in full control of the UI thus giving the best user experience to your customers.</p>
+<p>You are in full control of the UI, thus giving the best user experience to your customers.</p>
 </li>
 </ul>
-</section><span id="creating-a-checkout" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Creating a checkout <a href="#creating-a-checkout" class="permalink">&para;</a></h2><p>A new checkout is created in a server-to-server communication between your Server and SumUp. Therefore the amount of the checkout cannot be altered in the frontend after it’s been created. Refer to the <a href="../rest-api/checkouts-api/#checkouts-create-checkout-post">checkouts API</a> for full details of the valid create checkout request. The use of the checkout APIs requires client authentication.</p>
-</section><span id="completing-a-checkout" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Completing a checkout <a href="#completing-a-checkout" class="permalink">&para;</a></h2><p>The checkout you created in a server to server communication can be completed in your mobile or web app. You are free to go with a custom integration checkout or embed the <a href="#header-sumup-checkout">SumUp checkout form</a>.
-Note that a checkout can be completed in a browser only from a domain that is present in your OAuth config as authorized javascript origin(s).</p>
-<h3 id="header-custom-integration-checkout">Custom integration Checkout <a class="permalink" href="#header-custom-integration-checkout" aria-hidden="true">¶</a></h3>
-<p>In this scenario it is up to you to build a payment form and send the user input to SumUp in order to complete a pending checkout created on your server. In a browser this can be done by an ajax request, like:</p>
-<p>PUT /v0.1/checkouts/:id</p>
-<pre><code>{
-  "<span class="hljs-attribute">payment_type</span>":<span class="hljs-value"><span class="hljs-string">"card"</span></span>,
-    "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">cvv</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
-        "<span class="hljs-attribute">expiry_month</span>": <span class="hljs-value"><span class="hljs-string">"01"</span></span>,
-        "<span class="hljs-attribute">expiry_year</span>": <span class="hljs-value"><span class="hljs-string">"2016"</span></span>,
-        "<span class="hljs-attribute">number</span>": <span class="hljs-value"><span class="hljs-string">"......."</span></span>,
-        "<span class="hljs-attribute">name</span>":<span class="hljs-value"><span class="hljs-string">"...."</span>
-    </span>}
-</span>}</code></pre>
-<p>The path parameter <code>id</code> should be the <code>id</code> of the response of create checkout.
-Check the <a href="../rest-api/checkouts-api/#checkouts-complete-checkout-put">Checkout API documentation</a> for complete details of the request and response from the checkout call.
-CORS requests are possible if you have correctly set cors origins in your OAuth setup and the checkout was created by a client with that setup.</p>
+<h2 id="header-creating-a-checkout">Creating a checkout <a class="permalink" href="#header-creating-a-checkout" aria-hidden="true">¶</a></h2>
+<p>A new checkout is created in a server-to-server communication between your Server and SumUp. Therefore the amount of the checkout cannot be altered in the frontend after it’s been created.</p>
+<p>The following is an example curl request:</p>
+<pre><code>curl -i -X <span class="hljs-keyword">POST</span> \
+-<span class="hljs-keyword">H</span> <span class="hljs-string">"Content-Type:application/json"</span> \
+-<span class="hljs-keyword">H</span> <span class="hljs-string">"Authorization:Bearer :YOUR_ACCESS_TOKEN"</span> \
+-<span class="hljs-keyword">d</span> \
+'{<span class="hljs-string">"amount"</span>: XXX.XX, 
+    <span class="hljs-string">"currency"</span>: <span class="hljs-string">"EUR"</span>,
+    <span class="hljs-string">"pay_to_email"</span>: <span class="hljs-string">"MERCHANT_EMAIL"</span>,
+    <span class="hljs-string">"checkout_reference"</span>: <span class="hljs-string">"YOUR_UNIQUE_REFERENCE"</span>,
+    <span class="hljs-string">"description"</span>: <span class="hljs-string">"YOUR_DESCRIPTION"</span>
+}' \
+'https:<span class="hljs-comment">//api.sumup.com/v0.1/checkouts'</span></code></pre>
+<ul>
+<li><code>Authorization</code>- Access token created when authorised by merchant</li>
+</ul>
+<p>Refer to the <a href="../rest-api/checkouts-api/#checkouts-create-checkout-post">checkouts API</a> for full details of the create checkout request and response.</p>
+<p>If successful, the following response will be received:</p>
+<pre><code><span class="hljs-collection">{ 
+  <span class="hljs-string">"id"</span>: <span class="hljs-string">"CHECKOUT_ID"</span>,
+  <span class="hljs-string">"checkout_reference"</span>: <span class="hljs-string">"YOUR_UNIQUE_REFERNCE"</span>
+  <span class="hljs-string">"status"</span>: <span class="hljs-string">"PENDING"</span>,
+  ...
+}</span></code></pre>
+<ul>
+<li>
+<p><code>id</code>- used when completing the checkout</p>
+</li>
+<li>
+<p><code>status</code> - Pending until the checkout is completed</p>
+</li>
+</ul>
+</section><span id="completing-a-checkout" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Completing a checkout <a href="#completing-a-checkout" class="permalink">&para;</a></h2><p>The checkout you created in a server to server communication can be completed in your mobile or web app. You are free to go with a <a href="#custom_integration+checkout">custom integration</a> checkout or embed the <a href="#header-sumup-checkout">SumUp checkout form</a>.</p>
+<p>Note that a checkout can be completed in a browser only from a domain that is present in your OAuth setup as an authorized javascript origin(s).</p>
 <h3 id="header-sumup-checkout">SumUp Checkout <a class="permalink" href="#header-sumup-checkout" aria-hidden="true">¶</a></h3>
-<p>Alternatively you can complete a checkout by using a checkout form provided by SumUp. It will automatically handle all the details as building a custom payment form, validating the user input or make a call to complete a checkout. The only thing that you need to bother with is to handle the result of the checkout. The checkout form is completely white labeled and straightforward to integrate.</p>
+<p>Alternatively you can complete a checkout by using a checkout form provided by SumUp. It will automatically handle all the details as building a custom payment form, validating the user input or make a call to complete a checkout. The only thing that you need to bother with is to handle the result of the checkout. The checkout form is completely white labelled and straightforward to integrate.</p>
 <div style="width:352px; margin:auto;">
     <p style="font-size:0.7em; margin: 20px auto 20px auto">Start typing to try it on your own</p>
     <card></card>
@@ -168,13 +184,145 @@ CORS requests are possible if you have correctly set cors origins in your OAuth 
     <span class="hljs-string">"cvc"</span>: <span class="hljs-string">"•••"</span>
   }</span>,
   <span class="hljs-string">"card_messages"</span>: <span class="hljs-collection">{
-    <span class="hljs-string">"validDate"</span>: <span class="hljs-string">"valid\ndate"</span>,
+    <span class="hljs-string">"validDate"</span>: <span class="hljs-string">"valid/date"</span>,
     <span class="hljs-string">"monthYear"</span>: <span class="hljs-string">"mm/yyyy"</span>
   }</span>
 }</span></code></pre>
-<p>By providing a specific configuration you can easilly localize and customize the form.</p>
+<p>By providing a specific configuration you can easily localize and customize the form.</p>
 <p>The checkout result handler is a function that is called with an object presenting the checkout processing  result. See <a href="../rest-api/checkouts-api/#checkouts-complete-checkout-put">Checkout API document</a> for description of the checkout response.</p>
 <p>It is recommended that your checkout processing result handler sends the result to your backend which verifies the checkout result before showing any status to the end user.</p>
+<h3 id="header-custom-integration-checkout">Custom integration Checkout <a class="permalink" href="#header-custom-integration-checkout" aria-hidden="true">¶</a></h3>
+<p>In this scenario it is up to you to build a payment form and send the user input to SumUp in order to complete a pending checkout created on your server. There are three options for payment with a custom integration:</p>
+<ul>
+<li>
+<p>Customer entered credit card</p>
+</li>
+<li>
+<p>Tokenized credit card</p>
+</li>
+<li>
+<p>Merchant balance</p>
+</li>
+</ul>
+<h4 id="header-customer-entered-credit-card">Customer entered credit card <a class="permalink" href="#header-customer-entered-credit-card" aria-hidden="true">¶</a></h4>
+<p>The request should be made from a client only, and not from a server. In a browser this can be done by an ajax request, like:</p>
+<p>PUT /v0.1/checkouts/:id</p>
+<pre><code>{
+  "<span class="hljs-attribute">payment_type</span>":<span class="hljs-value"><span class="hljs-string">"card"</span></span>,
+    "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">cvv</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+        "<span class="hljs-attribute">expiry_month</span>": <span class="hljs-value"><span class="hljs-string">"01"</span></span>,
+        "<span class="hljs-attribute">expiry_year</span>": <span class="hljs-value"><span class="hljs-string">"2016"</span></span>,
+        "<span class="hljs-attribute">number</span>": <span class="hljs-value"><span class="hljs-string">"......."</span></span>,
+        "<span class="hljs-attribute">name</span>":<span class="hljs-value"><span class="hljs-string">"...."</span>
+    </span>}
+</span>}</code></pre>
+<ul>
+<li>
+<p><code>id</code> - <code>id</code> of the response from <a href="#creating_a_checkout">create checkout</a></p>
+</li>
+<li>
+<p><code>payment_type</code> - <code>card</code></p>
+</li>
+</ul>
+<p>Check the <a href="../rest-api/checkouts-api/#checkouts-complete-checkout-put">Checkout API documentation</a> for complete details of the request and response from the checkout call.</p>
+<p>CORS requests are possible if you have correctly set cors origins in your OAuth setup and the checkout was created by a client with that setup.</p>
+<h3 id="header-tokenized-cards">Tokenized Cards <a class="permalink" href="#header-tokenized-cards" aria-hidden="true">¶</a></h3>
+<p>If you have already <a href="#creating_a_customer">created a customer</a> and <a href="#tokenizing_a_card">tokenized a card</a>, then the checkout can be completed with a token. This request can be made server side as the card data has already been collected, or from a web application as only the client id is used for authorization.</p>
+<p>The following is an example curl request:</p>
+<pre><code>curl -i -X PUT \
+-<span class="hljs-keyword">H</span> <span class="hljs-string">"Content-Type:application/json"</span> \
+-<span class="hljs-keyword">d</span> \
+'{<span class="hljs-string">"payment_type"</span>: <span class="hljs-string">"card"</span>, 
+    <span class="hljs-string">"token"</span>: <span class="hljs-string">"VALID_CARD_TOKEN"</span>,
+    <span class="hljs-string">"customer_id"</span>: <span class="hljs-string">"YOUR_CUSTOMER_ID"</span>
+ }' \
+'https:<span class="hljs-comment">//api.sumup.com/v0.1/checkouts/:id'</span></code></pre>
+<ul>
+<li>
+<p><code>id</code> - <code>id</code> of the response from <a href="#creating_a_checkout">create checkout</a></p>
+</li>
+<li>
+<p><code>token</code> - Card token returned when <a href="#tokenizing_a_card">tokenizing a card</a>, must be associated with <code>customer_id</code></p>
+</li>
+<li>
+<p><code>customer_id</code> - Customer id returned when <a href="#creating_a_customer">creating a customer</a></p>
+</li>
+</ul>
+<h3 id="header-merchant-balance">Merchant Balance <a class="permalink" href="#header-merchant-balance" aria-hidden="true">¶</a></h3>
+<p>Merchants can also be enabled to pay with the balance of their SumUp account, please contact <a href="mailto:integration@sumup.com">integration@sumup.com</a> for more information.</p>
+</section><span id="card-on-file" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Card on File <a href="#card-on-file" class="permalink">&para;</a></h2><h3 id="header-creating-a-customer">Creating a customer <a class="permalink" href="#header-creating-a-customer" aria-hidden="true">¶</a></h3>
+<p>A customer is associated with your application, and can be used to make a payment to any merchant who has authorised the application to take payments on it’s behalf.</p>
+<p>The following is an example curl request without any <code>personal_details</code>:</p>
+<pre><code>curl -i -X POST <span class="hljs-string">\</span>
+-H <span class="hljs-string">"Content-Type:application/json"</span> <span class="hljs-string">\</span>
+-H <span class="hljs-string">"Authorization:Bearer :VALID_ACCESS_TOKEN"</span> <span class="hljs-string">\</span>
+-d <span class="hljs-string">\</span>
+<span class="hljs-string">'{"customer_id": "YOUR_CUSTOMER_REFERENCE" 
+ }'</span> <span class="hljs-string">\</span>
+<span class="hljs-string">'https://api.sumup.com/v0.1/customers'</span></code></pre>
+<ul>
+<li>
+<p><code>authorization</code> - <code>Bearer</code> and <code>access_token</code> created using client credentials grant</p>
+</li>
+<li>
+<p><code>customer_id</code> - Unique id generated by your application</p>
+</li>
+</ul>
+<p>Check the <a href="../rest-api/checkouts-api/#customers">Customers API documentation</a> for complete details of the request and response from the customers call.</p>
+<p>If the request is successful, the customer data will be echoed in the response.</p>
+<h3 id="header-tokenizing-a-card">Tokenizing a card <a class="permalink" href="#header-tokenizing-a-card" aria-hidden="true">¶</a></h3>
+<p>Once a customer has been created, cards can be tokenized and added as payment instruments. This token can then be used to complete a checkout.</p>
+<p>An authorization of 1.00 in the currency of the card will be processed and then reversed in order to verify the card.</p>
+<pre><code>curl -i -X <span class="hljs-keyword">POST</span> \
+-<span class="hljs-keyword">H</span> <span class="hljs-string">"Content-Type:application/json"</span> \
+-<span class="hljs-keyword">H</span> <span class="hljs-string">"Authorization:Basic :BASE64_ENCODED_CLIENT_ID_FOLLOWED_BY_COLON"</span> \
+-<span class="hljs-keyword">d</span> \
+'{<span class="hljs-string">"type"</span>: <span class="hljs-string">"card"</span>,
+  <span class="hljs-string">"card"</span>: {
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"CARDHOLDER_NAME"</span>,
+    <span class="hljs-string">"number"</span>: <span class="hljs-string">"CARD_NUMBER"</span>,
+    <span class="hljs-string">"expiry_month"</span>: <span class="hljs-string">"EXP_MONTH_DIGITS"</span>,
+    <span class="hljs-string">"expiry_year"</span>: <span class="hljs-string">"EXP_YEAR_TWO_OR_FOUR_DIGITS"</span>
+    <span class="hljs-string">"cvv"</span>: <span class="hljs-string">"CVV"</span>
+  }
+ }' \
+'https:<span class="hljs-comment">//api.sumup.com/v0.1/customers/:customer_id/payment-instruments'</span></code></pre>
+<ul>
+<li>
+<p><code>authorization</code> - <code>Basic</code> and Base64 encoded <code>client_id</code> which enables the request to be made from non-trusted clients like web or mobile applications</p>
+</li>
+<li>
+<p><code>customer_id</code> - Unique id generated by your application representing the customer</p>
+</li>
+<li>
+<p><code>type</code> - <code>card</code></p>
+</li>
+</ul>
+<p>Check the <a href="../rest-api/checkouts-api/#customers-payment-instruments-post">Payment Instruments API documentation</a> for complete details of the request and response from the payment instruments call.</p>
+<p>If the request is successful the following will be returned:</p>
+<pre><code>{
+  "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+  "<span class="hljs-attribute">card</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">last_4_digits</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"..."</span>
+  </span>}
+</span>}</code></pre>
+<ul>
+<li>
+<p><code>token</code> - <code>token</code> to be used when completing a checkout with this payment instrument</p>
+</li>
+<li>
+<p><code>active</code> - Each customer can have up to 4 active payment instruments using the <a href="../rest-api/#checkouts-api/#customers-payment-instruments">payment instruments API</a></p>
+</li>
+<li>
+<p><code>type</code> - <code>card</code></p>
+</li>
+</ul>
+<h3 id="header-subscriptions">Subscriptions <a class="permalink" href="#header-subscriptions" aria-hidden="true">¶</a></h3>
+<p>Subscription services can achieved using recurring payments, performed by completing a checkout with a tokenized card at the frequency required.</p>
 </section></div></div></div>
 
     </div>
