@@ -110,7 +110,7 @@
 <p>The following is an example curl request:</p>
 <pre><code>curl -i -X <span class="hljs-keyword">POST</span> \
 -<span class="hljs-keyword">H</span> <span class="hljs-string">"Content-Type:application/json"</span> \
--<span class="hljs-keyword">H</span> <span class="hljs-string">"Authorization:Bearer :YOUR_ACCESS_TOKEN"</span> \
+-<span class="hljs-keyword">H</span> <span class="hljs-string">"Authorization:Bearer YOUR_ACCESS_TOKEN"</span> \
 -<span class="hljs-keyword">d</span> \
 '{<span class="hljs-string">"amount"</span>: XXX.XX, 
     <span class="hljs-string">"currency"</span>: <span class="hljs-string">"EUR"</span>,
@@ -138,7 +138,7 @@
 <p><code>status</code> - Pending until the checkout is completed</p>
 </li>
 </ul>
-</section><span id="completing-a-checkout" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Completing a checkout <a href="#completing-a-checkout" class="permalink">&para;</a></h2><p>The checkout you created in a server to server communication can be completed in your mobile or web app. You are free to go with a <a href="#custom_integration+checkout">custom integration</a> checkout or embed the <a href="#header-sumup-checkout">SumUp checkout form</a>.</p>
+</section><span id="completing-a-checkout" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Completing a checkout <a href="#completing-a-checkout" class="permalink">&para;</a></h2><p>The checkout you created in a server to server communication can be completed in your mobile or web app. You are free to go with a <a href="#header-custom-integration-checkout">custom integration</a> checkout or embed the <a href="#header-sumup-checkout">SumUp checkout form</a>.</p>
 <p>Note that a checkout can be completed in a browser only from a domain that is present in your OAuth setup as an authorized javascript origin(s).</p>
 <h3 id="header-sumup-checkout">SumUp Checkout <a class="permalink" href="#header-sumup-checkout" aria-hidden="true">¶</a></h3>
 <p>Alternatively you can complete a checkout by using a checkout form provided by SumUp. It will automatically handle all the details as building a custom payment form, validating the user input or make a call to complete a checkout. The only thing that you need to bother with is to handle the result of the checkout. The checkout form is completely white labelled and straightforward to integrate.</p>
@@ -219,7 +219,7 @@
 </span>}</code></pre>
 <ul>
 <li>
-<p><code>id</code> - <code>id</code> of the response from <a href="#creating_a_checkout">create checkout</a></p>
+<p><code>id</code> - <code>id</code> of the response from <a href="#header-creating-a-checkout">create checkout</a></p>
 </li>
 <li>
 <p><code>payment_type</code> - <code>card</code></p>
@@ -228,7 +228,7 @@
 <p>Check the <a href="../rest-api/checkouts-api/#checkouts-complete-checkout-put">Checkout API documentation</a> for complete details of the request and response from the checkout call.</p>
 <p>CORS requests are possible if you have correctly set cors origins in your OAuth setup and the checkout was created by a client with that setup.</p>
 <h3 id="header-tokenized-cards">Tokenized Cards <a class="permalink" href="#header-tokenized-cards" aria-hidden="true">¶</a></h3>
-<p>If you have already <a href="#creating_a_customer">created a customer</a> and <a href="#tokenizing_a_card">tokenized a card</a>, then the checkout can be completed with a token. This request can be made server side as the card data has already been collected, or from a web application as only the client id is used for authorization.</p>
+<p>If you have already <a href="#header-creating-a-customer">created a customer</a> and <a href="#header-tokenizing-a-card">tokenized a card</a>, then the checkout can be completed with a token. This request can be made server side as the card data has already been collected, or from a web application as only the client id is used for authorization.</p>
 <p>The following is an example curl request:</p>
 <pre><code>curl -i -X PUT \
 -<span class="hljs-keyword">H</span> <span class="hljs-string">"Content-Type:application/json"</span> \
@@ -240,13 +240,13 @@
 'https:<span class="hljs-comment">//api.sumup.com/v0.1/checkouts/:id'</span></code></pre>
 <ul>
 <li>
-<p><code>id</code> - <code>id</code> of the response from <a href="#creating_a_checkout">create checkout</a></p>
+<p><code>id</code> - <code>id</code> of the response from <a href="#header-creating-a-checkout">create checkout</a></p>
 </li>
 <li>
-<p><code>token</code> - Card token returned when <a href="#tokenizing_a_card">tokenizing a card</a>, must be associated with <code>customer_id</code></p>
+<p><code>token</code> - Card token returned when <a href="#header-tokenizing-a-card">tokenizing a card</a>, must be associated with <code>customer_id</code></p>
 </li>
 <li>
-<p><code>customer_id</code> - Customer id returned when <a href="#creating_a_customer">creating a customer</a></p>
+<p><code>customer_id</code> - Customer id returned when <a href="#header-creating-a-customer">creating a customer</a></p>
 </li>
 </ul>
 <h3 id="header-merchant-balance">Merchant Balance <a class="permalink" href="#header-merchant-balance" aria-hidden="true">¶</a></h3>
@@ -256,7 +256,7 @@
 <p>The following is an example curl request without any <code>personal_details</code>:</p>
 <pre><code>curl -i -X POST <span class="hljs-string">\</span>
 -H <span class="hljs-string">"Content-Type:application/json"</span> <span class="hljs-string">\</span>
--H <span class="hljs-string">"Authorization:Bearer :VALID_ACCESS_TOKEN"</span> <span class="hljs-string">\</span>
+-H <span class="hljs-string">"Authorization:Bearer VALID_ACCESS_TOKEN"</span> <span class="hljs-string">\</span>
 -d <span class="hljs-string">\</span>
 <span class="hljs-string">'{"customer_id": "YOUR_CUSTOMER_REFERENCE" 
  }'</span> <span class="hljs-string">\</span>
@@ -276,7 +276,7 @@
 <p>An authorization of 1.00 in the currency of the card will be processed and then reversed in order to verify the card.</p>
 <pre><code>curl -i -X <span class="hljs-keyword">POST</span> \
 -<span class="hljs-keyword">H</span> <span class="hljs-string">"Content-Type:application/json"</span> \
--<span class="hljs-keyword">H</span> <span class="hljs-string">"Authorization:Basic :BASE64_ENCODED_CLIENT_ID_FOLLOWED_BY_COLON"</span> \
+-<span class="hljs-keyword">H</span> <span class="hljs-string">"Authorization:Basic BASE64_ENCODED_CLIENT_ID"</span> \
 -<span class="hljs-keyword">d</span> \
 '{<span class="hljs-string">"type"</span>: <span class="hljs-string">"card"</span>,
   <span class="hljs-string">"card"</span>: {

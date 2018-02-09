@@ -89,7 +89,8 @@ The result set has an optional “next” attribute, which can be used to fetch 
 <div class="note">
 <p>Required scope(s): transactions.history</p>
 </div>
-<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/transactions/history</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>order</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Ordering of results by timestamp. Possible values: ‘ascending’ (default), ‘descending’</p>
+<h4>Resource URL</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.sumup.com</span>/v0.1/me/transactions/history</span></div><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>transaction_code</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>SumUp transaction code.</p>
+</dd><dt>order</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Ordering of results by timestamp. Possible values: ‘ascending’ (default), ‘descending’</p>
 </dd><dt>limit</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<p>Maximum number of results per page</p>
 </dd><dt>users[]</dt><dd><code>array</code>&nbsp;<span>(optional)</span>&nbsp;<p>Filter by user email</p>
 </dd><dt>geo_coordinates</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>Filter by geo coordinates: use CSVs of southwest_lng, southwest_lat, northeast_lng, northeast_lat</p>
@@ -289,6 +290,7 @@ The result set has an optional “next” attribute, which can be used to fetch 
   "<span class="hljs-attribute">process_as</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
   "<span class="hljs-attribute">products</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">price</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">vat_rate</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">single_vat_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -479,6 +481,10 @@ The result set has an optional “next” attribute, which can be used to fetch 
         "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product name"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product Description"</span>
         </span>}</span>,
         "<span class="hljs-attribute">price</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
@@ -697,6 +703,7 @@ The result set has an optional “next” attribute, which can be used to fetch 
     "<span class="hljs-attribute">process_as</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
     "<span class="hljs-attribute">products</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"..."</span></span>,
       "<span class="hljs-attribute">price</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">vat_rate</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
       "<span class="hljs-attribute">single_vat_amount</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -889,6 +896,10 @@ The result set has an optional “next” attribute, which can be used to fetch 
             "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
               "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product name"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Product Description"</span>
             </span>}</span>,
             "<span class="hljs-attribute">price</span>": <span class="hljs-value">{
               "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
