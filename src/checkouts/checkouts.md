@@ -21,7 +21,7 @@ The following is an example curl request:
 ```
 curl -i -X POST \
 -H "Content-Type:application/json" \
--H "Authorization:Bearer :YOUR_ACCESS_TOKEN" \
+-H "Authorization:Bearer YOUR_ACCESS_TOKEN" \
 -d \
 '{"amount": XXX.XX, 
     "currency": "EUR",
@@ -50,7 +50,7 @@ If successful, the following response will be received:
 
 ## Group Completing a checkout
 
-The checkout you created in a server to server communication can be completed in your mobile or web app. You are free to go with a [custom integration](#custom_integration+checkout) checkout or embed the [SumUp checkout form](#header-sumup-checkout). 
+The checkout you created in a server to server communication can be completed in your mobile or web app. You are free to go with a [custom integration](#header-custom-integration-checkout) checkout or embed the [SumUp checkout form](#header-sumup-checkout). 
 
 Note that a checkout can be completed in a browser only from a domain that is present in your OAuth setup as an authorized javascript origin(s). 
 
@@ -146,7 +146,7 @@ The request should be made from a client only, and not from a server. In a brows
     }
     
 
-- `id` - `id` of the response from [create checkout](#creating_a_checkout)
+- `id` - `id` of the response from [create checkout](#header-creating-a-checkout)
 - `payment_type` - `card`
 
 Check the [Checkout API documentation](../rest-api/checkouts-api/#checkouts-complete-checkout-put) for complete details of the request and response from the checkout call.
@@ -155,7 +155,7 @@ CORS requests are possible if you have correctly set cors origins in your OAuth 
 
 ### Tokenized Cards
 
-If you have already [created a customer](#creating_a_customer) and [tokenized a card](#tokenizing_a_card), then the checkout can be completed with a token. This request can be made server side as the card data has already been collected, or from a web application as only the client id is used for authorization.
+If you have already [created a customer](#header-creating-a-customer) and [tokenized a card](#header-tokenizing-a-card), then the checkout can be completed with a token. This request can be made server side as the card data has already been collected, or from a web application as only the client id is used for authorization.
 
 The following is an example curl request:
 ```
@@ -168,9 +168,9 @@ curl -i -X PUT \
  }' \
 'https://api.sumup.com/v0.1/checkouts/:id'
 ```
-* `id` - `id` of the response from [create checkout](#creating_a_checkout)
-* `token` - Card token returned when [tokenizing a card](#tokenizing_a_card), must be associated with `customer_id`
-* `customer_id` - Customer id returned when [creating a customer](#creating_a_customer)
+* `id` - `id` of the response from [create checkout](#header-creating-a-checkout)
+* `token` - Card token returned when [tokenizing a card](#header-tokenizing-a-card), must be associated with `customer_id`
+* `customer_id` - Customer id returned when [creating a customer](#header-creating-a-customer)
 
 
 ### Merchant Balance
@@ -186,7 +186,7 @@ The following is an example curl request without any `personal_details`:
 ```
 curl -i -X POST \
 -H "Content-Type:application/json" \
--H "Authorization:Bearer :VALID_ACCESS_TOKEN" \
+-H "Authorization:Bearer VALID_ACCESS_TOKEN" \
 -d \
 '{"customer_id": "YOUR_CUSTOMER_REFERENCE" 
  }' \
@@ -207,7 +207,7 @@ An authorization of 1.00 in the currency of the card will be processed and then 
 ```
 curl -i -X POST \
 -H "Content-Type:application/json" \
--H "Authorization:Basic :BASE64_ENCODED_CLIENT_ID_FOLLOWED_BY_COLON" \
+-H "Authorization:Basic BASE64_ENCODED_CLIENT_ID" \
 -d \
 '{"type": "card",
   "card": {

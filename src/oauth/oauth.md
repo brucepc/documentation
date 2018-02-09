@@ -83,8 +83,8 @@ Once you create a client credentials you can download the details in a JSON file
 ```
 {
     "name": "my awesome app",
-    "client_id": "rncpQJkHsQxxJ3_yD5UXKTquUXwH",
-    "client_secret": "3d97e3a57f7826516e1431d10cdf4bf0b674461635e5b580f6b5eb8ec3c94654",
+    "client_id": "quU3_HpQJXwrncyD5UXKTxxJkHsQ",
+    "client_secret": "30f61d97461635e54e3a54bfb580b674656e7f782651dfec3c9431d10c4",
     "application_type": "web",
     "auth_uri":"https://api.sumup.com/authorize",
     "token_uri":"https://api.sumup.com/token",
@@ -95,7 +95,7 @@ Once you create a client credentials you can download the details in a JSON file
 
 Note that `client_secret` and `cors_uris` are applicable only for client type WEB
 
-## Example Authorization Flows
+## Group Example Authorization Flows
 
 ### Authorization Code Grant
 
@@ -107,23 +107,22 @@ The authorization code grant is recommended when the following criteria are met:
 * User credentials are not known by you (the client)
 * Your application (User agent) is capable of handling a redirect request (e.g. a browser)
 
-After completing the [OAuth setup](#Group_OAuth_setup) direct the merchant to the authorisation URI:
+After completing the [OAuth setup](#OAuth-setup) direct the merchant to the authorisation URI:
 ```
 {
    	https://api.sumup.com/authorize?
     scope=REQUESTED_SCOPES&
     response_type=code&
     client_id=YOUR_CLIENT_ID&
-    client_secret=YOUR_CLIENT_SECRET&
     redirect_uri=YOUR_REDIRECT_URI&
     state=YOUR_KNOWN_STATE
 }
 ```
 
-* `client_id`- Generated during [setup](#Group_OAuth_setup)
-* `client_secret` - Web apps only, generated during [setup](#Group_OAuth_setup)
-* `redirect_uri`- Defined during [setup](#Group_OAuth_setup)
-* `scope` (Optional) - URL encoded, space delimited list, see [supported scopes](SumUp_supported_scopes)
+* `client_id`- Generated during [setup](#OAuth-setup)
+* `client_secret` - Web apps only, generated during [setup](#OAuth-setup)
+* `redirect_uri`- Defined during [setup](#OAuth-setup)
+* `scope` (Optional) - URL encoded, space delimited list, see [supported scopes](#header-SumUp-supported-scopes)
 * `response_type` -  `code` for authorization code
 * `state` - (Optional) - Known only to you, used to prevent [CSRF](https://tools.ietf.org/html/rfc6749#section-10.12)
 
@@ -150,31 +149,31 @@ If the request is successful, an access token will be returned in the response:
 
 ```
 {
-"access_token":"22584b8b8960fc8266db0637d5c166b90b1283081deee2dec8bf7d2dce3b0289",
+"access_token":"YOUR_ACCESS_TOKEN",
 "token_type":"Bearer",
 "expires_in":3600,
-"refresh_token":"6a88a1c877c36735581019f5326286a5f7bc3358a283d81c1e05f642ea5361f5"
+"refresh_token":"YOUR_REFRESH_TOKEN"
 }
 ```
 *  `access_token` - Used to access SumUp services
 *  `token_type` - `Bearer` by default
 *  `expires_in` - Time in seconds
-*  `refresh_token` - Used to [refresh](#Refresh_Tokens) an access token
+*  `refresh_token` - Used to [refresh](#header-Refresh-Tokens) an access token
 
 ### Client Credentials Grant
 
 The client credentials grant is used for direct communication between your platform and SumUp where no merchant authorization is required (e.g. tokenizing a customers card)
 
-After completing the [OAuth setup](#Group_OAuth_setup) request an access token:
+After completing the [OAuth setup](#OAuth-setup) request an access token:
 ```
 curl -X POST \
 -d \ "grant_type=client_credentials&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&scope=REQUESTED_SCOPES" \
 'https://api.sumup.com/token'
 ```
 * `grant_type`- `client_credentials`
-* `client_id`- Generated during [setup](#Group_OAuth_setup)
-* `client_secret` - Web apps only, generated during [setup](#Group_OAuth_setup)
-* `scope` Optional - List of comma separated values, see [supported scopes](SumUp_supported_scopes)
+* `client_id`- Generated during [setup](#OAuth-setup)
+* `client_secret` - Web apps only, generated during [setup](#OAuth-setup)
+* `scope` Optional - List of comma separated values, see [supported scopes](#header-SumUp-supported-scopes)
 
 If the request is successful, an access token will be returned in the response:
 ```
@@ -200,7 +199,7 @@ curl -X POST \
 'https://api.sumup.com/token'
 ```
 * `grant_type` - `refresh_token`
-* `refresh_token`- Generated in [authorization code grant](#authorization_code_grant)
+* `refresh_token`- Generated in [authorization code grant](#header-authorization-code-grant)
 
 
 ### Resource Owner & Implicit Credentials Grants
