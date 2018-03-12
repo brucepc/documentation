@@ -17,6 +17,12 @@
 <td>10/12/2017</td>
 <td>Initial version of this document</td>
 </tr>
+<tr>
+<td>1.1</td>
+<td>Gabriel Ricci</td>
+<td>12/03/2018</td>
+<td>Adding geolocation tags</td>
+</tr>
 </tbody>
 </table>
 <h1 id="header-targeted-audience">Targeted audience <a class="permalink" href="#header-targeted-audience" aria-hidden="true">¶</a></h1>
@@ -388,6 +394,25 @@
                <span class="hljs-tag">&lt;<span class="hljs-title">ICCRltdData</span>&gt;</span>5F2A02098682025800950542000080009A031712119C01009F02060000000050009F10120210A00000000000000000000000000000FF9F1A0200769F26085A6B2599FCBFCE049F2701809F34034103029F360200019F3303E0F0E89F37044DE67C179F1E0800000000000000008407A0000000041010500A4D4153544552434152449F120A4D6173746572436172645F20104D54495030382D32204D4344203133419F1101014F07A00000000410109F1E083541313736303239<span class="hljs-tag">&lt;/<span class="hljs-title">ICCRltdData</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-title">TxDtls</span>&gt;</span>
          <span class="hljs-tag">&lt;/<span class="hljs-title">Tx</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">SumUpGeoloc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">WifiNet</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">BSSID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">BSSID</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">WifiNet</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">WifiNet</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">BSSID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">BSSID</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">WifiNet</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">MobileCell</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">CellID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">CellID</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">LAC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">LAC</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">MCC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">MCC</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">MNC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">MNC</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">MobileCell</span>&gt;</span>
+         <span class="hljs-tag">&lt;/<span class="hljs-title">SumUpGeoloc</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-title">SumUpDeviceInfo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">BatteryLvl</span>&gt;</span>70<span class="hljs-tag">&lt;/<span class="hljs-title">BatteryLvl</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">AppVrsn</span>&gt;</span>1.0<span class="hljs-tag">&lt;/<span class="hljs-title">AppVrsn</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">ConnMode</span>&gt;</span>WIFI/GPRS<span class="hljs-tag">&lt;/<span class="hljs-title">ConnMode</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">SumUpDeviceInfo</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">AuthstnReq</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-title">AccptrAuthstnReq</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">Document</span>&gt;</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/xml</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code><span class="hljs-tag">&lt;<span class="hljs-title">Document</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"urn:AcceptorAuthorisationResponseV02.1"</span>&gt;</span>
@@ -498,6 +523,25 @@
                <span class="hljs-tag">&lt;<span class="hljs-title">ICCRltdData</span>&gt;</span>5F2A02098682025C00950542000080009A031712129C01009F02060000000065009F100706010A03A000009F1A0200769F2608B610650F9038BB299F2701809F34034103029F360200019F3303E0F0E89F3704B3B5C0EA9F1E0800000000000000008407A0000000032010500D5649534120454C454354524F4E9F1210454C454354524F4E20444520564953415F201A56495341204143515549524552205445535420434152442032309F1101014F07A00000000320109F1E083541313736303239<span class="hljs-tag">&lt;/<span class="hljs-title">ICCRltdData</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-title">TxDtls</span>&gt;</span>
          <span class="hljs-tag">&lt;/<span class="hljs-title">Tx</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-title">SumUpGeoloc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">WifiNet</span>&gt;</span>
+               <span class="hljs-tag">&lt;<span class="hljs-title">BSSID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">BSSID</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">WifiNet</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">WifiNet</span>&gt;</span>
+               <span class="hljs-tag">&lt;<span class="hljs-title">BSSID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">BSSID</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">WifiNet</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">MobileCell</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">CellID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">CellID</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">LAC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">LAC</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">MCC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">MCC</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">MNC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">MNC</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">MobileCell</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">SumUpGeoloc</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">SumUpDeviceInfo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">BatteryLvl</span>&gt;</span>70<span class="hljs-tag">&lt;/<span class="hljs-title">BatteryLvl</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">AppVrsn</span>&gt;</span>1.0<span class="hljs-tag">&lt;/<span class="hljs-title">AppVrsn</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">ConnMode</span>&gt;</span>WIFI/GPRS<span class="hljs-tag">&lt;/<span class="hljs-title">ConnMode</span>&gt;</span>
+         <span class="hljs-tag">&lt;/<span class="hljs-title">SumUpDeviceInfo</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">AuthstnReq</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-title">AccptrAuthstnReq</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">Document</span>&gt;</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/xml</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code><span class="hljs-tag">&lt;<span class="hljs-title">Document</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"urn:AcceptorAuthorisationResponseV02.1"</span>&gt;</span>
@@ -625,6 +669,25 @@
                <span class="hljs-tag">&lt;/<span class="hljs-title">RcrngTx</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-title">TxDtls</span>&gt;</span>
          <span class="hljs-tag">&lt;/<span class="hljs-title">Tx</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-title">SumUpGeoloc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">WifiNet</span>&gt;</span>
+               <span class="hljs-tag">&lt;<span class="hljs-title">BSSID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">BSSID</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">WifiNet</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">WifiNet</span>&gt;</span>
+               <span class="hljs-tag">&lt;<span class="hljs-title">BSSID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">BSSID</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">WifiNet</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">MobileCell</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">CellID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">CellID</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">LAC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">LAC</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">MCC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">MCC</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">MNC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">MNC</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">MobileCell</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">SumUpGeoloc</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">SumUpDeviceInfo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">BatteryLvl</span>&gt;</span>70<span class="hljs-tag">&lt;/<span class="hljs-title">BatteryLvl</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">AppVrsn</span>&gt;</span>1.0<span class="hljs-tag">&lt;/<span class="hljs-title">AppVrsn</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">ConnMode</span>&gt;</span>WIFI/GPRS<span class="hljs-tag">&lt;/<span class="hljs-title">ConnMode</span>&gt;</span>
+         <span class="hljs-tag">&lt;/<span class="hljs-title">SumUpDeviceInfo</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">AuthstnReq</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-title">AccptrAuthstnReq</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">Document</span>&gt;</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/xml</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code><span class="hljs-tag">&lt;<span class="hljs-title">Document</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"urn:AcceptorAuthorisationResponseV02.1"</span>&gt;</span>
@@ -734,6 +797,25 @@
                <span class="hljs-tag">&lt;<span class="hljs-title">ICCRltdData</span>&gt;</span>5F2A02098682025800950542000080009A031712129C01009F02060000000030009F10120210A00000000000000000000000000000FF9F1A0200769F260868FAA8FD1B76D8859F2701809F34034103029F360200019F3303E0F0E89F3704AAED38209F1E0800000000000000008407A0000000041010500A4D4153544552434152449F120A4D6173746572436172645F20104D54495030382D32204D4344203133419F1101014F07A00000000410109F1E083541313736303239<span class="hljs-tag">&lt;/<span class="hljs-title">ICCRltdData</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-title">TxDtls</span>&gt;</span>
          <span class="hljs-tag">&lt;/<span class="hljs-title">Tx</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-title">SumUpGeoloc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">WifiNet</span>&gt;</span>
+               <span class="hljs-tag">&lt;<span class="hljs-title">BSSID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">BSSID</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">WifiNet</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">WifiNet</span>&gt;</span>
+               <span class="hljs-tag">&lt;<span class="hljs-title">BSSID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">BSSID</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">WifiNet</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">MobileCell</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">CellID</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">CellID</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">LAC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">LAC</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">MCC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">MCC</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">MNC</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">MNC</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">MobileCell</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">SumUpGeoloc</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">SumUpDeviceInfo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">BatteryLvl</span>&gt;</span>70<span class="hljs-tag">&lt;/<span class="hljs-title">BatteryLvl</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">AppVrsn</span>&gt;</span>1.0<span class="hljs-tag">&lt;/<span class="hljs-title">AppVrsn</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">ConnMode</span>&gt;</span>WIFI/GPRS<span class="hljs-tag">&lt;/<span class="hljs-title">ConnMode</span>&gt;</span>
+         <span class="hljs-tag">&lt;/<span class="hljs-title">SumUpDeviceInfo</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">AuthstnReq</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-title">AccptrAuthstnReq</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">Document</span>&gt;</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/xml</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code><span class="hljs-tag">&lt;<span class="hljs-title">Document</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"urn:AcceptorAuthorisationResponseV02.1"</span>&gt;</span>
@@ -1068,6 +1150,66 @@
 <td>***** TotalNumberOfPayments(TtlNbOfPmts)</td>
 <td>[1…1] Quantity</td>
 <td>Number of installments</td>
+</tr>
+<tr>
+<td>** Geolocation (SumUpGeoloc)</td>
+<td>[1…1] Container</td>
+<td>SumUp specific tag with geolocation data</td>
+</tr>
+<tr>
+<td>*** Wifi Network (WifiNet)</td>
+<td>[0…*] Container</td>
+<td>Wifi network container</td>
+</tr>
+<tr>
+<td>**** BSSID (BSSID)</td>
+<td>[1…1] Text</td>
+<td>BSSID of the wifi network</td>
+</tr>
+<tr>
+<td>*** Mobile cell (MobileCell)</td>
+<td>[0…*] Container</td>
+<td>Mobile cell container</td>
+</tr>
+<tr>
+<td>**** Cell ID (CellID)</td>
+<td>[1…1] Text</td>
+<td>The ID of the cell</td>
+</tr>
+<tr>
+<td>**** Location area code (LAC)</td>
+<td>[1…1] Text</td>
+<td>Location area code of the cell</td>
+</tr>
+<tr>
+<td>**** Mobile country code (MCC)</td>
+<td>[1…1] Text</td>
+<td>Mobile country code of the cell</td>
+</tr>
+<tr>
+<td>**** Mobile network code (MNC)</td>
+<td>[1…1] Text</td>
+<td>Mobile network code of the cell</td>
+</tr>
+<tr>
+<td>** Device diagnostic (SumUpDeviceInfo)</td>
+<td>[1…1] Container</td>
+<td>SumUp specific tag with information about the device</td>
+</tr>
+<tr>
+<td>*** Battery Level (BatLvl)</td>
+<td>[1…1] Text</td>
+<td>Device’s battery level</td>
+</tr>
+<tr>
+<td>*** Application version (AppVrsn)</td>
+<td>[1…1] Text</td>
+<td>Version of the application running on the device</td>
+</tr>
+<tr>
+<td>*** Connection mode (ConnMode)</td>
+<td>[1…1] Text</td>
+<td>Connection mode used by the device. <br /><br /> <strong>NOTE</strong>: <code>WIFI</code> or <code>GPRS</code></td>
 </tr>
 </tbody>
 </table>
@@ -5112,7 +5254,7 @@
 </tr>
 </tbody>
 </table>
-</div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 08 Feb 2018</p></div></div></div></div><script>/* eslint-env browser */
+</div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 12 Mar 2018</p></div></div></div></div><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
