@@ -83,7 +83,7 @@
 
     <div class="layout__content main-content layout__content-expanded">
       
-<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#authorization-model">Authorization Model</a></div><div class="collapse-content"><ul><li><a href="#header-supported-flows">Supported flows</a></li><li><a href="#header-supported-content-types">Supported content types</a></li><li><a href="#header-headers">Headers</a></li><li><a href="#header-endpoints">Endpoints</a></li><li><a href="#header-sumup-supported-scopes">SumUp supported scopes</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#oauth-setup">OAuth setup</a></div><div class="collapse-content"><ul><li><a href="#header-consent-screen">Consent screen</a></li><li><a href="#header-client-credentials">Client credentials</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#example-authorization-flows">Example Authorization Flows</a></div><div class="collapse-content"><ul><li><a href="#header-authorization-code-grant">Authorization Code Grant</a></li><li><a href="#header-client-credentials-grant">Client Credentials Grant</a></li><li><a href="#header-refresh-tokens">Refresh Tokens</a></li><li><a href="#header-resource-owner-&amp;-implicit-credentials-grants">Resource Owner & Implicit Credentials Grants</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><svg class="icon" viewBox="0 0 100 100" width="100" height="100" style="fill:black">
+<a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#authorization-model">Authorization Model</a></div><div class="collapse-content"><ul><li><a href="#header-supported-flows">Supported flows</a></li><li><a href="#header-supported-content-types">Supported content types</a></li><li><a href="#header-headers">Headers</a></li><li><a href="#header-endpoints">Endpoints</a></li><li><a href="#header-sumup-supported-scopes">SumUp supported scopes</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#oauth-setup">OAuth setup</a></div><div class="collapse-content"><ul><li><a href="#header-consent-screen">Consent screen</a></li><li><a href="#header-client-credentials">Client credentials</a></li><li><a href="#header-example-authorization-flows">Example Authorization Flows</a></li><li><a href="#header-authorization-code-grant">Authorization Code Grant</a></li><li><a href="#header-client-credentials-grant">Client Credentials Grant</a></li><li><a href="#header-refresh-tokens">Refresh Tokens</a></li><li><a href="#header-resource-owner-&amp;-implicit-credentials-grants">Resource Owner & Implicit Credentials Grants</a></li></ul></div></div></nav><div class="content"><!--header--><!--    h1#top!= self.api.name || '&nbsp;'--><svg class="icon" viewBox="0 0 100 100" width="100" height="100" style="fill:black">
   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-nav-oauth"></use>
 </svg>
 <p>SumUp uses <a href="http://oauth.net/">OAuth</a> to provide standard way for authorized access to its APIs.</p>
@@ -199,8 +199,8 @@
 <p>Once you create a client credentials you can download the details in a JSON file that includes client id and secret to use for authorization.  Example:</p>
 <pre><code>{
     "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"my awesome app"</span></span>,
-    "<span class="hljs-attribute">client_id</span>": <span class="hljs-value"><span class="hljs-string">"quU3_HpQJXwrncyD5UXKTxxJkHsQ"</span></span>,
-    "<span class="hljs-attribute">client_secret</span>": <span class="hljs-value"><span class="hljs-string">"30f61d97461635e54e3a54bfb580b674656e7f782651dfec3c9431d10c4"</span></span>,
+    "<span class="hljs-attribute">client_id</span>": <span class="hljs-value"><span class="hljs-string">"rncpQJkHsQxxJ3_yD5UXKTquUXwH"</span></span>,
+    "<span class="hljs-attribute">client_secret</span>": <span class="hljs-value"><span class="hljs-string">"3d97e3a57f7826516e1431d10cdf4bf0b674461635e5b580f6b5eb8ec3c94654"</span></span>,
     "<span class="hljs-attribute">application_type</span>": <span class="hljs-value"><span class="hljs-string">"web"</span></span>,
     "<span class="hljs-attribute">auth_uri</span>":<span class="hljs-value"><span class="hljs-string">"https://api.sumup.com/authorize"</span></span>,
     "<span class="hljs-attribute">token_uri</span>":<span class="hljs-value"><span class="hljs-string">"https://api.sumup.com/token"</span></span>,
@@ -208,7 +208,8 @@
     "<span class="hljs-attribute">cors_uris</span>":<span class="hljs-value">[<span class="hljs-string">"https://mysite.com"</span>]
 </span>}</code></pre>
 <p>Note that <code>client_secret</code> and <code>cors_uris</code> are applicable only for client type WEB</p>
-</section><span id="example-authorization-flows" class="anchor"></span><section class="resource-group"><h2 class="group-heading">Example Authorization Flows <a href="#example-authorization-flows" class="permalink">&para;</a></h2><h3 id="header-authorization-code-grant">Authorization Code Grant <a class="permalink" href="#header-authorization-code-grant" aria-hidden="true">¶</a></h3>
+<h2 id="header-example-authorization-flows">Example Authorization Flows <a class="permalink" href="#header-example-authorization-flows" aria-hidden="true">¶</a></h2>
+<h3 id="header-authorization-code-grant">Authorization Code Grant <a class="permalink" href="#header-authorization-code-grant" aria-hidden="true">¶</a></h3>
 <p>In the authorization grant flow the merchant authorises your application once, for a specific set of scopes.</p>
 <p>The authorization code grant is recommended when the following criteria are met:</p>
 <ul>
@@ -222,27 +223,28 @@
 <p>Your application (User agent) is capable of handling a redirect request (e.g. a browser)</p>
 </li>
 </ul>
-<p>After completing the <a href="#OAuth-setup">OAuth setup</a> direct the merchant to the authorisation URI:</p>
+<p>After completing the <a href="#Group_OAuth_setup">OAuth setup</a> direct the merchant to the authorisation URI:</p>
 <pre><code>{
        https://api.sumup.com/authorize?
     scope=REQUESTED_SCOPES&amp;
     response_type=code&amp;
     client_id=YOUR_CLIENT_ID&amp;
+    client_secret=YOUR_CLIENT_SECRET&amp;
     redirect_uri=YOUR_REDIRECT_URI&amp;
     <span class="hljs-keyword">state</span>=YOUR_KNOWN_STATE
 }</code></pre>
 <ul>
 <li>
-<p><code>client_id</code>- Generated during <a href="#OAuth-setup">setup</a></p>
+<p><code>client_id</code>- Generated during <a href="#Group_OAuth_setup">setup</a></p>
 </li>
 <li>
-<p><code>client_secret</code> - Web apps only, generated during <a href="#OAuth-setup">setup</a></p>
+<p><code>client_secret</code> - Web apps only, generated during <a href="#Group_OAuth_setup">setup</a></p>
 </li>
 <li>
-<p><code>redirect_uri</code>- Defined during <a href="#OAuth-setup">setup</a></p>
+<p><code>redirect_uri</code>- Defined during <a href="#Group_OAuth_setup">setup</a></p>
 </li>
 <li>
-<p><code>scope</code> (Optional) - URL encoded, space delimited list, see <a href="#header-SumUp-supported-scopes">supported scopes</a></p>
+<p><code>scope</code> (Optional) - URL encoded, space delimited list, see <a href="SumUp_supported_scopes">supported scopes</a></p>
 </li>
 <li>
 <p><code>response_type</code> -  <code>code</code> for authorization code</p>
@@ -269,10 +271,10 @@
 </ul>
 <p>If the request is successful, an access token will be returned in the response:</p>
 <pre><code>{
-"<span class="hljs-attribute">access_token</span>":<span class="hljs-value"><span class="hljs-string">"YOUR_ACCESS_TOKEN"</span></span>,
+"<span class="hljs-attribute">access_token</span>":<span class="hljs-value"><span class="hljs-string">"22584b8b8960fc8266db0637d5c166b90b1283081deee2dec8bf7d2dce3b0289"</span></span>,
 "<span class="hljs-attribute">token_type</span>":<span class="hljs-value"><span class="hljs-string">"Bearer"</span></span>,
 "<span class="hljs-attribute">expires_in</span>":<span class="hljs-value"><span class="hljs-number">3600</span></span>,
-"<span class="hljs-attribute">refresh_token</span>":<span class="hljs-value"><span class="hljs-string">"YOUR_REFRESH_TOKEN"</span>
+"<span class="hljs-attribute">refresh_token</span>":<span class="hljs-value"><span class="hljs-string">"6a88a1c877c36735581019f5326286a5f7bc3358a283d81c1e05f642ea5361f5"</span>
 </span>}</code></pre>
 <ul>
 <li>
@@ -285,12 +287,12 @@
 <p><code>expires_in</code> - Time in seconds</p>
 </li>
 <li>
-<p><code>refresh_token</code> - Used to <a href="#header-Refresh-Tokens">refresh</a> an access token</p>
+<p><code>refresh_token</code> - Used to <a href="#Refresh_Tokens">refresh</a> an access token</p>
 </li>
 </ul>
 <h3 id="header-client-credentials-grant">Client Credentials Grant <a class="permalink" href="#header-client-credentials-grant" aria-hidden="true">¶</a></h3>
 <p>The client credentials grant is used for direct communication between your platform and SumUp where no merchant authorization is required (e.g. tokenizing a customers card)</p>
-<p>After completing the <a href="#OAuth-setup">OAuth setup</a> request an access token:</p>
+<p>After completing the <a href="#Group_OAuth_setup">OAuth setup</a> request an access token:</p>
 <pre><code>curl -X POST <span class="hljs-string">\</span>
 -d <span class="hljs-string">\</span> <span class="hljs-string">"grant_type=client_credentials&amp;client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET&amp;scope=REQUESTED_SCOPES"</span> <span class="hljs-string">\</span>
 <span class="hljs-string">'https://api.sumup.com/token'</span></code></pre>
@@ -299,13 +301,13 @@
 <p><code>grant_type</code>- <code>client_credentials</code></p>
 </li>
 <li>
-<p><code>client_id</code>- Generated during <a href="#OAuth-setup">setup</a></p>
+<p><code>client_id</code>- Generated during <a href="#Group_OAuth_setup">setup</a></p>
 </li>
 <li>
-<p><code>client_secret</code> - Web apps only, generated during <a href="#OAuth-setup">setup</a></p>
+<p><code>client_secret</code> - Web apps only, generated during <a href="#Group_OAuth_setup">setup</a></p>
 </li>
 <li>
-<p><code>scope</code> Optional - List of comma separated values, see <a href="#header-SumUp-supported-scopes">supported scopes</a></p>
+<p><code>scope</code> Optional - List of comma separated values, see <a href="SumUp_supported_scopes">supported scopes</a></p>
 </li>
 </ul>
 <p>If the request is successful, an access token will be returned in the response:</p>
@@ -339,7 +341,7 @@
 <p><code>grant_type</code> - <code>refresh_token</code></p>
 </li>
 <li>
-<p><code>refresh_token</code>- Generated in <a href="#header-authorization-code-grant">authorization code grant</a></p>
+<p><code>refresh_token</code>- Generated in <a href="#authorization_code_grant">authorization code grant</a></p>
 </li>
 </ul>
 <h3 id="header-resource-owner-&amp;-implicit-credentials-grants">Resource Owner &amp; Implicit Credentials Grants <a class="permalink" href="#header-resource-owner-&amp;-implicit-credentials-grants" aria-hidden="true">¶</a></h3>
